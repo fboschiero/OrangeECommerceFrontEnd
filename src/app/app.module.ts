@@ -3,18 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/shared/navbar/nav-bar/nav-bar.component';
+import { NavbarComponent } from './components/public/navbar/navbar.component';
+import { LoginComponent } from './components/public/login/login.component';
+import { HomeComponent } from './components/public/home/home.component';
+import { UserComponent } from './components/private/user/user.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavbarComponent,
+    LoginComponent,
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    HttpHandler
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

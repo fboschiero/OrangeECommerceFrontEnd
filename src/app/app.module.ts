@@ -7,7 +7,9 @@ import { NavbarComponent } from './components/public/navbar/navbar.component';
 import { LoginComponent } from './components/public/login/login.component';
 import { HomeComponent } from './components/public/home/home.component';
 import { UserComponent } from './components/private/user/user.component';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { CarritoComponent } from './components/public/carrito/carrito.component';
+import { FooterComponent } from './components/public/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +17,17 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    CarritoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
-    HttpClient,
-    HttpHandler
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

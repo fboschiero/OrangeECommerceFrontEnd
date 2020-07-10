@@ -58,10 +58,6 @@ a {
     color: #696969;
 }
 
-img {
-    width: 100%;
-}
-
 .twhite {
     color: #fff!important;
 }
@@ -165,4 +161,115 @@ img {
 #social-em:hover {
     color: #f39c12;
     transition: all .25s;
+}
+
+
+/**  CARRITO */
+
+body {
+    background: #f0f0f0;
+}
+
+.nav {
+    left: 50%;
+    margin-left: -150px;
+    top: 50px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus,
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus {
+    background: #fff;
+}
+
+.dropdown {
+    /*background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;*/
+}
+
+.dropdown-menu>li>a {
+    color: #428bca;
+}
+
+.dropdown ul.dropdown-menu {
+    /*border-radius: 4px;
+    box-shadow: none;
+    margin-top: 20px;
+    width: 300px;*/
+}
+
+.dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    z-index: 10;
+}
+
+.dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 14px;
+    z-index: 9;
+}
+
+ul.dropdown-cart {
+    min-width: 250px;
+}
+
+ul.dropdown-cart li .item {
+    display: block;
+    padding: 3px 10px;
+    margin: 3px 0;
+}
+
+ul.dropdown-cart li .item:hover {
+    background-color: #f3f3f3;
+}
+
+ul.dropdown-cart li .item:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.dropdown-cart li .item-left {
+    float: left;
+}
+
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info {
+    float: left;
+}
+
+ul.dropdown-cart li .item-left span.item-info {
+    margin-left: 10px;
+}
+
+ul.dropdown-cart li .item-left span.item-info span {
+    display: block;
+}
+
+ul.dropdown-cart li .item-right {
+    float: right;
+}
+
+ul.dropdown-cart li .item-right button {
+    margin-top: 14px;
 }

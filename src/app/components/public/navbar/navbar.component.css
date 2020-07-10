@@ -211,7 +211,7 @@ body {
     border-left: 10px solid transparent;
     position: absolute;
     top: -10px;
-    right: 16px;
+    left: 8px;
     z-index: 10;
 }
 
@@ -222,7 +222,7 @@ body {
     border-left: 12px solid transparent;
     position: absolute;
     top: -12px;
-    right: 14px;
+    left: 6px;
     z-index: 9;
 }
 

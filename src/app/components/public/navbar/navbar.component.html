@@ -59,38 +59,23 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Overview</a>
+                <a class="nav-link" href="#">Nuevos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Price</a>
+                <a class="nav-link" href="#">Destacados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Specification</a>
+                <a class="nav-link" href="#">Ofertas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pictures</a>
+                <a class="nav-link" href="#">Filtros de búsqueda</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Videos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reviews</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Loan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Insurance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Dealers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Color</a>
-            </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!estaLogueado();">
                 <a class="nav-link" [routerLink]="['login']">Login</a>
             </li>
+            <a href="#" *ngIf="estaLogueado();">
+                <li class="list-inline-item"><small><i class="fa fa-user"></i>  Mi cuenta</small></li>
+            </a>
             <li class="nav-item dropdown">
                 <!--  -->
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">

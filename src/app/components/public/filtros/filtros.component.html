@@ -1,0 +1,51 @@
+<div class="container pt-5">
+
+    <div class="panel-group">
+        <div class="panel panel-default border ">
+            <div class="panel-heading ml-3">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray;">Filtros de búsqueda</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="row">
+                    <div class="custom-control custom-switch col-12 col-md-2">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1">Hombre</label>
+                    </div>
+                    <div class="custom-control custom-switch col-12 col-md-2">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                        <label class="custom-control-label" for="customSwitch1">Mujer</label>
+                    </div>
+                    <div class="custom-control custom-switch col-12 col-md-2">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                        <label class="custom-control-label" for="customSwitch1">Niños</label>
+                    </div>
+                </div>
+                <div class="d-flex flex-row pt-3">
+                    <label class="pr-2">Precio hasta</label>
+                    <input type="range" name="rangeInput" min="0" max="10000" onchange="updateTextInput(this.value);">
+                    <input type="text" class="form-control" id="textInput" value="0" style="width: 50px; border: none;">
+                </div>
+                <div class="d-flex flex-row pt-3">
+                    <label class="pr-2">Talle</label>
+                    <select class="custom-select" style="width: 200px;">
+                        <option selected>Elige el talle</option>
+                        <option value="1">S</option>
+                        <option value="2">M</option>
+                        <option value="3">L</option>
+                        <option value="4">G</option>
+                        <option value="5">XL</option>
+                        <option value="6">XXL</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

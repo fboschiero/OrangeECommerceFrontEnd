@@ -10,6 +10,8 @@ import { UserComponent } from './components/private/user/user.component';
 import { HttpClient, HttpClientModule  } from '@angular/common/http';
 import { CarritoComponent } from './components/public/carrito/carrito.component';
 import { FooterComponent } from './components/public/footer/footer.component';
+import { FiltrosComponent } from './components/public/filtros/filtros.component';
+import { CardComponent } from './components/public/card/card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FooterComponent } from './components/public/footer/footer.component';
     HomeComponent,
     UserComponent,
     CarritoComponent,
-    FooterComponent
+    FooterComponent,
+    FiltrosComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  private API_URL = environment.API_URL;
+
   usuarioLogueado: boolean;
 
   constructor(private http: HttpClient) {
-    console.log('constructor');
+
     const estaLogueado = localStorage.getItem('estaLogueado');
+
     if (estaLogueado  === 'true'){
       this.usuarioLogueado  = true;
     } else {
@@ -24,6 +28,8 @@ export class LoginService {
   }
 
   login(){
+    // const body2 = 'body';
+    // this.http.post(`${this.API_URL}/signIn`, body2);
 
     this.usuarioLogueado = true;
     console.log('Usuario logueado!');

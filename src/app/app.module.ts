@@ -12,6 +12,7 @@ import { CarritoComponent } from './components/public/carrito/carrito.component'
 import { FooterComponent } from './components/public/footer/footer.component';
 import { FiltrosComponent } from './components/public/filtros/filtros.component';
 import { CardComponent } from './components/public/card/card.component';
+import { ArticulosComponent } from './components/public/articulos/articulos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CardComponent } from './components/public/card/card.component';
     CarritoComponent,
     FooterComponent,
     FiltrosComponent,
-    CardComponent
+    CardComponent,
+    ArticulosComponent
   ],
   imports: [
     BrowserModule,

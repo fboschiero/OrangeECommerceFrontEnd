@@ -18,6 +18,7 @@ export class ArticuloModel {
     articuloNuevo: boolean;
     descuento: number;
     coloresDisponibles: string;
+    destacado: boolean;
 
     constructor(){
         this.articuloNuevo = true;

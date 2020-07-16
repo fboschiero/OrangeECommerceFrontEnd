@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArticuloService } from '../../../services/articulo.service';
-
+import { ArticuloModel } from '../../../models/articulo.model';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +12,18 @@ export class HomeComponent implements OnInit {
   private DESDE = 0;
   private CANTIDAD = 10;
 
-  @Input() items: any[] = [];
-  constructor(private articuloService: ArticuloService ) { }
+  articulos: ArticuloModel[] = [];
+
+  constructor(private articuloService: ArticuloService ) {
+    this.articuloService.getArticulos(1, 1).subscribe( resp => {
+      this.articulos = resp;
+    });
+  }
 
   ngOnInit(): void {
+
   }
+
 
 
 }

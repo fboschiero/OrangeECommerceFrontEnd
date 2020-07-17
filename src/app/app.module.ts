@@ -13,6 +13,8 @@ import { FooterComponent } from './components/public/footer/footer.component';
 import { FiltrosComponent } from './components/public/filtros/filtros.component';
 import { CardComponent } from './components/public/card/card.component';
 import { ArticulosComponent } from './components/public/articulos/articulos.component';
+import { CategoriaComponent } from './components/private/categoria/categoria.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import { ArticulosComponent } from './components/public/articulos/articulos.comp
     FooterComponent,
     FiltrosComponent,
     CardComponent,
-    ArticulosComponent
+    ArticulosComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     HttpClient

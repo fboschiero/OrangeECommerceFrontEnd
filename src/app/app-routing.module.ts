@@ -10,12 +10,17 @@ import { CarritoComponent } from './components/public/carrito/carrito.component'
 import { UserComponent } from './components/private/user/user.component';
 
 import { LoginGuard } from './guards/login.guard';
+import { CategoriaComponent } from './components/private/categoria/categoria.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'user', component: UserComponent, canActivate: [LoginGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'carrito', component: CarritoComponent},
+
+  //para ingresar categoria
+  { path: 'categoria', component: CategoriaComponent},
+
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
 

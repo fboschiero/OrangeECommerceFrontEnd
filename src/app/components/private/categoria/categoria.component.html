@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<form (ngSubmit)="saveFormCategoria(form.value)" #form="ngForm" novalidate="" style="margin: 20px;">
+    <div class="form-group">
+        <label for="formGroupExampleInput">Nombre</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
+        <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+            Dato requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Descripcion</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion">
+    </div>
+    <div class="custom-control custom-checkbox">
+        <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+        <label class="custom-control-label" for="customCheck1">Activo</label>
+    </div>
+
+    <button class="btn btn-lg btn-block btn-sm buttonContacto" type="submit" [disabled]="!form.form.valid">Enviar</button>
+
+</form>

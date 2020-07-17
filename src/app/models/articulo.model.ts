@@ -2,10 +2,10 @@ import { Categoria } from './categoria.model';
 import { Talle } from './talle.model';
 
 export class ArticuloModel {
-
+    id: string;
     nombre: string;
     precio: number;
-    img: string;
+    img: string[];
     imgDimensiones: string;
     categorias: Categoria[];
     talles: Talle[];

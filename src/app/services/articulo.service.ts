@@ -38,8 +38,9 @@ export class ArticuloService {
           const largo =  articulosObj[key].length;
 
           for (let i = 0; i < largo; i++) {
-            console.log(articulosObj[key][i].nombre);
+            // console.log(articulosObj[key][i]._id);
             const articulo: ArticuloModel = new ArticuloModel(); // articulosObj[key];
+            articulo.id = articulosObj[key][i]._id;
             articulo.nombre = articulosObj[key][i].nombre;
             articulo.precio = articulosObj[key][i].precio;
             articulo.img = articulosObj[key][i].img;

@@ -217,7 +217,9 @@
     <app-card [articulo]="articulo"></app-card>
 </div-->
 
-<app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+<div class="d-flex flex-row">
+    <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+</div>
 
 <!--app-articulos [items]="getArticulos()"></!--app-articulos -->
 <!--app-card [items]="productos"></!--app-card -->

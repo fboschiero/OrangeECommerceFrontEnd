@@ -1,5 +1,6 @@
-export class Categoria {
+export class CategoriaModel {
 
+    id: string;
     nombre: string;
     descripcion: string;
     img: string;

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArticuloService } from '../../../services/articulo.service';
+import { CategoriaService } from '../../../services/categoria.service';
 import { ArticuloModel } from '../../../models/articulo.model';
+import { CategoriaModel } from '../../../models/categoria.model';
+
 
 @Component({
   selector: 'app-home',
@@ -12,15 +15,36 @@ export class HomeComponent implements OnInit {
   private DESDE = 0;
   private CANTIDAD = 10;
 
-  articulos: ArticuloModel[] = [];
+  @Input() filtroPrecio: number;
+  @Input() filtroCategoria: string;
 
-  constructor(private articuloService: ArticuloService ) {
-    this.articuloService.getArticulos(1, 1).subscribe( resp => {
+  articulos: ArticuloModel[] = [];
+  categorias: CategoriaModel[] = [];
+
+  constructor(private articuloService: ArticuloService,
+              private categoriaService: CategoriaService ) {
+
+    this.articuloService.getArticulosDestacados(1, 1).subscribe( resp => {
       this.articulos = resp;
     });
+
+    this.categoriaService.getCategorias().subscribe( resp => {
+      this.categorias = resp;
+    });
+
+    this.filtroPrecio = 5000;
   }
 
   ngOnInit(): void {
+
+  }
+
+  selectFiltro(id: string) {
+    this.filtroCategoria = id;
+  }
+
+  prueba(): void{
+    console.log(this.filtroCategoria);
 
   }
 

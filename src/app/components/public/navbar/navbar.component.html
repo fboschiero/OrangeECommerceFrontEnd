@@ -8,15 +8,9 @@
             </div>
             <div class="col-md-6 text-right">
                 <ul class="list-inline ">
-                    <a href="#">
-                        <li class="list-inline-item"><small> Cómo comprar?</small></li>
-                    </a>
-                    <a href="#">
-                        <li class="list-inline-item"><small> Preguntas frecuentes</small></li>
-                    </a>
-                    <a href="#">
-                        <li class="list-inline-item"><small><i class="fa fa-user"></i>  Mi cuenta</small></li>
-                    </a>
+                    <div *ngIf="estaLogueado();">
+                        <li class="list-inline-item"> Hola {{nombreUsuario}}!</li>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -73,9 +67,9 @@
             <li class="nav-item" *ngIf="!estaLogueado();">
                 <a class="nav-link" [routerLink]="['login']">Login</a>
             </li>
-            <a href="#" *ngIf="estaLogueado();">
-                <li class="list-inline-item"><small><i class="fa fa-user"></i>  Mi cuenta</small></li>
-            </a>
+            <li class="nav-item" *ngIf="estaLogueado();">
+                <a class="nav-link" [routerLink]="['miCuenta']">Mi cuenta</a>
+            </li>
             <li class="nav-item dropdown">
                 <!--  -->
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -154,6 +148,9 @@
                     <li><a [routerLink]="['/carrito']">Ver carrito</a></li>
                 </ul>
 
+            </li>
+            <li class="nav-item" *ngIf="estaLogueado();">
+                <a class="nav-link" [routerLink]="['salir']" (click)="salir();">Salir</a>
             </li>
         </ul>
     </div>

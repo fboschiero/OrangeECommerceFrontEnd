@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { UsuarioModel } from '../models/usuario.model';
+
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +17,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
 
-    const estaLogueado = localStorage.getItem('estaLogueado');
+    const user: UsuarioModel = JSON.parse(localStorage.getItem('usuario'));
 
-    if (estaLogueado  === 'true'){
+    if (user && user.nombre){
       this.usuarioLogueado  = true;
     } else {
       this.usuarioLogueado  = false;
@@ -23,36 +27,78 @@ export class LoginService {
   }
 
   estaAutenticado(): boolean{
-    console.log('Validando autenticacion de usuario', this.usuarioLogueado);
     return this.usuarioLogueado;
   }
 
-  login(){
-    // const body2 = 'body';
-    // this.http.post(`${this.API_URL}/signIn`, body2);
+  login(usuario: UsuarioModel) {
 
-    this.usuarioLogueado = true;
-    console.log('Usuario logueado!');
-    console.log('Validando autenticacion de usuario', this.usuarioLogueado);
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+    };
 
-    localStorage.setItem('estaLogueado', 'true');
+    const email = usuario.email;
+    const password = usuario.password;
 
-    /*this.http.get('').subscribe(data => {
-      console.log(data);
-    }, (err) => {
+    const body = JSON.stringify({ email, password });
 
-    });*/
+    return this.http.post(`${ environment.API_URL }/signIn`, body, httpOptions)
+    .pipe(map((user) => {
+
+      console.log('login response: ' + JSON.stringify(user));
+
+      if (user) {
+
+        this.usuarioLogueado = true;
+        usuario.nombre = user['usuario']['nombre'];
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+
+      }
+
+      return user;
+
+    }));
+
   }
 
-  nuevoUsuario(userParam: string, passParam: string, eMailParam: string){
+  signUp(usuario: UsuarioModel) {
 
-    const headers = new HttpHeaders({
-      user: userParam,
-      pass: passParam,
-      eMail: eMailParam
-    });
-    this.http.post('', {headers}).subscribe(data => {
-      console.log(data);
-    });
+    if (usuario.password.match(usuario.confirmPassword) === null) {
+      console.log('No coinciden las contraseñas!');
+      return;
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+    };
+
+    const nombre = usuario.nombre;
+    const email = usuario.email;
+    const password = usuario.password;
+    const role = usuario.role;
+
+    const body = JSON.stringify({ nombre, email, password, role });
+    console.log(body);
+
+    return this.http.post(`${ environment.API_URL }/signUp`, body, httpOptions)
+    .pipe(map(user => {
+
+      console.log('Nuevo usuario response: ' + JSON.stringify(user));
+
+      if (user) {
+
+        this.usuarioLogueado = true;
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+
+      }
+
+      return user;
+
+    }));
+
+  }
+
+  logout(){
+    localStorage.removeItem('usuario');
+    this.usuarioLogueado = false;
   }
 }

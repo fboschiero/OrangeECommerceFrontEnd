@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { Router } from '@angular/router';
+import { UsuarioModel } from '../../../models/usuario.model';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +10,61 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  usuario: UsuarioModel = new UsuarioModel();
+
   constructor(private loginServices: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  login(){
-    this.loginServices.login();
+  login() {
+
+    this.loginServices.login(this.usuario).subscribe( (resp: UsuarioModel) => {
+
+      console.log(`resp : ${ resp }`);
+
+      this.usuario = resp;
+      console.log(`usuario: ${this.usuario}`);
+
+      this.router.navigateByUrl('/');
+
+    }, (err) => {
+
+      if (err && err.error) {
+
+        console.error(`ERROR: ${err.error.ok}`);
+        console.error(`ERROR: ${err.error.err.message}`);
+
+      } else {
+
+        console.error(`ERROR: ${err}`);
+
+      }
+
+    });
+  }
+
+  signUp(){
+    this.loginServices.signUp(this.usuario).subscribe( resp => {
+
+      console.log(`signUp resp: ${ resp }`);
+
+      this.router.navigateByUrl('/');
+
+    }, (err) => {
+
+      if (err && err.error) {
+
+        console.error(`ERROR: ${err.error.ok}`);
+        console.error(`ERROR: ${err.error.err.message}`);
+
+      } else {
+
+        console.error(`ERROR: ${err}`);
+
+      }
+
+    });
   }
 
 }

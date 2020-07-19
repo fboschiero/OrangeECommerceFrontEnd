@@ -9,19 +9,19 @@
                 <div class="col_md_login">
                     <div class="cont_ba_opcitiy">
 
-                        <h2>LOGIN</h2>
+                        <h2>INGRESAR</h2>
                         <p></p>
-                        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                        <button class="btn_login" onclick="cambiar_login()">INGRESAR</button>
                     </div>
                 </div>
                 <div class="col_md_sign_up">
                     <div class="cont_ba_opcitiy">
-                        <h2>SIGN UP</h2>
+                        <h2>REGISTRO</h2>
 
 
                         <p></p>
 
-                        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                        <button class="btn_sign_up" onclick="cambiar_sign_up()">REGISTRARSE</button>
                     </div>
                 </div>
             </div>
@@ -38,20 +38,21 @@
                     <img src="https://www.gtagangwars.de/suite/images/styleLogo-6bd77433ddf78bd8477ea7306e804f677bc925d0.png" alt="" />
                 </div>
                 <div class="cont_form_login">
-                    <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons"></i></a>
-                    <h2>LOGIN</h2>
-                    <input type="text" placeholder="Username" />
-                    <input type="password" placeholder="Password" />
-                    <button class="btn_login" (click)='login()'>LOGIN</button>
+                    <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons">X</i></a>
+                    <h2>INGRESAR</h2>
+                    <input type="text" placeholder="E-Mail" [(ngModel)]="usuario.email"/>
+                    <input type="password" placeholder="Contraseña" [(ngModel)]="usuario.password"/>
+                    <button class="btn_login" (click)='login()'>INGRESAR</button>
                 </div>
-
+                
                 <div class="cont_form_sign_up">
-                    <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons"></i></a>
-                    <h2>SIGN UP</h2>
-                    <input type="text" placeholder="Username" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Confirm Password" />
-                    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                    <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons">X</i></a>
+                    <h2>REGISTRO</h2>
+                    <input type="text" placeholder="Nombre" [(ngModel)]="usuario.nombre"/>
+                    <input type="text" placeholder="E-Mail" [(ngModel)]="usuario.email"/>
+                    <input type="password" placeholder="Contraseña" [(ngModel)]="usuario.password" />
+                    <input type="password" placeholder="Repita la contraseña" [(ngModel)]="usuario.confirmPassword" />
+                    <button class="btn_sign_up" (click)='signUp()'>REGISTRARSE</button>
 
                 </div>
 

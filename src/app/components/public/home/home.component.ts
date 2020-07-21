@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   @Input() filtroCategoria: string;
 
   articulos: ArticuloModel[] = [];
+  articulosFiltrados: ArticuloModel[] = [];
   categorias: CategoriaModel[] = [];
 
   constructor(private articuloService: ArticuloService,
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
       this.categorias = resp;
     });
 
-    this.filtroPrecio = 5000;
+    this.filtroPrecio = 10000;
   }
 
   ngOnInit(): void {
@@ -43,8 +44,13 @@ export class HomeComponent implements OnInit {
     this.filtroCategoria = id;
   }
 
-  prueba(): void{
+  buscar(): void{
     console.log(this.filtroCategoria);
+    console.log(this.filtroPrecio);
+
+    this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecio, 10, 0).subscribe( resp => {
+      this.articulosFiltrados = resp;
+    });
 
   }
 

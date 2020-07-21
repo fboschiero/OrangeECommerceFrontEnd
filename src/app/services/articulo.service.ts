@@ -29,6 +29,14 @@ export class ArticuloService {
       );
   }
 
+  getArticulosPorFiltros(filtroCategoria: string, filtroPrecio: number, cantidad: number, desde: number){
+    // return this.http.get(`${this.API_URL}/getArticulos?cantidad=` + cantidad + `;desde=` + desde)
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + cantidad + `/` + desde)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
   private crearArreglo(articulosObj: object){
 
     const articulos: ArticuloModel[] = [];

@@ -1,3 +1,3 @@
 function updateTextInput(val) {
-    document.getElementById('textInput').value = val;
+    document.getElementById('filtroPrecio').value = val;
 }

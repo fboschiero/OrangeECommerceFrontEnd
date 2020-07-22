@@ -1,4 +1,4 @@
-import { Categoria } from './categoria.model';
+import { CategoriaModel } from './categoria.model';
 import { Talle } from './talle.model';
 
 export class ArticuloModel {
@@ -7,7 +7,7 @@ export class ArticuloModel {
     precio: number;
     img: string[];
     imgDimensiones: string;
-    categorias: Categoria[];
+    categorias: CategoriaModel[];
     talles: Talle[];
     stock: number;
     vendidos: number;

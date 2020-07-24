@@ -1,27 +1,20 @@
 import { CategoriaModel } from './categoria.model';
 import { Talle } from './talle.model';
+import { Imagen } from './imagen.model';
 
 export class ArticuloModel {
     id: string;
     nombre: string;
+    descripcion: string;
     precio: number;
-    img: string[];
-    imgDimensiones: string;
-    categorias: CategoriaModel[];
-    talles: Talle[];
-    stock: number;
-    vendidos: number;
-    oferta: boolean;
+    enOferta: boolean;
     peso: number;
-    unidadDePeso: string;
     activo: boolean;
-    articuloNuevo: boolean;
-    descuento: number;
-    coloresDisponibles: string;
     destacado: boolean;
+    descuento: number;
+    imagenes: Imagen[];
 
     constructor(){
-        this.articuloNuevo = true;
         this.activo = true;
     }
 }

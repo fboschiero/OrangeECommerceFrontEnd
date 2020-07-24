@@ -19,8 +19,8 @@ export class CategoriaService {
   }
 
   getCategorias(){
-    return this.http.get(`${this.API_URL}/getCategorias`)
-      .pipe(
+
+    return this.http.get(this.API_URL + '/getCategorias').pipe(
         map(resp => this.crearArreglo(resp))
       );
   }
@@ -35,15 +35,17 @@ export class CategoriaService {
 
     Object.keys(categoriasObj).forEach( key => {
 
-      if (key === 'categoria'){
-
+      if (key === 'categorias'){
           const largo =  categoriasObj[key].length;
 
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
             const categoria: CategoriaModel = new CategoriaModel(); // articulosObj[key];
-            categoria.id = categoriasObj[key][i]._id;
+            categoria.id = categoriasObj[key][i].id;
             categoria.nombre = categoriasObj[key][i].nombre;
+            categoria.descripcion = categoriasObj[key][i].descripcion;
+            categoria.img = categoriasObj[key][i].img;
+            categoria.activo = categoriasObj[key][i].activo;
             categorias.push(categoria);
           }
       }

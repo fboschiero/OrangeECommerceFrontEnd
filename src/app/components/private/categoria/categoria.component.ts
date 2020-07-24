@@ -1,9 +1,10 @@
 import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
-//import Swal from 'sweetalert2';
+import { CategoriaModel } from '../../../models/categoria.model';
 import { HttpClient } from '@angular/common/http';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-categoria',
@@ -11,10 +12,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./categoria.component.css']
 })
 
-export class CategoriaComponent {
+export class CategoriaComponent implements OnInit{
 
   constructor(public categoriaService: CategoriaService){
-
+    this.getCategoria();
   }
 
   listaCategorias: CategoriaModel[] = [];
@@ -23,11 +24,14 @@ export class CategoriaComponent {
   visible: boolean = false;
 
   ngOnInit() {
-    this.getArticulos();
+    
   }
 
-  getArticulos(){
-    this.listaCategorias.push.apply(this.categoriaService.getCategorias());
+  getCategoria(){
+    this.categoriaService.getCategorias().subscribe( resp => {
+      console.log(JSON.stringify(resp));
+      this.listaCategorias = resp;
+    });
   }
 
   agregarCategoriaNueva(){
@@ -47,8 +51,6 @@ export class CategoriaComponent {
 
     this.fd.append('body', JSON.stringify(form));
 
-//console.log(this.fd + JSON.stringify(this.fd));
-
     this.categoriaService.saveCategoria(this.fd).subscribe(() => {
 
        Swal.fire({
@@ -58,6 +60,10 @@ export class CategoriaComponent {
          title: 'Formulario de contacto'
        });
     });
+
+    this.getCategoria();
+
+    this.fd = new FormData();
 
   }
 }

@@ -1,30 +1,65 @@
 <app-navbar></app-navbar>
 
-<h2>Nuevo articulo</h2>
+<h2>Categorias</h2>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
+            <!-- table content here -->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Img</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categoria of listaCategorias; let i = index">
+                    <th>{{ categoria.id }}</th>
+                    <td>{{ categoria.nombre }}</td>
+                    <td>{{ categoria.descripcion }}</td>
+                    <td>{{ categoria.img }}</td>
+                    <td>{{ categoria.activo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<form (ngSubmit)="saveFormCategoria(form.value)" #form="ngForm" novalidate="" style="margin: 20px;">
+<div class="float-right mx-2">
+    <button *ngIf="visible" type="button" class="btn btn-dark btn-sm " (click)="agregarCategoriaNueva()">X</button>
+</div>
 
-    <div class="form-group justify-content-*-center">
-        <div class="form-group col-5">
-            <label for="formGroupExampleInput">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
-            <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
-                Dato requerido
-            </div>
+<form *ngIf="visible" (ngSubmit)="saveFormCategoria(form.value)" #form="ngForm" novalidate="" class="row col-lg-12 center">
+
+    <div class="form-group col-lg-4">
+        <p class="bg-primary text-white font-weight-bold">Nombre</p>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
+        <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+            Dato requerido
         </div>
-        <div class="form-group col-5">
-            <label for="formGroupExampleInput2">Descripcion</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
-        </div>
-        <div class="form-group col-5">
-            <label for="formGroupExampleInput2">Subir imagen</label>
-            <input (change)="createFormData($event)" name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-        <div class="custom-control custom-checkbox col-5">
+    </div>
+    <div class="form-group col-lg-7">
+        <p class="bg-primary text-white font-weight-bold">Descripción</p>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
+    </div>
+    <div class="form-group col-lg-3">
+        <p class="bg-primary text-white font-weight-bold">Imagen</p>
+        <input (change)="createFormData($event)" name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+    <div class="form-group custom-checkbox col-lg-2">
+        <p class="bg-primary text-white font-weight-bold">Activo</p>
+        <div class="mx-4">
             <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
             <label class="custom-control-label" for="customCheck1">Activo</label>
         </div>
-
-        <button class="btn btn-lg btn-block btn-sm" type="submit" [disabled]="!form.form.valid">Guardar</button>
     </div>
+
+    <button class="btn btn-lg btn-block btn-sm" type="submit" [disabled]="!form.form.valid">Guardar</button>
+
 </form>
+
+<div class="float-right mx-2">
+    <button *ngIf="!visible" type="button" class="btn btn-dark btn-sm " (click)="agregarCategoriaNueva()">Nueva Categoria</button>
+</div>

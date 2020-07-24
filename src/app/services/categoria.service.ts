@@ -15,11 +15,11 @@ export class CategoriaService {
 
   saveCategoria(body){
 
-    return this.http.post('http://localhost:3006/insertCategoria', body);
+    return this.http.post(this.API_URL + '/insertCategoria', body);
   }
 
   getCategorias(){
-    return this.http.get(`${this.API_URL}/getCategoria`)
+    return this.http.get(`${this.API_URL}/getCategorias`)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

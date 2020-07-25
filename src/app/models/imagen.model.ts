@@ -1,4 +1,4 @@
-export class Imagen{
+export class ImagenModel{
     id: number;
     url: string;
 

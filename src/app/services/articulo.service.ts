@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { ArticuloModel } from '../models/articulo.model';
+import { ImagenModel } from '../models/imagen.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,16 @@ export class ArticuloService {
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;
             articulo.destacado = articulosObj[key][i].destacado;
+
+            // Imagenes
+            articulo.imagenes = []; 
+            for (let j = 0; j < articulosObj[key][i].imagenes.length; j++) {
+              const imagen: ImagenModel = new ImagenModel();
+              imagen.id = articulosObj[key][i].imagenes[j].id;
+              imagen.url = articulosObj[key][i].imagenes[j].url;
+
+              articulo.imagenes[j] = imagen;
+            }
 
             articulos.push(articulo);
           }

@@ -1,9 +1,10 @@
 import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
-//import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
+import { CategoriaModel } from 'src/app/models/categoria.model';
 
 @Component({
   selector: 'app-categoria',

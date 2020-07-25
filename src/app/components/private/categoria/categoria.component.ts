@@ -12,10 +12,10 @@ import { CategoriaModel } from 'src/app/models/categoria.model';
   styleUrls: ['./categoria.component.css']
 })
 
-export class CategoriaComponent implements OnInit{
+export class CategoriaComponent {
 
   constructor(public categoriaService: CategoriaService){
-    this.getCategoria();
+
   }
 
   listaCategorias: CategoriaModel[] = [];
@@ -24,14 +24,11 @@ export class CategoriaComponent implements OnInit{
   visible: boolean = false;
 
   ngOnInit() {
-    
+    this.getArticulos();
   }
 
-  getCategoria(){
-    this.categoriaService.getCategorias().subscribe( resp => {
-      console.log(JSON.stringify(resp));
-      this.listaCategorias = resp;
-    });
+  getArticulos(){
+    this.listaCategorias.push.apply(this.categoriaService.getCategorias());
   }
 
   agregarCategoriaNueva(){
@@ -51,6 +48,8 @@ export class CategoriaComponent implements OnInit{
 
     this.fd.append('body', JSON.stringify(form));
 
+//console.log(this.fd + JSON.stringify(this.fd));
+
     this.categoriaService.saveCategoria(this.fd).subscribe(() => {
 
        Swal.fire({
@@ -60,10 +59,6 @@ export class CategoriaComponent implements OnInit{
          title: 'Formulario de contacto'
        });
     });
-
-    this.getCategoria();
-
-    this.fd = new FormData();
 
   }
 }

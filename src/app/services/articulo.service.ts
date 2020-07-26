@@ -37,11 +37,20 @@ export class ArticuloService {
       );
   }
 
+  getArticuloById(id: string){
+
+    console.log(`${this.API_URL}/getArticuloById/` + id);
+    return this.http.get(`${this.API_URL}/getArticuloById/` + id)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
   private crearArreglo(articulosObj: object){
 
     const articulos: ArticuloModel[] = [];
 
-    // console.log(articulosObj);
+     console.log(articulosObj);
 
     if (articulosObj == null){
       return [];
@@ -56,7 +65,7 @@ export class ArticuloService {
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
             const articulo: ArticuloModel = new ArticuloModel(); // articulosObj[key];
-            articulo.id = articulosObj[key][i]._id;
+            articulo.id = articulosObj[key][i].id;
             articulo.nombre = articulosObj[key][i].nombre;
             articulo.precio = articulosObj[key][i].precio;
             articulo.peso = articulosObj[key][i].peso;
@@ -81,7 +90,7 @@ export class ArticuloService {
       }
 
     });
-    console.log(articulos);
+    // console.log(articulos);
     return articulos;
   }
 }

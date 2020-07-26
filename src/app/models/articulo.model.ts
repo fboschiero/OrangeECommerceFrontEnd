@@ -1,5 +1,5 @@
 import { CategoriaModel } from './categoria.model';
-import { Talle } from './talle.model';
+import { TalleModel } from './talle.model';
 import { ImagenModel } from './imagen.model';
 
 export class ArticuloModel {

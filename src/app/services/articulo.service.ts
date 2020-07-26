@@ -30,9 +30,8 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(filtroCategoria: string, filtroPrecio: number, cantidad: number, desde: number){
-    // return this.http.get(`${this.API_URL}/getArticulos?cantidad=` + cantidad + `;desde=` + desde)
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + cantidad + `/` + desde)
+  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, cantidad: number, desde: number){
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + cantidad + `/` + desde)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

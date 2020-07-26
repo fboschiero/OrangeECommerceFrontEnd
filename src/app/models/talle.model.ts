@@ -1,9 +1,6 @@
-export class Talle{
+export class TalleModel{
     descripcion: string;
-    stock: number;
-    vendidos: number;
-
+    
     constructor(){
-        this.vendidos = 0;
     }
 }

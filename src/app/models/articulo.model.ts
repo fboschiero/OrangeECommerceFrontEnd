@@ -1,6 +1,6 @@
 import { CategoriaModel } from './categoria.model';
 import { Talle } from './talle.model';
-import { Imagen } from './imagen.model';
+import { ImagenModel } from './imagen.model';
 
 export class ArticuloModel {
     id: string;
@@ -12,7 +12,7 @@ export class ArticuloModel {
     activo: boolean;
     destacado: boolean;
     descuento: number;
-    imagenes: Imagen[];
+    imagenes: ImagenModel[];
 
     constructor(){
         this.activo = true;

@@ -35,14 +35,14 @@ export class CategoriaService {
 
     Object.keys(categoriasObj).forEach( key => {
 
-      if (key === 'categoria'){
+      if (key === 'categorias'){
 
           const largo =  categoriasObj[key].length;
 
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
             const categoria: CategoriaModel = new CategoriaModel(); // articulosObj[key];
-            categoria.id = categoriasObj[key][i]._id;
+            categoria.id = categoriasObj[key][i].id;
             categoria.nombre = categoriasObj[key][i].nombre;
             categorias.push(categoria);
           }

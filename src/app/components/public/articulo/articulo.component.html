@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-    <div class="row m-5" >
+    <div class="row m-3" >
         <div class="col-md-6 product_img">
             <div class="row">
                 <div id="demo" class="carousel slide" data-interval="false" data-ride="carousel">
@@ -39,25 +39,21 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <select class="form-control" name="select">
-                        <option value="" selected="">Elige el color</option>
-                        <option value="stock.codiguera_color_id"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_color_id}}</option>
-                        
+                        <option value="" selected="">Color</option>
+                        <option value="stock.codiguera_color_id"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_color_valor}}</option>
                     </select>
                 </div>
                 <!-- end col -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <select class="form-control" name="select">
-                        <option value="">Capacity</option>
-                        <option value="">16GB</option>
-                        <option value="">32GB</option>
-                        <option value="">64GB</option>
-                        <option value="">128GB</option>
+                        <option value="" selected="">Talle</option>
+                        <option value="stock.codiguera_talle_id"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_talle_valor}}</option>
                     </select>
                 </div>
                 <!-- end col -->
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-6">
                     <select class="form-control" name="select">
-                        <option value="" selected="">QTY</option>
+                        <option value="" selected="">Cantidad</option>
                         <option value="">1</option>
                         <option value="">2</option>
                         <option value="">3</option>
@@ -65,10 +61,10 @@
                 </div>
                 <!-- end col -->
             </div>
-            <div class="space-ten"></div>
+            <div class="space-ten" style="padding: 10px 0;"></div>
             <div class="btn-ground">
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Add To Wishlist</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al carrito</button>
+                <button type="button" class="btn btn-primary m-l-2"><span class="glyphicon glyphicon-heart"></span> Agregar a la lista de deseos</button>
             </div>
         </div>
     </div>

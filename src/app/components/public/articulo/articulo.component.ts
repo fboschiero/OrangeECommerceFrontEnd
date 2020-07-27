@@ -20,7 +20,7 @@ export class ArticuloComponent implements OnInit {
       const id = this._Activatedroute.snapshot.paramMap.get("id");
       this.articulosService.getArticuloById(id).subscribe( resp => {
         this.articulo = resp[0];
-        console.log(this.articulo);
+        //console.log(this.articulo);
        }); 
       
   }

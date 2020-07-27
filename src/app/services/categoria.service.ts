@@ -19,10 +19,12 @@ export class CategoriaService {
   }
 
   getCategorias(){
-    return this.http.get(`${this.API_URL}/getCategorias`)
+
+    return this.http.get(this.API_URL + '/getCategorias')
       .pipe(
         map(resp => this.crearArreglo(resp))
       );
+
   }
 
   private crearArreglo(categoriasObj: object){

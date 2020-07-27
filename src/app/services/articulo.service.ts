@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { ArticuloModel } from '../models/articulo.model';
 import { ImagenModel } from '../models/imagen.model';
+import { ColorModel } from '../models/color.model';
+import { StockModel } from '../models/stock.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +81,22 @@ export class ArticuloService {
               articulo.imagenes[j] = imagen;
             }
 
+            // Stock
+            articulo.stocks = []; 
+            for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
+              
+              console.log();
+              const stock: StockModel = new StockModel();
+              stock.id = articulosObj[key][i].stocks[k].id;
+              stock.codiguera_color_id = articulosObj[key][i].stocks[k].codiguera_color_id;
+              stock.codiguera_color_valor = articulosObj[key][i].stocks[k].codiguera_color_valor;
+              stock.codiguera_talle_id = articulosObj[key][i].stocks[k].codiguera_talle_id;
+              stock.codiguera_talle_valor = articulosObj[key][i].stocks[k].codiguera_talle_valor;
+              stock.cantidad = articulosObj[key][i].stocks[k].cantidad;
+
+              articulo.stocks[k] = stock;
+            }
+
             articulos.push(articulo);
           }
 
@@ -86,7 +104,7 @@ export class ArticuloService {
       }
 
     });
-    // console.log(articulos);
+    console.log(articulos);
     return articulos;
   }
 }

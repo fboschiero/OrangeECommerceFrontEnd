@@ -148,7 +148,7 @@
                     </div>
                     <div class="p-2">
                         <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected disabled>Elige una categoría</option>
+                            <option value="undefined" selected >Elige una categoría</option>
                             <option [value]="categoria.id" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
                         </select>
                     </div>
@@ -157,7 +157,7 @@
                     </div>
                     <div class="p-2">
                         <select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
-                            <option value="undefined" selected disabled>Elige un talle</option>
+                            <option value="undefined" selected >Elige un talle</option>
                             <option [value]="talle.descripcion" *ngFor="let talle of talles;">{{talle.descripcion}}</option>
                         </select>
                     </div>

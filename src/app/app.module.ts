@@ -12,7 +12,7 @@ import { CarritoComponent } from './components/public/carrito/carrito.component'
 import { FooterComponent } from './components/public/footer/footer.component';
 import { FiltrosComponent } from './components/public/filtros/filtros.component';
 import { CardComponent } from './components/public/card/card.component';
-import { ArticulosComponent } from './components/public/articulos/articulos.component';
+import { ArticuloComponent } from './components/public/articulo/articulo.component';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     FiltrosComponent,
     CardComponent,
-    ArticulosComponent,
+    ArticuloComponent,
     CategoriaComponent
   ],
   imports: [

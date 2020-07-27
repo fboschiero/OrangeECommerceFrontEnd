@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { ArticuloModel } from '../models/articulo.model';
 import { ImagenModel } from '../models/imagen.model';
+import { ColorModel } from '../models/color.model';
+import { StockModel } from '../models/stock.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +32,15 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(filtroCategoria: string, filtroPrecio: number, cantidad: number, desde: number){
-    // return this.http.get(`${this.API_URL}/getArticulos?cantidad=` + cantidad + `;desde=` + desde)
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + cantidad + `/` + desde)
+  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, cantidad: number, desde: number){
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + cantidad + `/` + desde)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
+  getArticuloById(param: string){
+    return this.http.get(`${this.API_URL}/getArticuloById/` + param)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );
@@ -41,8 +49,6 @@ export class ArticuloService {
   private crearArreglo(articulosObj: object){
 
     const articulos: ArticuloModel[] = [];
-
-    // console.log(articulosObj);
 
     if (articulosObj == null){
       return [];
@@ -57,7 +63,7 @@ export class ArticuloService {
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
             const articulo: ArticuloModel = new ArticuloModel(); // articulosObj[key];
-            articulo.id = articulosObj[key][i]._id;
+            articulo.id = articulosObj[key][i].id;
             articulo.nombre = articulosObj[key][i].nombre;
             articulo.precio = articulosObj[key][i].precio;
             articulo.peso = articulosObj[key][i].peso;
@@ -73,6 +79,22 @@ export class ArticuloService {
               imagen.url = articulosObj[key][i].imagenes[j].url;
 
               articulo.imagenes[j] = imagen;
+            }
+
+            // Stock
+            articulo.stocks = []; 
+            for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
+              
+              console.log();
+              const stock: StockModel = new StockModel();
+              stock.id = articulosObj[key][i].stocks[k].id;
+              stock.codiguera_color_id = articulosObj[key][i].stocks[k].codiguera_color_id;
+              stock.codiguera_color_valor = articulosObj[key][i].stocks[k].codiguera_color_valor;
+              stock.codiguera_talle_id = articulosObj[key][i].stocks[k].codiguera_talle_id;
+              stock.codiguera_talle_valor = articulosObj[key][i].stocks[k].codiguera_talle_valor;
+              stock.cantidad = articulosObj[key][i].stocks[k].cantidad;
+
+              articulo.stocks[k] = stock;
             }
 
             articulos.push(articulo);

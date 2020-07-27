@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/public/login/login.component';
 import { HomeComponent } from './components/public/home/home.component';
 import { CarritoComponent } from './components/public/carrito/carrito.component';
+import { ArticuloComponent } from './components/public/articulo/articulo.component';
 
 // Privado
 import { UserComponent } from './components/private/user/user.component';
@@ -20,6 +21,9 @@ const routes: Routes = [
 
   //para ingresar categoria
   { path: 'categoria', component: CategoriaComponent},
+
+   //para ingresar a articulo
+   { path: 'articulo/:id', component: ArticuloComponent},
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

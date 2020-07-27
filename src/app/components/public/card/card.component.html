@@ -6,7 +6,7 @@
         <img class="pic-2" *ngIf="articulo.imagenes.length == 1" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
 
         <ul class="social">
-            <li><a href="#" data-tip="Ver"><i class="fa fa-eye"></i></a></li>
+            <li><a href="#" data-tip="Ver" [routerLink]="['articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>
             <li><a href="#" data-tip="Ver despues"><i class="fa fa-shopping-bag"></i></a></li>
             <li><a href="#" data-tip="Agregar al carrito"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>

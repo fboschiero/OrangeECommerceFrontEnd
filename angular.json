@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OrangeECommerceFrontEnd"
+    }
+  },
+  "defaultProject": "OrangeECommerceFrontEnd",
+  "cli": {
+    "analytics": "cf80b5a4-25e3-46aa-955f-f6a093e99a81"
+  }
 }

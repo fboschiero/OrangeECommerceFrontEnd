@@ -61,10 +61,21 @@
                 </div>
                 <!-- end col -->
             </div>
-            <div class="space-ten" style="padding: 10px 0;"></div>
-            <div class="btn-ground">
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al carrito</button>
-                <button type="button" class="btn btn-primary m-l-2"><span class="glyphicon glyphicon-heart"></span> Agregar a la lista de deseos</button>
+            
+            <div class="row mt-5">
+                <div class="col-6">  
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al carrito</button>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary ml-2"><span class="glyphicon glyphicon-heart"></span> Agregar a la lista de deseos</button>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">  
+                    <button type="button" [routerLink]="['home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
+                </div>
+                
             </div>
         </div>
     </div>

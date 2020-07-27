@@ -37,10 +37,8 @@ export class ArticuloService {
       );
   }
 
-  getArticuloById(id: string){
-
-    console.log(`${this.API_URL}/getArticuloById/` + id);
-    return this.http.get(`${this.API_URL}/getArticuloById/` + id)
+  getArticuloById(param: string){
+    return this.http.get(`${this.API_URL}/getArticuloById/` + param)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );
@@ -49,8 +47,6 @@ export class ArticuloService {
   private crearArreglo(articulosObj: object){
 
     const articulos: ArticuloModel[] = [];
-
-     console.log(articulosObj);
 
     if (articulosObj == null){
       return [];

@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.filtroPrecioHasta = 5000;
+
   }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class HomeComponent implements OnInit {
     if(this.filtroTalle  == undefined){
       this.filtroTalle = '-';
     }
-console.log(this.filtroPrecioHasta); 
+
     this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, 10, 0).subscribe( resp => {
       this.articulosFiltrados = resp;
     });

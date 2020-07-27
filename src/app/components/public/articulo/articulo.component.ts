@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ArticuloService } from 'src/app/services/articulo.service';
 import { ArticuloModel } from '../../../models/articulo.model';
 
@@ -8,21 +8,26 @@ import { ArticuloModel } from '../../../models/articulo.model';
   templateUrl: './articulo.component.html',
   styleUrls: ['./articulo.component.css']
 })
+
 export class ArticuloComponent implements OnInit {
 
   articulo: ArticuloModel;
 
-  constructor(private _Activatedroute:ActivatedRoute,
-              private articulosService: ArticuloService  ) {
-    
+  constructor(private articulosService: ArticuloService, 
+              private _Activatedroute:ActivatedRoute ) {
+      this.articulo = new ArticuloModel();
+
+      const id = this._Activatedroute.snapshot.paramMap.get("id");
+      this.articulosService.getArticuloById(id).subscribe( resp => {
+        this.articulo = resp[0];
+        console.log(this.articulo);
+       }); 
+      
   }
 
   ngOnInit(): void {
-    const id=this._Activatedroute.snapshot.paramMap.get("id");
-    const articulos = this.articulosService.getArticuloById(id);
-    console.log(articulos);
+    
+    
   }
-
-  
 
 }

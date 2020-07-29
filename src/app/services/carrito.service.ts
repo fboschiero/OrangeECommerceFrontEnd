@@ -18,7 +18,7 @@ export class CarritoService {
 
   constructor(private http: HttpClient) { }
   
-  agregarAlCarrito(articulo_id: number, color_id: number, talle_id: number, cantidadad: number, precio: number) {
+carrit  agregarAlCarrito(articulo_id: number, img_articulo: string, color_id: number, talle_id: number, cantidadad: number, precio: number) {
     
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -39,6 +39,8 @@ export class CarritoService {
     nuevoItem.talle_id = talle_id;
     nuevoItem.cantidad = cantidadad;
     nuevoItem.precio = precio;    
+    nuevoItem.urlImagen = img_articulo;
+    nuevoItem.carrito_id = carrito.numero;
     
     carrito.items.push(nuevoItem);
     
@@ -46,24 +48,42 @@ export class CarritoService {
 
     let body = JSON.stringify(carrito);
 
-    //console.log(body);
-
     return this.http.post(`${ environment.API_URL }/agregarAlCarrito`, body, httpOptions)
       .pipe(map(carrito => {
 
-      console.log('Nuevo usuario response: ' + JSON.stringify(carrito));
+        if (carrito) {
 
-      if (carrito) {
-
-       
-
-      }
+        }
 
       return carrito;
 
     }));
     
   }
+
+  eliminarArticulo(index: number, item: Item){
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+    };
+
+    let body = JSON.stringify(item);
+
+    return this.http.post(`${ environment.API_URL }/eliminarArticulo`, body, httpOptions)
+      .pipe(map(borrado => {
+
+      if (borrado) {
+        var carrito: Carrito = JSON.parse(localStorage.getItem('carrito'));
+        carrito.items.splice(index);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+      }
+
+
+    return borrado;
+
+  }));
+  }
+
+ 
 
 
 }

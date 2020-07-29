@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
+import { Component } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { UsuarioModel } from '../../../models/usuario.model';
+import { Carrito } from '../../../models/carrito';
+import { CarritoService } from 'src/app/services/carrito.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent  {
 
   nombreUsuario: string;
 
-  constructor(private loginServices: LoginService) { }
+  carrito: Carrito;
 
-  ngOnInit(): void {
-  }
+  constructor(private loginServices: LoginService, private carritoService: CarritoService) {
+    this.carrito = JSON.parse(localStorage.getItem('carrito'));
+    if(!this.carrito){
+      this.carrito = new Carrito();
+      this.carrito.fecha = new Date();
+      this.carrito.numero = this.carrito.fecha.getTime()+"";
+      this.carrito.items = [];
+      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+    }
+   }
 
+  
   estaLogueado(){
     if (this.loginServices.estaAutenticado()) {
 
@@ -29,6 +40,35 @@ export class NavbarComponent implements OnInit {
 
   salir() {
     this.loginServices.logout();
+  }
+
+  eliminar(indice: number){
+
+    // Lo elimino de la base
+    this.carritoService.eliminarArticulo(indice, this.carrito.items[indice]).subscribe( resp => {
+      
+      if(resp["ok"] == false){
+        Swal.fire({
+          allowOutsideClick: true,
+          icon: 'error',
+          text: 'El articulo no pudo ser borrado del carrito: ' + resp["err"],
+          title: 'Carrito'
+        });
+        return;
+      
+      }  else {
+
+        /*Swal.fire({
+          allowOutsideClick: true,
+          icon: 'success',
+          text: 'El articulo fue eliminado del carrito.',
+          title: 'Carrito'
+        });*/
+        
+        window.location.reload();
+      } 
+    });    
+   
   }
 
 }

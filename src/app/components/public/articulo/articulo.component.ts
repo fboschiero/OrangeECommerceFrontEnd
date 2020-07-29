@@ -62,9 +62,33 @@ export class ArticuloComponent implements OnInit {
       return;
     }    
     
-    this.carritoService.agregarAlCarrito(this.articulo.id, this.colorSeleccionado, this.talleSeleccionado, this.cantidadSeleccionada, this.articulo.precio).subscribe( resp => {
-      console.log(resp);
+    this.carritoService.agregarAlCarrito(this.articulo.id, this.articulo.imagenes[0].url, 
+                                         this.colorSeleccionado, this.talleSeleccionado, 
+                                         this.cantidadSeleccionada, this.articulo.precio)
+                                         .subscribe( resp => {
       
+      if(resp["ok"] == false){
+        Swal.fire({
+          allowOutsideClick: true,
+          icon: 'error',
+          text: 'El articulo no pudo ser ingresado al carrito: ' + resp["err"],
+          title: 'Carrito'
+        });
+        return;
+      
+      }  else {
+
+        /*Swal.fire({
+          allowOutsideClick: true,
+          icon: 'success',
+          text: 'El articulo fue ingresado al carrito.',
+          title: 'Carrito'
+        });*/
+        window.location.reload();
+      } 
+      
+       
+
     });       
   }
 

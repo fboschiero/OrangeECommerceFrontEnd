@@ -89,7 +89,6 @@ export class ArticuloService {
             articulo.stocks = []; 
             for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
               
-              console.log();
               const stock: StockModel = new StockModel();
               stock.id = articulosObj[key][i].stocks[k].id;
               stock.codiguera_color_id = articulosObj[key][i].stocks[k].codiguera_color_id;

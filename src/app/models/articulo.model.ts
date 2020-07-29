@@ -6,7 +6,7 @@ import { StockModel } from './stock.model';
 
 
 export class ArticuloModel {
-    id: string;
+    id: number;
     nombre: string;
     descripcion: string;
     precio: number;

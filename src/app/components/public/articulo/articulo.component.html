@@ -34,37 +34,48 @@
    
         <div class="col-md-6 product_content">
             <h4>{{articulo.nombre}}</h4>
-            <p>{{articulo.descipcion}}</p>
+            <p>{{articulo.descripcion}}</p>
             <h3 class="cost"><span class="glyphicon glyphicon-usd"></span>$ {{articulo.precio}} </h3>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <select class="form-control" name="select">
+                    <select class="form-control" name="select" (change)="selectColor($event.target.value)" required>
                         <option value="" selected="">Color</option>
-                        <option value="stock.codiguera_color_id"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_color_valor}}</option>
+                        <option value="{{stock.codiguera_color_id}}"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_color_valor}}</option>
                     </select>
                 </div>
                 <!-- end col -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <select class="form-control" name="select">
+                    <select class="form-control" name="select" (change)="selectTalle($event.target.value)">
                         <option value="" selected="">Talle</option>
-                        <option value="stock.codiguera_talle_id"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_talle_valor}}</option>
+                        <option value="{{stock.codiguera_talle_id}}"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_talle_valor}}</option>
                     </select>
                 </div>
                 <!-- end col -->
                 <div class="col-md-4 col-sm-6">
-                    <select class="form-control" name="select">
+                    <select class="form-control" name="select" (change)="selectCantidad($event.target.value)">
                         <option value="" selected="">Cantidad</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 </div>
                 <!-- end col -->
             </div>
-            <div class="space-ten" style="padding: 10px 0;"></div>
-            <div class="btn-ground">
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al carrito</button>
-                <button type="button" class="btn btn-primary m-l-2"><span class="glyphicon glyphicon-heart"></span> Agregar a la lista de deseos</button>
+            
+            <div class="row mt-5">
+                <div class="col-6">  
+                    <button type="button" (click)="agregarAlCarrito();" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al carrito</button>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary ml-2"><span class="glyphicon glyphicon-heart"></span> Agregar a la lista de deseos</button>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">  
+                    <button type="button" [routerLink]="['home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
+                </div>
+                
             </div>
         </div>
     </div>

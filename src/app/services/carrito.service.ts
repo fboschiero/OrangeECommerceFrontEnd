@@ -16,7 +16,7 @@ export class CarritoService {
 
   constructor(private http: HttpClient) { }
   
-  agregarAlCarrito(articulo_id: number, img_articulo: string, color_id: number, talle_id: number, cantidadad: number, precio: number) {
+  agregarAlCarrito(articulo_id: number, nombre: string, img_articulo: string, color_id: number, talle_id: number, cantidadad: number, precio: number) {
     
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -39,8 +39,17 @@ export class CarritoService {
     nuevoItem.precio = precio;    
     nuevoItem.urlImagen = img_articulo;
     nuevoItem.carrito_id = carrito.numero;
-    
+    nuevoItem.nombre = nombre;
+
     carrito.items.push(nuevoItem);
+
+    // Verifico si existe el mismo articulo
+    //for(let i=0; i<carrito.items.length; i++){
+    //  if(carrito.items[i].articulo_id = articulo_id){
+        // El articulo  
+    //  }
+    //}
+    
     
     localStorage.setItem('carrito', JSON.stringify(carrito));
 

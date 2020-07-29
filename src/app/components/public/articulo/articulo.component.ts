@@ -62,7 +62,7 @@ export class ArticuloComponent implements OnInit {
       return;
     }    
     
-    this.carritoService.agregarAlCarrito(this.articulo.id, this.articulo.imagenes[0].url, 
+    this.carritoService.agregarAlCarrito(this.articulo.id, this.articulo.nombre, this.articulo.imagenes[0].url, 
                                          this.colorSeleccionado, this.talleSeleccionado, 
                                          this.cantidadSeleccionada, this.articulo.precio)
                                          .subscribe( resp => {

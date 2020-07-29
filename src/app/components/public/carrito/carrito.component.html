@@ -72,10 +72,10 @@
             </table>
             <div class="row m-5">
                 <div class="col-6">  
-                    <button type="button" [routerLink]="['home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
+                    <button type="button" [routerLink]="['/home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
                 </div>   
                 <div class="col-6">  
-                    <button type="button" class="btn btn-success"> Checkout <span class="glyphicon glyphicon-play"></span></button>
+                    <button type="button"  [routerLink]="['/checkout']" class="btn btn-success"> Finalizar compra <span class="glyphicon glyphicon-play"></span></button>
                 </div>                
             </div>
         </div>

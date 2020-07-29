@@ -6,6 +6,8 @@ import { LoginComponent } from './components/public/login/login.component';
 import { HomeComponent } from './components/public/home/home.component';
 import { CarritoComponent } from './components/public/carrito/carrito.component';
 import { ArticuloComponent } from './components/public/articulo/articulo.component';
+import { CheckoutComponent } from './components/public/checkout/checkout.component';
+
 
 // Privado
 import { UserComponent } from './components/private/user/user.component';
@@ -26,6 +28,9 @@ const routes: Routes = [
   //para ingresar a articulo
   { path: 'articulo/:id', component: ArticuloComponent},
   { path: 'agregarArticulo', component: AbmArticuloComponent},
+
+  //para finalizar una compra
+  { path: 'checkout', component: CheckoutComponent},
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

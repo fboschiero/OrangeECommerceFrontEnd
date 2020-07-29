@@ -52,7 +52,7 @@ export class CarritoComponent implements OnInit {
   getSubtotal(){
     let suma = 0;
     for(let i=0; i<this.carrito.items.length; i++){
-      suma = suma + this.carrito.items[i].precio;
+      suma = suma + this.carrito.items[i].precio * this.carrito.items[i].cantidad;
     }
     return suma;
   }

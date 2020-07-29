@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<h2>Agregar rticulos</h2>
+
+<div class="float-right mx-2">
+    <button *ngIf="visible" type="button" class="btn btn-dark btn-sm " (click)="agregarArticuloNuevoBoolean()">X</button>
+</div>
+
+<form *ngIf="visible" (ngSubmit)="agregarArticuloNuevo(form.value); " #form="ngForm" novalidate="" class="row col-lg-12 center">
+
+    <div class="form-group col-lg-4">
+        <p class="bg-primary text-white font-weight-bold">Nombre</p>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
+        <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+            Dato requerido
+        </div>
+    </div>
+    <div class="form-group col-lg-7">
+        <p class="bg-primary text-white font-weight-bold">Descripción</p>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
+    </div>
+    <div class="form-group col-lg-7">
+        <p class="bg-primary text-white font-weight-bold">Precio</p>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Precio" name="precio" ngModel #precio="ngModel">
+    </div>
+    <div class="form-group custom-checkbox col-lg-2">
+        <p class="bg-primary text-white font-weight-bold">En Oferta</p>
+        <div class="mx-4">
+            <input name="enOferta" ngModel #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">En Oferta</label>
+        </div>
+    </div>
+    <div class="form-group col-lg-7">
+        <p class="bg-primary text-white font-weight-bold">Peso (Kg)</p>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Peso" name="peso" ngModel #peso="ngModel">
+    </div>
+    <div class="form-group custom-checkbox col-lg-2">
+        <p class="bg-primary text-white font-weight-bold">Activo</p>
+        <div class="mx-4">
+            <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Activo</label>
+        </div>
+    </div>
+    <div class="form-group custom-checkbox col-lg-2">
+        <p class="bg-primary text-white font-weight-bold">Destacado</p>
+        <div class="mx-4">
+            <input name="destacado" ngModel #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Destacado</label>
+        </div>
+    </div>
+    <div class="form-group col-lg-7">
+        <p class="bg-primary text-white font-weight-bold">Descuento</p>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descuento" name="descuento" ngModel #descuento="ngModel">
+    </div>
+    <div class="form-group col-lg-3">
+        <p class="bg-primary text-white font-weight-bold">Imagen</p>
+        <input (change)="createFormData($event)" multiple name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+
+    <button class="btn btn-lg btn-block btn-sm" type="submit" (click)="modificarArticulo()" [disabled]=" !form.form.valid ">Guardar</button>
+
+</form>
+
+<div class="float-right mx-2 ">
+    <button *ngIf="!visible " type="button " class="btn btn-dark btn-sm " (click)="agregarArticuloNuevoBoolean() ">Nueva Categoria</button>
+</div>

@@ -15,6 +15,7 @@ import { CardComponent } from './components/public/card/card.component';
 import { ArticuloComponent } from './components/public/articulo/articulo.component';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
 import { FormsModule } from '@angular/forms';
+import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     FiltrosComponent,
     CardComponent,
     ArticuloComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    AbmArticuloComponent,
   ],
   imports: [
     BrowserModule,

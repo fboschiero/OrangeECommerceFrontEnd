@@ -1,7 +1,7 @@
-import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 // import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
-import { NgForm, FormsModule } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
 import { CategoriaModel } from 'src/app/models/categoria.model';
@@ -14,25 +14,28 @@ import { CategoriaModel } from 'src/app/models/categoria.model';
 
 export class CategoriaComponent implements OnInit {
 
-  constructor(public categoriaService: CategoriaService){
-    this.getCategoria();
-  }
+  @Input() filtroCategoria: number;
 
   listaCategorias: CategoriaModel[] = [];
   selectedFile: File = null;
   fd = new FormData();
   visible: boolean = false;
 
-  ngOnInit() {
-    this.getCategoria();
+  formCategoria: FormGroup;
+
+  constructor(public categoriaService: CategoriaService){
+    // Cargo las categorias para el panel de filtros
+    this.categoriaService.getCategorias().subscribe( resp => {
+      this.listaCategorias = resp;
+    });
   }
 
-  getCategoria(){
-    this.listaCategorias.push.apply(this.categoriaService.getCategorias());
+  ngOnInit() {
+
   }
 
   agregarCategoriaNueva(){
-    
+
     if(this.visible){
       return this.visible = false;
     }
@@ -53,9 +56,26 @@ export class CategoriaComponent implements OnInit {
        Swal.fire({
          allowOutsideClick: true,
          icon: 'info',
-         text: 'Mensaje enviado correctamente',
-         title: 'Formulario de contacto'
+         text: 'Se guardo correctamente',
+         title: 'Categoria'
        });
+    });
+  }
+
+  selectFiltro(id: number) {
+    this.filtroCategoria = id;
+  }
+
+  modificarCategoria(): void{
+
+    let form = new FormGroup({
+      nombre: new FormControl('Gonza')
+    });
+    
+    console.log(form);
+    this.categoriaService.eliminarCategoria(this.filtroCategoria).subscribe( resp => {
+    
+      
     });
 
   }

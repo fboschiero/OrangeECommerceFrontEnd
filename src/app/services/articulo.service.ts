@@ -46,6 +46,10 @@ export class ArticuloService {
       );
   }
 
+  guardarArticulo(body){
+    return this.http.post(this.API_URL + '/guardarArticulo', body);
+  }
+
   private crearArreglo(articulosObj: object){
 
     const articulos: ArticuloModel[] = [];

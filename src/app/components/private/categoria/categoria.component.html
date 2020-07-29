@@ -21,7 +21,7 @@
                     <td>{{ categoria.descripcion }}</td>
                     <td>{{ categoria.img }}</td>
                     <td>{{ categoria.activo }}</td>
-                    <td><button type="button" class="btn btn-dark btn-sm ">X</button></td>
+                    <td><button type="button" (click)="modificarCategoria()" class="btn btn-dark btn-sm ">Edit</button></td>
                 </tr>
             </tbody>
         </table>
@@ -32,7 +32,7 @@
     <button *ngIf="visible" type="button" class="btn btn-dark btn-sm " (click)="agregarCategoriaNueva()">X</button>
 </div>
 
-<form *ngIf="visible" (ngSubmit)="saveFormCategoria(form.value)" #form="ngForm" novalidate="" class="row col-lg-12 center">
+<form *ngIf="visible" (ngSubmit)="saveFormCategoria(form.value); " #form="ngForm" novalidate="" class="row col-lg-12 center">
 
     <div class="form-group col-lg-4">
         <p class="bg-primary text-white font-weight-bold">Nombre</p>
@@ -57,10 +57,10 @@
         </div>
     </div>
 
-    <button class="btn btn-lg btn-block btn-sm col-" type="submit" [disabled]="!form.form.valid">Guardar</button>
+    <button class="btn btn-lg btn-block btn-sm" type="submit" (click)="modificarCategoria()" [disabled]=" !form.form.valid ">Guardar</button>
 
 </form>
 
-<div class="float-right mx-2">
-    <button *ngIf="!visible" type="button" class="btn btn-dark btn-sm " (click)="agregarCategoriaNueva()">Nueva Categoria</button>
+<div class="float-right mx-2 ">
+    <button *ngIf="!visible " type="button " class="btn btn-dark btn-sm " (click)="agregarCategoriaNueva() ">Nueva Categoria</button>
 </div>

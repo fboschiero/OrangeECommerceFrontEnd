@@ -27,6 +27,13 @@ export class CategoriaService {
 
   }
 
+  eliminarCategoria(filtroCategoria: number){
+    return this.http.get(`${this.API_URL}/eliminarCategoria/` + filtroCategoria)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
   private crearArreglo(categoriasObj: object){
 
     const categorias: CategoriaModel[] = [];

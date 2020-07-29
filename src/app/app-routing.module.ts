@@ -12,6 +12,7 @@ import { UserComponent } from './components/private/user/user.component';
 
 import { LoginGuard } from './guards/login.guard';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
+import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -22,8 +23,9 @@ const routes: Routes = [
   //para ingresar categoria
   { path: 'categoria', component: CategoriaComponent},
 
-   //para ingresar a articulo
-   { path: 'articulo/:id', component: ArticuloComponent},
+  //para ingresar a articulo
+  { path: 'articulo/:id', component: ArticuloComponent},
+  { path: 'agregarArticulo', component: AbmArticuloComponent},
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

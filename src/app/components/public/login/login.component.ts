@@ -45,6 +45,12 @@ export class LoginComponent implements OnInit {
   }
 
   signUp(){
+
+    if (this.usuario.password.match(this.usuario.confirmPassword) === null) {
+      console.log('No coinciden las contraseñas!');
+      return;
+    }
+
     this.loginServices.signUp(this.usuario).subscribe( resp => {
 
       console.log(`signUp resp: ${ resp }`);

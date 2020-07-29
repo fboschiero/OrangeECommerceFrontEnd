@@ -26,7 +26,31 @@ export class LoginService {
     }
   }
 
-  estaAutenticado(): boolean{
+  estaAutenticado(): boolean {
+
+    const expira = Number(localStorage.getItem('expira'));
+    if (!expira) {
+      this.usuarioLogueado = false;
+      return false;
+    }
+
+    const expiraDate = new Date();
+    expiraDate.setTime(expira);
+
+    if ( expiraDate > new Date() ) {
+
+      // renuevo la expiración
+      const hoy = new Date();
+      hoy.setSeconds( 3600 );
+      localStorage.setItem('expira', hoy.getTime().toString() );
+
+      this.usuarioLogueado = true;
+    } else {
+      localStorage.removeItem('expira');
+      localStorage.removeItem('usuario');
+      this.usuarioLogueado = false;
+    }
+
     return this.usuarioLogueado;
   }
 
@@ -48,10 +72,15 @@ export class LoginService {
 
       if (user) {
 
-        this.usuarioLogueado = true;
         usuario.nombre = user['usuario']['nombre'];
         localStorage.setItem('usuario', JSON.stringify(usuario));
 
+        this.usuarioLogueado = true;
+        
+        const hoy = new Date();
+        hoy.setSeconds( 3600 );
+
+        localStorage.setItem('expira', hoy.getTime().toString() );
       }
 
       return user;
@@ -61,11 +90,6 @@ export class LoginService {
   }
 
   signUp(usuario: UsuarioModel) {
-
-    if (usuario.password.match(usuario.confirmPassword) === null) {
-      console.log('No coinciden las contraseñas!');
-      return;
-    }
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -89,6 +113,11 @@ export class LoginService {
         this.usuarioLogueado = true;
         localStorage.setItem('usuario', JSON.stringify(usuario));
 
+        const hoy = new Date();
+        hoy.setSeconds( 3600 );
+
+        localStorage.setItem('expira', hoy.getTime().toString() );
+
       }
 
       return user;
@@ -99,6 +128,7 @@ export class LoginService {
 
   logout(){
     localStorage.removeItem('usuario');
+    localStorage.removeItem('expira');
     this.usuarioLogueado = false;
   }
 }

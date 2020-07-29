@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { UsuarioModel } from '../../../models/usuario.model';
 import { Carrito } from '../../../models/carrito';
@@ -10,7 +10,12 @@ import Swal from 'sweetalert2';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+
+
 export class NavbarComponent  {
+
+  @Input() verHeader: boolean;
 
   nombreUsuario: string;
 
@@ -25,6 +30,8 @@ export class NavbarComponent  {
       this.carrito.items = [];
       localStorage.setItem('carrito', JSON.stringify(this.carrito));
     }
+
+    this.verHeader = true;
    }
 
   

@@ -6,7 +6,7 @@
     <button *ngIf="visible" type="button" class="btn btn-dark btn-sm " (click)="agregarArticuloNuevoBoolean()">X</button>
 </div>
 
-<form *ngIf="visible" (ngSubmit)="agregarArticuloNuevo(form.value); " #form="ngForm" novalidate="" class="row col-lg-12 center">
+<form *ngIf="visible" (ngSubmit)="agregarArticuloNuevo(form.value); form.reset()" #form="ngForm" novalidate="" class="row col-lg-12 center">
 
     <div class="form-group col-lg-4">
         <p class="bg-primary text-white font-weight-bold">Nombre</p>
@@ -17,11 +17,14 @@
     </div>
     <div class="form-group col-lg-7">
         <p class="bg-primary text-white font-weight-bold">Descripción</p>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
+        <input type="text" class="form-control" id="descripcion" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
     </div>
     <div class="form-group col-lg-7">
         <p class="bg-primary text-white font-weight-bold">Precio</p>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Precio" name="precio" ngModel #precio="ngModel">
+        <input type="text" class="form-control" id="precio" placeholder="Precio" name="precio" ngModel required #precio="ngModel">
+        <div *ngIf="precio.invalid && precio.touched" class="alert alert-danger">
+            Dato requerido
+        </div>
     </div>
     <div class="form-group custom-checkbox col-lg-2">
         <p class="bg-primary text-white font-weight-bold">En Oferta</p>
@@ -32,25 +35,28 @@
     </div>
     <div class="form-group col-lg-7">
         <p class="bg-primary text-white font-weight-bold">Peso (Kg)</p>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Peso" name="peso" ngModel #peso="ngModel">
+        <input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" ngModel #peso="ngModel">
     </div>
     <div class="form-group custom-checkbox col-lg-2">
         <p class="bg-primary text-white font-weight-bold">Activo</p>
         <div class="mx-4">
-            <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Activo</label>
+            <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
+            <label class="custom-control-label" for="customCheck2">Activo</label>
         </div>
     </div>
     <div class="form-group custom-checkbox col-lg-2">
         <p class="bg-primary text-white font-weight-bold">Destacado</p>
         <div class="mx-4">
-            <input name="destacado" ngModel #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Destacado</label>
+            <input name="destacado" ngModel #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
+            <label class="custom-control-label" for="customCheck3">Destacado</label>
         </div>
     </div>
     <div class="form-group col-lg-7">
         <p class="bg-primary text-white font-weight-bold">Descuento</p>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descuento" name="descuento" ngModel #descuento="ngModel">
+        <input type="text" class="form-control" id="descuento" placeholder="Descuento" name="descuento" required ngModel #descuento="ngModel">
+        <div *ngIf="descuento.invalid && descuento.touched" class="alert alert-danger">
+            Dato requerido
+        </div>
     </div>
     <div class="form-group col-lg-3">
         <p class="bg-primary text-white font-weight-bold">Imagen</p>

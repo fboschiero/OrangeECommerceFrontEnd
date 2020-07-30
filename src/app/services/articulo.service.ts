@@ -47,7 +47,7 @@ export class ArticuloService {
   }
 
   guardarArticulo(body){
-    return this.http.post(this.API_URL + '/guardarArticulo', body);
+    return this.http.post(this.API_URL + '/insertArticulo', body);
   }
 
   private crearArreglo(articulosObj: object){

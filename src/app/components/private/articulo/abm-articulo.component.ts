@@ -26,15 +26,17 @@ export class AbmArticuloComponent implements OnInit {
     
     console.log(this.fd.getAll('file'));
 
-    /* this.articuloServices.guardarArticulo(this.fd).subscribe(() => {
+    this.articuloServices.guardarArticulo(this.fd).subscribe(() => {
 
-       Swal.fire({
+      Swal.fire({
          allowOutsideClick: true,
          icon: 'info',
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
-    }); */
+       this.fd.delete('file');
+       this.fd.delete('body');
+    });
   }
 
   modificarArticulo(){}

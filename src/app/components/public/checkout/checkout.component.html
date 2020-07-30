@@ -1,0 +1,103 @@
+<app-navbar [verHeader]="false"></app-navbar>
+<h1>Detalle de facturación</h1>
+<form>
+    <div class="d-flex flex-row align-items-start">
+        <div class="row col-12 col-md-6"> 
+            <div class="form-group col-12">
+                <label for="formGroupNombre">Nombre</label>
+                <input type="text" class="form-control" id="formGroupNombre" placeholder="Nombre">
+            </div>
+            <div class="form-group  col-12">
+                <label for="formGroupApellido">Apellido</label>
+                <input type="text" class="form-control" id="formGroupApellido" placeholder="Apellido">
+            </div>
+            <div class="form-group  col-12">
+                <label for="formGroupEMail">eMail</label>
+                <input type="text" class="form-control" id="formGroupEMail" placeholder="eMail">
+            </div>
+            <div class="form-group col-12">
+                <label for="formGroupTelefono">Teléfono</label>
+                <input type="text" class="form-control" id="formGroupTelefono" placeholder="Teléfono">
+            </div>
+
+            <h1>Datos del envío</h1>
+            <div class="form-group col-12">
+                <label for="formGroupDepartamento">Departamento</label>
+                <input type="text" class="form-control" id="formGroupDepartamento" placeholder="Departamento">
+            </div>
+            <div class="form-group col-12">
+                <label for="formGroupDirección">Dirección</label>
+                <input type="text" class="form-control" id="formGroupDirección" placeholder="Dirección">
+            </div>
+            <div class="form-group col-12">
+                <label for="formGroupBarrio">Barrio / Localidad</label>
+                <input type="text" class="form-control" id="formGroupBarrio" placeholder="Barrio / Localidad">
+            </div>
+            <div class="form-group col-12">
+                <h3>Información adicional</h3>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Notas que quieras agregar al pedido"></textarea>
+            </div>
+        </div>
+        <div class="row col-12 col-md-6">
+            <h4>Su orden</h4>
+            <table class="table table-reflow">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th class="text-right">Cantidad</th>
+                        <th class="text-right">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let articulo of carrito.items">
+                        <td>{{articulo.nombre}}</td>
+                        <td class="text-right">{{articulo.cantidad}}</td>
+                        <td class="text-right">{{articulo.precio * articulo.cantidad}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-reflow">
+                <thead>
+                    <tr>
+                        <th>Subtotal</th>
+                        <th class="text-right">${{getSubtotal()}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total</td>
+                        <td class="text-right">${{getSubtotal()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>Selecciona la forma de pago</h4>
+            <input type="radio" class="custom-control-input" checked="true" hidden="true" name="formaDePago">
+            
+            <div class="custom-control custom-checkbox col-12">
+                <input type="radio" class="custom-control-input" id="checkTransferenciaBancaria" name="formaDePago">
+                <label class="custom-control-label" for="checkTransferenciaBancaria">Transferencia bancaria</label>
+                <p> <small>Realiza tu pago realizando una transferencia a nuestra cuenta bancaria. 
+                   Usa el número del pedido como referencia de pago. 
+                   Tu pedido no se procesará hasta que se haya recibido el importe en nuestra cuenta.
+                   Ten en cuenta que si es desde otro Banco la transferencia puede demorar dias.</small> </p>
+            </div>
+
+            <div class="custom-control custom-checkbox col-12">
+                <input type="radio" class="custom-control-input"  id="checkGiro" name="formaDePago">
+                <label class="custom-control-label" for="checkGiro">Giro Abitab o RedPagos</label>
+                <p><small>Realiza tu pago directamente en la redes de Cobranza Abitab o Red Pagos. 
+                    Tu pedido se procesará una vez que envíes el comprobante vía WhatsApp al 094 061311.</small></p>
+            </div>
+
+            <div class="custom-control custom-checkbox col-12">
+                <input type="radio" class="custom-control-input" id="checkMP" name="formaDePago">
+                <label class="custom-control-label" for="checkMP">MercadoPago</label>
+                <P><small>Paga con la tarjeta que quieras a través de Mercado Pago.</small></P>
+            </div>
+        </div>
+    </div>
+  </form>
+
+  
+<app-footer></app-footer>

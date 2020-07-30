@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [verHeader]="false"></app-navbar>
 
 <div class="container">
     <div class="row m-3" >
@@ -73,9 +73,8 @@
 
             <div class="row mt-5">
                 <div class="col-12">  
-                    <button type="button" [routerLink]="['home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
-                </div>
-                
+                    <button type="button" [routerLink]="['/home']" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Continuar de compras </button>
+                </div>                
             </div>
         </div>
     </div>

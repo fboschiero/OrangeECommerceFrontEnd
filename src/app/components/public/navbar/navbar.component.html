@@ -1,4 +1,4 @@
-<div class="top-head pt-1 border">
+<div class="top-head pt-1 border" *ngIf="verHeader == true"> 
     <div class="container">
         <div class="row ">
             <div class="col-md-6 text-left">
@@ -53,7 +53,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Nuevos</a>
+                <a class="nav-link" href="#">Nuevo</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Destacados</a>
@@ -74,7 +74,7 @@
                 <!--  -->
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="../../../../assets/img/carrito.png" alt="Carrito de compras">
-                    <span class="badge badge-secondary ml-2">7</span>
+                    <span class="badge badge-secondary ml-2">{{carrito.items.length}}</span>
                 </a>
                 <!--ul class="dropdown-menu">
                     <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
@@ -88,62 +88,24 @@
                     <li><a [routerLink]="['/carrito']">Ver carrito</a></li>
                 </ul -->
                 <ul class="dropdown-menu dropdown-cart" role="menu">
-                    <li>
+                    
+                    <li *ngFor="let articulo of carrito.items; let i = index;">
                         <span class="item">
                           <span class="item-left">
-                              <img src="http://lorempixel.com/50/50/" alt="" />
+                              <img src="../../../assets/articulos{{articulo.urlImagen}}" width="30px" alt="" />
                               <span class="item-info">
-                                  <span>Item name</span>
-                        <span>23$</span>
+                                  <span>{{articulo.nombre}}</span>
+                        <span>$ {{articulo.precio}}</span>
                         </span>
                         </span>
                         <span class="item-right">
-                              <button class="btn btn-xs btn-danger pull-right">x</button>
+                              <button class="btn btn-xs btn-danger pull-right" (click)="eliminar(i);" >x</button>
                           </span>
                         </span>
                     </li>
-                    <li>
-                        <span class="item">
-                          <span class="item-left">
-                              <img src="http://lorempixel.com/50/50/" alt="" />
-                              <span class="item-info">
-                                  <span>Item name</span>
-                        <span>23$</span>
-                        </span>
-                        </span>
-                        <span class="item-right">
-                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                          </span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="item">
-                          <span class="item-left">
-                              <img src="http://lorempixel.com/50/50/" alt="" />
-                              <span class="item-info">
-                                  <span>Item name</span>
-                        <span>23$</span>
-                        </span>
-                        </span>
-                        <span class="item-right">
-                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                          </span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="item">
-                          <span class="item-left">
-                              <img src="http://lorempixel.com/50/50/" alt="" />
-                              <span class="item-info">
-                                  <span>Item name</span>
-                        <span>23$</span>
-                        </span>
-                        </span>
-                        <span class="item-right">
-                              <button class="btn btn-xs btn-danger pull-right">x</button>
-                          </span>
-                        </span>
-                    </li>
+                    
+                    
+                    
                     <li class="divider"></li>
                     <li><a [routerLink]="['/carrito']">Ver carrito</a></li>
                 </ul>

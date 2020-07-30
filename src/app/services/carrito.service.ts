@@ -84,11 +84,32 @@ export class CarritoService {
         localStorage.setItem('carrito', JSON.stringify(carrito));
       }
 
+      return borrado;
 
-    return borrado;
-
-  }));
+    }));
   }
+
+  confirmarCompra(orden){
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+    };
+
+    let body = JSON.stringify(orden);
+    
+    return this.http.post(`${ environment.API_URL }/confirmarCompra`, body, httpOptions)
+      .pipe(map(resp => {
+
+      if (resp) {
+        // Borro el carrito de la memoria
+        localStorage.getItem('carrito');
+      }
+      
+      return resp;
+
+    }));
+  }
+
+  
 
  
 

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrito } from '../../../models/carrito';
+import { Orden } from '../../../models/orden';
 import { CarritoService } from 'src/app/services/carrito.service';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-checkout',
@@ -11,11 +15,60 @@ export class CheckoutComponent implements OnInit {
 
   carrito: Carrito;
 
-  constructor(private carritoService: CarritoService) {
+  formaDePago: number;
+
+  constructor(private carritoService: CarritoService,
+              private router: Router) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));
   }
 
   ngOnInit(): void {
+  }
+
+  confirmarCompra(form: NgForm) {
+    
+    console.log(form);
+    
+    if(!this.formaDePago){
+      Swal.fire({
+        allowOutsideClick: true,
+        icon: 'error',
+        text: 'Debes ingresar la forma de pago',
+        title: 'Confirmación de compra'
+      });
+      return;
+    }
+
+    let orden = new Orden();
+    orden.carrito_id = this.carrito.numero;
+    orden.carrito = this.carrito;
+    orden.formaDePago = this.formaDePago;
+    orden.fecha = new Date();
+    orden.form = form;
+
+    this.carritoService.confirmarCompra(orden)
+      .subscribe( resp => {
+
+       
+
+        if(resp["ok"] == true){
+
+          localStorage.setItem('orden', JSON.stringify(orden));  
+        
+          localStorage.removeItem('carrito');
+
+          Swal.fire({
+            allowOutsideClick: true,
+            icon: 'info',
+            text: 'La compra se confirmo correctamente',
+            title: 'Compra'
+          });
+        }
+
+        this.router.navigate(['/compra']);
+
+    });       
+
   }
 
   getSubtotal(){
@@ -25,5 +78,11 @@ export class CheckoutComponent implements OnInit {
     }
     return suma;
   }
+
+  seleccionarFormaDePago(forma: number){
+    this.formaDePago = forma;
+  }
+
+  
 
 }

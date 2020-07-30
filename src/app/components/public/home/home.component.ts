@@ -49,6 +49,10 @@ export class HomeComponent implements OnInit {
 
     this.filtroPrecioHasta = 5000;
 
+    // Borro datos temporales  
+    localStorage.removeItem('orden');
+    localStorage.removeItem('carrito');
+
   }
 
   ngOnInit(): void {

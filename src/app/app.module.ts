@@ -17,6 +17,7 @@ import { CategoriaComponent } from './components/private/categoria/categoria.com
 import { FormsModule } from '@angular/forms';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
+import { CompraComponent } from './components/public/compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CheckoutComponent } from './components/public/checkout/checkout.compone
     CategoriaComponent,
     AbmArticuloComponent,
     CheckoutComponent,
+    CompraComponent,
   ],
   imports: [
     BrowserModule,

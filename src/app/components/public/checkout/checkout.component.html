@@ -1,41 +1,62 @@
 <app-navbar [verHeader]="false"></app-navbar>
 <h1>Detalle de facturación</h1>
-<form>
+<form (ngSubmit)="confirmarCompra(form.value)" #form="ngForm" novalidate="">
     <div class="d-flex flex-row align-items-start">
         <div class="row col-12 col-md-6"> 
             <div class="form-group col-12">
                 <label for="formGroupNombre">Nombre</label>
-                <input type="text" class="form-control" id="formGroupNombre" placeholder="Nombre">
+                <input type="text" class="form-control" id="formGroupNombre" placeholder="Nombre" name="nombre" ngModel #nombre="ngModel">
+                <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
             </div>
             <div class="form-group  col-12">
                 <label for="formGroupApellido">Apellido</label>
-                <input type="text" class="form-control" id="formGroupApellido" placeholder="Apellido">
+                <input type="text" class="form-control" id="formGroupApellido" placeholder="Apellido" name="apellido" ngModel #apellido="ngModel">
+                <div *ngIf="apellido.invalid && apellido.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
             </div>
             <div class="form-group  col-12">
                 <label for="formGroupEMail">eMail</label>
-                <input type="text" class="form-control" id="formGroupEMail" placeholder="eMail">
+                <input type="text" class="form-control" id="formGroupEMail"  type="email" name="email" ngModel #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="eMail">
+                <div *ngIf="email?.errors?.required && email.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
+                <div *ngIf="email?.errors?.pattern" class="alert alert-danger">
+                    El eMail ingresado no cumple con el formato de correos
+                </div>
             </div>
             <div class="form-group col-12">
                 <label for="formGroupTelefono">Teléfono</label>
-                <input type="text" class="form-control" id="formGroupTelefono" placeholder="Teléfono">
+                <input type="text" class="form-control" id="formGroupTelefono" placeholder="Teléfono" name="telefono" ngModel #telefono="ngModel">
+                <div *ngIf="telefono.invalid && telefono.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
             </div>
 
             <h1>Datos del envío</h1>
             <div class="form-group col-12">
                 <label for="formGroupDepartamento">Departamento</label>
-                <input type="text" class="form-control" id="formGroupDepartamento" placeholder="Departamento">
+                <input type="text" class="form-control" id="formGroupDepartamento" placeholder="Departamento" name="departamento" ngModel #departamento="ngModel">
             </div>
             <div class="form-group col-12">
                 <label for="formGroupDirección">Dirección</label>
-                <input type="text" class="form-control" id="formGroupDirección" placeholder="Dirección">
+                <input type="text" class="form-control" id="formGroupDirección" placeholder="Dirección" name="direccion" ngModel #direccion="ngModel">
+                <div *ngIf="direccion.invalid && direccion.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
             </div>
             <div class="form-group col-12">
                 <label for="formGroupBarrio">Barrio / Localidad</label>
-                <input type="text" class="form-control" id="formGroupBarrio" placeholder="Barrio / Localidad">
+                <input type="text" class="form-control" id="formGroupBarrio" placeholder="Barrio / Localidad" name="barrio" ngModel #barrio="ngModel">
+                <div *ngIf="barrio.invalid && barrio.touched" class="alert alert-danger">
+                    Dato requerido
+                </div>
             </div>
             <div class="form-group col-12">
                 <h3>Información adicional</h3>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Notas que quieras agregar al pedido"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Notas que quieras agregar al pedido" name="notas" ngModel #notas="ngModel"></textarea>
             </div>
         </div>
         <div class="row col-12 col-md-6">
@@ -72,10 +93,10 @@
             </table>
             
             <h4>Selecciona la forma de pago</h4>
-            <input type="radio" class="custom-control-input" checked="true" hidden="true" name="formaDePago">
+            <input type="radio" class="custom-control-input" value="0" checked name="formaDePago" >
             
             <div class="custom-control custom-checkbox col-12">
-                <input type="radio" class="custom-control-input" id="checkTransferenciaBancaria" name="formaDePago">
+                <input type="radio" class="custom-control-input" id="checkTransferenciaBancaria" name="formaDePago" (click)="seleccionarFormaDePago(1);">
                 <label class="custom-control-label" for="checkTransferenciaBancaria">Transferencia bancaria</label>
                 <p> <small>Realiza tu pago realizando una transferencia a nuestra cuenta bancaria. 
                    Usa el número del pedido como referencia de pago. 
@@ -84,19 +105,23 @@
             </div>
 
             <div class="custom-control custom-checkbox col-12">
-                <input type="radio" class="custom-control-input"  id="checkGiro" name="formaDePago">
+                <input type="radio" class="custom-control-input"  id="checkGiro" name="formaDePago" (click)="seleccionarFormaDePago(2);">
                 <label class="custom-control-label" for="checkGiro">Giro Abitab o RedPagos</label>
                 <p><small>Realiza tu pago directamente en la redes de Cobranza Abitab o Red Pagos. 
                     Tu pedido se procesará una vez que envíes el comprobante vía WhatsApp al 094 061311.</small></p>
             </div>
 
             <div class="custom-control custom-checkbox col-12">
-                <input type="radio" class="custom-control-input" id="checkMP" name="formaDePago">
+                <input type="radio" class="custom-control-input" id="checkMP" name="formaDePago" (click)="seleccionarFormaDePago(3);">
                 <label class="custom-control-label" for="checkMP">MercadoPago</label>
                 <P><small>Paga con la tarjeta que quieras a través de Mercado Pago.</small></P>
             </div>
         </div>
     </div>
+
+    <div class="col-6 m-5">  
+        <button class="btn btn-lg btn-block btn-sm" type="submit" [disabled]="!form.form.valid">Confirmar compra</button>
+    </div> 
   </form>
 
   

@@ -7,7 +7,7 @@ import { HomeComponent } from './components/public/home/home.component';
 import { CarritoComponent } from './components/public/carrito/carrito.component';
 import { ArticuloComponent } from './components/public/articulo/articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
-
+import { CompraComponent } from './components/public/compra/compra.component';
 
 // Privado
 import { UserComponent } from './components/private/user/user.component';
@@ -31,6 +31,7 @@ const routes: Routes = [
 
   //para finalizar una compra
   { path: 'checkout', component: CheckoutComponent},
+  { path: 'compra', component: CompraComponent},
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

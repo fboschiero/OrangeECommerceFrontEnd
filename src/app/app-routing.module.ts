@@ -15,6 +15,7 @@ import { UserComponent } from './components/private/user/user.component';
 import { LoginGuard } from './guards/login.guard';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
+import { OrdenCompraComponent } from './components/private/orden-compra/orden-compra.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -32,6 +33,8 @@ const routes: Routes = [
   //para finalizar una compra
   { path: 'checkout', component: CheckoutComponent},
   { path: 'compra', component: CompraComponent},
+
+  { path: 'orden-compra', component: OrdenCompraComponent},
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

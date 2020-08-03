@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     
     // Borro datos temporales  
     localStorage.removeItem('orden');
-    localStorage.removeItem('carrito');
+    //localStorage.removeItem('carrito');
 
   }
 

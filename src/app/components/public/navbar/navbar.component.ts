@@ -78,4 +78,14 @@ export class NavbarComponent  {
    
   }
 
+  hayDatos(){
+    if(!this.carrito){
+      return false;
+    }
+    if(this.carrito.items.length > 0){
+      return true;
+    }
+    return false;
+  }
+
 }

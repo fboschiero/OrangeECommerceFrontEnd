@@ -46,6 +46,13 @@ export class ArticuloService {
       );
   }
 
+  getArticulosRelacionados(param: string){
+    return this.http.get(`${this.API_URL}/getArticulosRelacionados/` + param)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
   guardarArticulo(body){
     return this.http.post(this.API_URL + '/insertArticulo', body);
   }

@@ -9,8 +9,11 @@ import { ArticuloModel } from '../../../models/articulo.model';
 export class CardComponent implements OnInit {
 
   @Input() articulo: ArticuloModel;
+  @Input() chiquito: boolean;
 
-  constructor() {console.log(this.articulo); }
+  constructor() {
+    this.chiquito = false;
+  }
 
   ngOnInit(): void {
 

@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class ArticuloComponent implements OnInit {
 
   articulo: ArticuloModel;
+  articulosRelacionados: ArticuloModel[];
 
   @Input() colorSeleccionado: number;
   @Input() talleSeleccionado: number;
@@ -27,13 +28,20 @@ export class ArticuloComponent implements OnInit {
       const id = this._Activatedroute.snapshot.paramMap.get("id");
       this.articulosService.getArticuloById(id).subscribe( resp => {
         this.articulo = resp[0];
-      });       
+      });  
+
+      this.articulosService.getArticulosRelacionados(id).subscribe( resp => {
+        this.articulosRelacionados = resp;
+      }); 
+
+    
+      this.cantidadSeleccionada = 0;     
   }
 
   ngOnInit(): void { }
 
   agregarAlCarrito(){
-    
+    console.log(this.cantidadSeleccionada);
     if(!this.colorSeleccionado){
       Swal.fire({
         allowOutsideClick: true,
@@ -52,7 +60,7 @@ export class ArticuloComponent implements OnInit {
       });
       return;
     }
-    if(!this.cantidadSeleccionada){
+    if(!this.cantidadSeleccionada || this.cantidadSeleccionada == 0){
       Swal.fire({
         allowOutsideClick: true,
         icon: 'error',
@@ -86,8 +94,6 @@ export class ArticuloComponent implements OnInit {
         });*/
         window.location.reload();
       } 
-      
-       
 
     });       
   }
@@ -100,8 +106,12 @@ export class ArticuloComponent implements OnInit {
     this.talleSeleccionado = id;
   }
 
-  selectCantidad(cant: number) {
-    this.cantidadSeleccionada = cant;
+  agregarUno() {
+    this.cantidadSeleccionada = this.cantidadSeleccionada + 1;
+  }
+
+  quitarUno() {
+    this.cantidadSeleccionada = this.cantidadSeleccionada - 1;
   }
 
 }

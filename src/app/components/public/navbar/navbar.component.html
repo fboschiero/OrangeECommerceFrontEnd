@@ -104,10 +104,9 @@
                         </span>
                     </li>
                     
-                    
-                    
                     <li class="divider"></li>
-                    <li><a [routerLink]="['/carrito']">Ver carrito</a></li>
+                    <li style="text-align: center;"><hr style="width: 90%"><a style="text-decoration: none;" [routerLink]="['/carrito']" *ngIf="hayDatos();">Ver carrito</a></li>
+                    <li style="text-align: center;"><label *ngIf="! hayDatos();">El carrito está vacío</label></li>
                 </ul>
 
             </li>

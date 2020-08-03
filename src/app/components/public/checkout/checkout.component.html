@@ -1,8 +1,10 @@
 <app-navbar [verHeader]="false"></app-navbar>
-<h1>Detalle de facturación</h1>
+
 <form (ngSubmit)="confirmarCompra(form.value)" #form="ngForm" novalidate="">
     <div class="d-flex flex-row align-items-start">
         <div class="row col-12 col-md-6"> 
+            <h1>Detalle de facturación</h1>
+            <hr>
             <div class="form-group col-12">
                 <label for="formGroupNombre">Nombre</label>
                 <input type="text" class="form-control" id="formGroupNombre" placeholder="Nombre" name="nombre" ngModel #nombre="ngModel">
@@ -59,9 +61,9 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Notas que quieras agregar al pedido" name="notas" ngModel #notas="ngModel"></textarea>
             </div>
         </div>
-        <div class="row col-12 col-md-6">
-            <h4>Su orden</h4>
-            <table class="table table-reflow">
+        <div class="row col-12 col-md-6 ml-md-3 mt-md-5 p-md-5" style="border: 2px solid lightgray; border-radius: 5px;">
+            <h4>Tu orden</h4>
+            <table class="table table-reflow mt-5">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -98,7 +100,7 @@
             <div class="custom-control custom-checkbox col-12">
                 <input type="radio" class="custom-control-input" id="checkTransferenciaBancaria" name="formaDePago" (click)="seleccionarFormaDePago(1);">
                 <label class="custom-control-label" for="checkTransferenciaBancaria">Transferencia bancaria</label>
-                <p> <small>Realiza tu pago realizando una transferencia a nuestra cuenta bancaria. 
+                <p> <small>Confirma tu pago realizando una transferencia a nuestra cuenta bancaria. 
                    Usa el número del pedido como referencia de pago. 
                    Tu pedido no se procesará hasta que se haya recibido el importe en nuestra cuenta.
                    Ten en cuenta que si es desde otro Banco la transferencia puede demorar dias.</small> </p>
@@ -118,10 +120,14 @@
             </div>
         </div>
     </div>
-
-    <div class="col-6 m-5">  
-        <button class="cart_button" type="submit" [disabled]="!form.form.valid">Confirmar compra</button>
-    </div> 
+    <div class="d-flex flex-row justify-content-center mb-5 mt-5">
+        <div class="col-4">  
+            <button type="button" [routerLink]="['/home']" class="cart_button"><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
+        </div> 
+        <div class="col-4">  
+            <button class="cart_button" type="submit" [disabled]="!form.form.valid">Confirmar compra</button>
+        </div> 
+    </div>
   </form>
 
   

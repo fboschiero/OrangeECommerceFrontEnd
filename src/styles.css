@@ -201,4 +201,12 @@
 }    
 .cart_button:hover {
     background-color:lightgrey;
+}
+.verticalline {
+    border-left: 2px dotted lightgray;
+    height: 500px;
+    position: relative;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
   }

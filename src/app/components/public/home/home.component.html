@@ -127,15 +127,15 @@
     <h4>Articulos destacados</h4>
 </div>
 
-<div class="d-flex flex-row">
+<div class="d-flex flex-row" id="destacados">
     <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
 </div>
 
-<div class="container pt-5">
+<div class="container pt-5" >
 
     <div class="panel-group">
-        <div class="panel panel-default  ">
-            <div class="panel-heading ml-3">
+        <div class="panel panel-default">
+            <div class="panel-heading ml-3" id="buscar"  > 
                 <h4 class="panel-title">
                     <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray;">Filtros de búsqueda</a>
                 </h4>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
 
-                <div class="row pt-3">
+                <!-- div class="row pt-3">
                     <div class="custom-control custom-switch col-12 col-md-2">
                         <input type="checkbox" class="custom-control-input" id="customSwitch1">
                         <label class="custom-control-label" for="customSwitch1">Hombre</label>
@@ -176,7 +176,7 @@
                         <input type="checkbox" class="custom-control-input" id="customSwitch3">
                         <label class="custom-control-label" for="customSwitch3">Niños</label>
                     </div>
-                </div>
+                </div -->
 
                 <div class="d-flex flex-row pt-3 pt-3">
                     <label>Precio hasta</label>
@@ -188,11 +188,8 @@
                         
                 </div>
 
-                <div class="d-flex flex-row pt-3">
-
-                </div>
-                <div class="mt-5 mb-5 d-flex justify-content-center">
-                    <input type="button" class="btn btn-primary" (click)="buscar()" value="Buscar">
+                <div class="mt-5 mb-5 d-flex justify-content-center col-6">
+                    <button type="button" (click)="buscar()" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
                 </div>
             </div>
         </div>

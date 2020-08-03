@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
+import { OrdenCompraComponent } from './components/private/orden-compra/orden-compra.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CompraComponent } from './components/public/compra/compra.component';
     AbmArticuloComponent,
     CheckoutComponent,
     CompraComponent,
+    OrdenCompraComponent,
   ],
   imports: [
     BrowserModule,

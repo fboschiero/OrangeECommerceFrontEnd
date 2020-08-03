@@ -2,6 +2,8 @@ import { Component, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { Router } from '@angular/router';
 import { UsuarioModel } from '../../../models/usuario.model';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.loginServices.login(this.usuario).subscribe( (resp: UsuarioModel) => {
+    this.loginServices.login(this.usuario).subscribe( (resp: any) => {
 
       console.log(`resp : ${ resp }`);
 
@@ -30,16 +32,18 @@ export class LoginComponent implements OnInit {
 
     }, (err) => {
 
-      if (err && err.error) {
-
-        console.error(`ERROR: ${err.error.ok}`);
-        console.error(`ERROR: ${err.error.err.message}`);
-
-      } else {
-
-        console.error(`ERROR: ${err}`);
-
+      let msg = '';
+      if (!err.ok) {
+        msg = err.error['err'].message;
       }
+
+      Swal.fire({
+        allowOutsideClick: true,
+        icon: 'error',
+        text: `${msg}`,
+        title: 'Usuario'
+      });
+      return;
 
     });
   }
@@ -47,28 +51,40 @@ export class LoginComponent implements OnInit {
   signUp(){
 
     if (this.usuario.password.match(this.usuario.confirmPassword) === null) {
-      console.log('No coinciden las contraseñas!');
+      Swal.fire({
+        allowOutsideClick: true,
+        icon: 'error',
+        text: `No coinciden las contraseñas`,
+        title: 'Usuario'
+      });
       return;
     }
 
     this.loginServices.signUp(this.usuario).subscribe( resp => {
 
-      console.log(`signUp resp: ${ resp }`);
+      console.log(`signUp`);
 
       this.router.navigateByUrl('/');
 
     }, (err) => {
 
-      if (err && err.error) {
+      console.log('Error:');
+      
+      console.log(err);
+      
 
-        console.error(`ERROR: ${err.error.ok}`);
-        console.error(`ERROR: ${err.error.err.message}`);
-
-      } else {
-
-        console.error(`ERROR: ${err}`);
-
+      let msg = '';
+      if (!err.ok) {
+        msg = err.error['err'].message;
       }
+
+      Swal.fire({
+        allowOutsideClick: true,
+        icon: 'error',
+        text: `${msg}`,
+        title: 'Usuario'
+      });
+      return;
 
     });
   }

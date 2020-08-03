@@ -13,6 +13,8 @@ export class LoginService {
 
   private API_URL = environment.API_URL;
 
+  private TIEMPO_EXPIRA = 1800;
+
   usuarioLogueado: boolean;
 
   constructor(private http: HttpClient) {
@@ -37,15 +39,17 @@ export class LoginService {
     const expiraDate = new Date();
     expiraDate.setTime(expira);
 
+
     if ( expiraDate > new Date() ) {
 
       // renuevo la expiración
       const hoy = new Date();
-      hoy.setSeconds( 3600 );
+      hoy.setSeconds( hoy.getSeconds() + this.TIEMPO_EXPIRA );
       localStorage.setItem('expira', hoy.getTime().toString() );
 
       this.usuarioLogueado = true;
     } else {
+
       localStorage.removeItem('expira');
       localStorage.removeItem('usuario');
       this.usuarioLogueado = false;
@@ -66,26 +70,26 @@ export class LoginService {
     const body = JSON.stringify({ email, password });
 
     return this.http.post(`${ environment.API_URL }/signIn`, body, httpOptions)
-    .pipe(map((user) => {
+    .pipe(map(user => this.procesarUsuario(user, usuario)));
 
-      console.log('login response: ' + JSON.stringify(user));
+  }
 
-      if (user) {
+  private procesarUsuario(user: object, usuario: UsuarioModel) {
 
-        usuario.nombre = user['usuario']['nombre'];
-        localStorage.setItem('usuario', JSON.stringify(usuario));
+    console.log(user);
+    
+    if (user) {
 
-        this.usuarioLogueado = true;
-        
-        const hoy = new Date();
-        hoy.setSeconds( 3600 );
+      usuario.nombre = user['usuario'][0]['nombre'];
+      localStorage.setItem('usuario', JSON.stringify(usuario));
 
-        localStorage.setItem('expira', hoy.getTime().toString() );
-      }
+      this.usuarioLogueado = true;
 
-      return user;
+      const hoy = new Date();
+      hoy.setSeconds( hoy.getSeconds() + this.TIEMPO_EXPIRA );
 
-    }));
+      localStorage.setItem('expira', hoy.getTime().toString() );
+    }
 
   }
 
@@ -101,7 +105,6 @@ export class LoginService {
     const role = usuario.role;
 
     const body = JSON.stringify({ nombre, email, password, role });
-    console.log(body);
 
     return this.http.post(`${ environment.API_URL }/signUp`, body, httpOptions)
     .pipe(map(user => {
@@ -114,7 +117,7 @@ export class LoginService {
         localStorage.setItem('usuario', JSON.stringify(usuario));
 
         const hoy = new Date();
-        hoy.setSeconds( 3600 );
+        hoy.setSeconds( this.TIEMPO_EXPIRA );
 
         localStorage.setItem('expira', hoy.getTime().toString() );
 

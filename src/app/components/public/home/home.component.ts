@@ -8,6 +8,7 @@ import { TalleService } from '../../../services/talle.service';
 import { ArticuloModel } from '../../../models/articulo.model';
 import { CategoriaModel } from '../../../models/categoria.model';
 import { TalleModel } from '../../../models/talle.model';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private articuloService: ArticuloService,
               private categoriaService: CategoriaService,
-              private talleService: TalleService ) {
+              private talleService: TalleService,
+              private loginService: LoginService ) {
 
     // Cargo los articulos destacados 
     this.articuloService.getArticulosDestacados(1, 1).subscribe( resp => {
@@ -49,6 +51,8 @@ export class HomeComponent implements OnInit {
 
     this.filtroPrecioHasta = 5000;
 
+    this.loginService.estaAutenticado();
+    
     // Borro datos temporales  
     localStorage.removeItem('orden');
     localStorage.removeItem('carrito');

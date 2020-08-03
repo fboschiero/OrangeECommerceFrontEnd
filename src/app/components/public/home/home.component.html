@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide" alt="Second slide [900x300]" src="../../../../assets/img/c2.jpg" data-holder-rendered="true">
+                <img class="d-block w-100" data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide" alt="Second slide [900x300]" src="../../../../assets/img/c3.jpg" data-holder-rendered="true">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Second slide label</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -123,13 +123,25 @@
     </div>
 <hr -->
 
-<div class="mb-5 mt-5">
+<div class="mb-5 mt-5 container" id="nuevo">
+    <h4>Nueva colección</h4>
+</div>
+
+<div class="d-flex flex-row container" id="destacados">
+    <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+</div>
+
+<hr style="width: 80%;">
+
+<div class="mb-5 mt-5 container">
     <h4>Articulos destacados</h4>
 </div>
 
-<div class="d-flex flex-row" id="destacados">
+<div class="d-flex flex-row container" id="destacados">
     <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
 </div>
+
+<hr style="width: 80%;">
 
 <div class="container pt-5" >
 
@@ -196,9 +208,10 @@
     </div>
 </div>
 
+<div class="container" *ngIf="articulosFiltrados.length > 0">
 
+    <h2 style="margin-bottom: 40px;">Resultados de la búsqueda</h2>
 
-<div class="container">
     <div class="row">
         <app-card class="col-sm-6 col-md-4 col-lg-3" [articulo]="articulo" *ngFor="let articulo of articulosFiltrados"></app-card>
     </div>
@@ -206,5 +219,7 @@
 
 <!--app-articulos [items]="getArticulos()"></!--app-articulos -->
 <!--app-card [items]="productos"></!--app-card -->
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26195.149631276825!2d-56.01587545174855!3d-34.84633354541303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suy!4v1596479692275!5m2!1ses!2suy" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
 <app-footer></app-footer>

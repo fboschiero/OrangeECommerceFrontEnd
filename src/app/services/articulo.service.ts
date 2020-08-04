@@ -32,6 +32,14 @@ export class ArticuloService {
       );
   }
 
+  getArticulosEnOferta(desde: number, cantidad: number){
+    // return this.http.get(`${this.API_URL}/getArticulos?cantidad=` + cantidad + `;desde=` + desde)
+    return this.http.get(`${this.API_URL}/getArticulosEnOferta?cantidad=` + cantidad + `;desde=` + desde)
+      .pipe(
+        map(resp => this.crearArreglo(resp))
+      );
+  }
+
   getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, cantidad: number, desde: number){
     return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + cantidad + `/` + desde)
       .pipe(

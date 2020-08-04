@@ -40,6 +40,10 @@ export class ArticuloComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+ }
+
   agregarAlCarrito(){
     console.log(this.cantidadSeleccionada);
     if(!this.colorSeleccionado){

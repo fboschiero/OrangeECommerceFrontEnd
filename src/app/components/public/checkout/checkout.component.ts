@@ -47,9 +47,7 @@ export class CheckoutComponent implements OnInit {
     orden.form = form;
 
     this.carritoService.confirmarCompra(orden)
-      .subscribe( resp => {
-
-       
+      .subscribe( resp => {      
 
         if(resp["ok"] == true){
 

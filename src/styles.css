@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*
+{
+	font-family: 'Poppins', sans-serif;
+}
 
 .demo {
     padding: 45px 0
@@ -192,6 +197,7 @@
     }
 }
 
+/** Boton del carrito */
 .cart_button {
     width: 100%; 
     background-color: white; 
@@ -202,6 +208,9 @@
 .cart_button:hover {
     background-color:lightgrey;
 }
+
+/** Fin de boton del carrito*/
+
 .verticalline {
     border-left: 2px dotted lightgray;
     height: 500px;
@@ -209,4 +218,26 @@
     left: 50%;
     margin-left: -3px;
     top: 0;
-  }
+}
+
+/** Pantalla de cargando */
+.my-overlay {
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 10000 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed !important;
+    background-color: rgba(0,0,0,0.9) !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    transition: visibility 0s, opacity 0.4s linear !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: wait !important;
+}
+.my-overlay i.fa.fa-spinner.fa-spin, .spinner-big {
+    font-size: 100px !important;
+} 
+/** FIn de pantalla de cargando*/

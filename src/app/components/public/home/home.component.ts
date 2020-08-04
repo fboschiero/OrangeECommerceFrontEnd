@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   articulos: ArticuloModel[] = [];
   articulosFiltrados: ArticuloModel[] = [];
+  articulosEnOferta: ArticuloModel[] = [];
   categorias: CategoriaModel[] = [];
   talles: TalleModel[] = [];
 
@@ -37,6 +38,11 @@ export class HomeComponent implements OnInit {
     // Cargo los articulos destacados 
     this.articuloService.getArticulosDestacados(1, 1).subscribe( resp => {
       this.articulos = resp;
+    });
+
+    // Cargo los articulos en Oferta 
+    this.articuloService.getArticulosEnOferta(1, 1).subscribe( resp => {
+      this.articulosEnOferta = resp;
     });
 
     // Cargo las categorias para el panel de filtros
@@ -72,6 +78,9 @@ export class HomeComponent implements OnInit {
   }
 
   buscar(): void{
+
+    (<HTMLElement>document.querySelector('#my-overlay')).style.display = '';
+
     if(this.filtroCategoria  == undefined){
       this.filtroCategoria = -1;
     }
@@ -83,6 +92,8 @@ export class HomeComponent implements OnInit {
     this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, 10, 0).subscribe( resp => {
       this.articulosFiltrados = resp;
     });
+
+    (<HTMLElement>document.querySelector('#my-overlay')).style.display = 'none';
 
   }
 

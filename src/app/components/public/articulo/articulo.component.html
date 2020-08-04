@@ -1,6 +1,6 @@
 <app-navbar [verHeader]="false"></app-navbar>
 
-<div class="container">
+<div class="container"  >
     <div class="row m-3" >
         <div class="col-md-6 product_img">
             <div class="row">
@@ -87,7 +87,7 @@
     </div>
 
     <hr class="mt-5"style="border-top: 3px solid lightgray">
-    <h1 >Artículos relacionados</h1>
+    <h2 >Artículos relacionados</h2>
     <hr style="border-top: 3px solid lightgray">
     <div class="d-flex flex-row">
         <app-card [articulo]="articulo" [chiquito]="true" *ngFor="let articulo of articulosRelacionados"></app-card>

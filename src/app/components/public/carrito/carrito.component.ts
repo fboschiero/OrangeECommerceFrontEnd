@@ -57,4 +57,8 @@ export class CarritoComponent implements OnInit {
     return suma;
   }
 
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
+  }
+
 }

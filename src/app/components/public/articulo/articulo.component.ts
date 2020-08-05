@@ -42,7 +42,7 @@ export class ArticuloComponent implements OnInit {
 
   ngAfterViewInit() {
     window.scrollTo(0, 0);
- }
+  }
 
   agregarAlCarrito(){
     console.log(this.cantidadSeleccionada);

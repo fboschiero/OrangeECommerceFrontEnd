@@ -12,4 +12,9 @@ export class OrdenCompraComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  verDetalleCompra(): void {
+    console.log('verDetalleCompra');
+
+  }
+
 }

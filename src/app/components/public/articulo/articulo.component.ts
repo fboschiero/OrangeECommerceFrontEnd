@@ -115,7 +115,10 @@ export class ArticuloComponent implements OnInit {
   }
 
   quitarUno() {
-    this.cantidadSeleccionada = this.cantidadSeleccionada - 1;
+    if(this.cantidadSeleccionada > 1){
+      this.cantidadSeleccionada = this.cantidadSeleccionada - 1;
+    }
+    
   }
 
 }

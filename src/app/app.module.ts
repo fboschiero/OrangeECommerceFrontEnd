@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
-import { OrdenCompraComponent } from './components/private/orden-compra/orden-compra.component';
+import { MisComprasComponent } from './components/private/mis-compras/mis-compras.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { OrdenCompraComponent } from './components/private/orden-compra/orden-co
     AbmArticuloComponent,
     CheckoutComponent,
     CompraComponent,
-    OrdenCompraComponent,
+    MisComprasComponent,
   ],
   imports: [
     BrowserModule,

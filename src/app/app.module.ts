@@ -19,6 +19,7 @@ import { AbmArticuloComponent } from './components/private/articulo/abm-articulo
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
 import { MisComprasComponent } from './components/private/mis-compras/mis-compras.component';
+import { BuscarComponent } from './components/public/buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MisComprasComponent } from './components/private/mis-compras/mis-compra
     CheckoutComponent,
     CompraComponent,
     MisComprasComponent,
+    BuscarComponent,
   ],
   imports: [
     BrowserModule,

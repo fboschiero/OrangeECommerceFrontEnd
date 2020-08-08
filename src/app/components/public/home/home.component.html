@@ -1,7 +1,5 @@
 <app-navbar [verHeader]="true"></app-navbar>
-<div class="my-overlay" id="my-overlay" style="display: none">
-    <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-</div>
+
 <!--  CARROUSEL  -->
 
 <div class="bd-example">
@@ -39,198 +37,51 @@
 
 <!-- FIN CARROUSEL -->
 
-<!-- div class="container">
-    <h3 class="h3">shopping Demo-2 </h3>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid2">
-                <div class="product-image2">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-1.jpeg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-2.jpeg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <a class="add-to-cart" href="">Add to cart</a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid2">
-                <div class="product-image2">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-3.jpeg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-4.jpeg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <a class="add-to-cart" href="">Add to cart</a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
-                    <span class="price">$699.99</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid2">
-                <div class="product-image2">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-5.jpeg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <a class="add-to-cart" href="">Add to cart</a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid2">
-                <div class="product-image2">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-7.jpeg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-8.jpeg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <a class="add-to-cart" href="">Add to cart</a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                    <span class="price">$599.99</span>
-                </div>
-            </div>
-        </div>
-    </div>
-<hr -->
-
-<div class="mb-5 mt-5 container" id="nuevo">
-    <h4>Nueva colección</h4>
-</div>
-
-<div class="d-flex flex-row container" id="destacados">
-    <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
-</div>
-
-<hr style="width: 80%;">
-
-<div class="mb-5 mt-5 container">
+    
+<div class="mb-5 mt-5">
     <h4>Articulos destacados</h4>
 </div>
 
-<div class="d-flex flex-row container" id="destacados">
-    <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+<div class="carousel container">
+    <div class="slideControls">
+            <a class="slidePrev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="slideNext">
+            <i class="fa fa-angle-right"></i>
+            </a>
+    </div> 
+    <ul id="light-slider-destacados">
+        <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+        <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+        
+    </ul>
 </div>
-
+    
 <hr style="width: 80%;">
 
-<div class="mb-5 mt-5 container">
+<div class="mb-5 mt-5">
     <h4>Ofertas</h4>
 </div>
 
-<div class="d-flex flex-row container" id="oferta">
-    <app-card [articulo]="articulo" *ngFor="let articulo of articulosEnOferta"></app-card>
+<div class="carousel container">
+    <div class="slideControls2">
+            <a data-id="slider2Left" class="slidePrev">
+            <i class="fa fa-angle-left"></i>
+            </a>
+            <a data-id="slider2right" class="slideNext">
+            <i class="fa fa-angle-right"></i>
+            </a>
+    </div> 
+    <ul id="light-slider-ofertas">
+        <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+        <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
+    </ul>
 </div>
-
+   
 <hr style="width: 80%;">
 
-<div class="container pt-5" >
 
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading ml-3" id="buscar"  > 
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray;">Filtros de búsqueda</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse-">
-
-                <div class="row d-flex justify-content-left">
-                    <div class="p-2">
-                        <label>Categoría</label>
-                    </div>
-                    <div class="p-2">
-                        <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected >Elige una categoría</option>
-                            <option [value]="categoria.id" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
-                        </select>
-                    </div>
-                    <div class="p-2">
-                        <label class="pr-2">Talle</label>
-                    </div>
-                    <div class="p-2">
-                        <select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
-                            <option value="undefined" selected >Elige un talle</option>
-                            <option [value]="talle.descripcion" *ngFor="let talle of talles;">{{talle.descripcion}}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- div class="row pt-3">
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Hombre</label>
-                    </div>
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                        <label class="custom-control-label" for="customSwitch2">Mujer</label>
-                    </div>
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                        <label class="custom-control-label" for="customSwitch3">Niños</label>
-                    </div>
-                </div -->
-
-                <div class="d-flex flex-row pt-3 pt-3">
-                    <label class="pr-2">Precio hasta</label>
-                    <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
-                    <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
-                    
-                    <!--input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
-                    <output name="ageOutputName" id="ageOutputId">24</output -->
-                        
-                </div>
-
-                <div class="mt-5 mb-5 d-flex justify-content-center col-6">
-                    <button type="button" (click)="buscar()" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container" *ngIf="articulosFiltrados.length > 0">
-
-    <h2 style="margin-bottom: 40px;">Resultados de la búsqueda</h2>
-
-    <div class="row">
-        <app-card class="col-sm-6 col-md-4 col-lg-3" [articulo]="articulo" *ngFor="let articulo of articulosFiltrados"></app-card>
-    </div>
-</div>
-
-<!--app-articulos [items]="getArticulos()"></!--app-articulos -->
-<!--app-card [items]="productos"></!--app-card -->
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26195.149631276825!2d-56.01587545174855!3d-34.84633354541303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2suy!4v1596479692275!5m2!1ses!2suy" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 

@@ -8,6 +8,7 @@ import { CarritoComponent } from './components/public/carrito/carrito.component'
 import { ArticuloComponent } from './components/public/articulo/articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
+import { BuscarComponent } from './components/public/buscar/buscar.component';
 
 // Privado
 import { UserComponent } from './components/private/user/user.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
 
   // listados
   { path: 'mis-compras', component: MisComprasComponent},
+
+  // Busqueda
+  { path: 'buscar', component: BuscarComponent},
+
 
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

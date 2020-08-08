@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Servicios
 import { ArticuloService } from '../../../services/articulo.service';
@@ -20,12 +20,7 @@ export class HomeComponent implements OnInit {
   private DESDE = 0;
   private CANTIDAD = 10;
 
-  @Input() filtroPrecioHasta: number;
-  @Input() filtroCategoria: number;
-  @Input() filtroTalle: string;
-
   articulos: ArticuloModel[] = [];
-  articulosFiltrados: ArticuloModel[] = [];
   articulosEnOferta: ArticuloModel[] = [];
   categorias: CategoriaModel[] = [];
   talles: TalleModel[] = [];
@@ -54,9 +49,7 @@ export class HomeComponent implements OnInit {
     this.talleService.getTalles().subscribe( resp => {
       this.talles = resp;
     });
-
-    this.filtroPrecioHasta = 5000;
-
+    
     this.loginService.estaAutenticado();
     
     // Borro datos temporales  
@@ -69,33 +62,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  selectFiltro(id: number) {
-    this.filtroCategoria = id;
-  }
-
-  selectTalle(talle: string) {
-    this.filtroTalle = talle;
-  }
-
-  buscar(): void{
-
-    (<HTMLElement>document.querySelector('#my-overlay')).style.display = '';
-
-    if(this.filtroCategoria  == undefined){
-      this.filtroCategoria = -1;
-    }
-
-    if(this.filtroTalle  == undefined){
-      this.filtroTalle = '-';
-    }
-
-    this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, 10, 0).subscribe( resp => {
-      this.articulosFiltrados = resp;
-    });
-
-    (<HTMLElement>document.querySelector('#my-overlay')).style.display = 'none';
-
-  }
+  
 
 
 

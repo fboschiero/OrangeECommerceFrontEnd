@@ -16,7 +16,8 @@ import { UserComponent } from './components/private/user/user.component';
 import { LoginGuard } from './guards/login.guard';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
-import { MisComprasComponent } from './components/private/mis-compras/mis-compras.component';
+import { MisComprasComponent } from './components/private/compras/mis-compras/mis-compras.component';
+import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
 
   // listados
   { path: 'mis-compras', component: MisComprasComponent},
+  { path: 'detalle-compra/:index', component: DetalleCompraComponent},
 
   // Busqueda
   { path: 'buscar', component: BuscarComponent},

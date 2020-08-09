@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <h4>Detalle de compra</h4>
+
+    <h5>Fecha: <small>{{ordenCompra.fecha | date: 'dd/MM/yyyy HH:mm'}}</small></h5>
+    <h5>Monto: <small>${{ordenCompra.getMontoVenta() | number:'1.0':'es-UY'}}</small></h5>
+
+    <div class="row">
+        <div class="col-sm-4 py-2" *ngFor="let item of ordenCompra.items">
+            <div class="card card-body h-100">
+                {{item.producto.nombre}}
+            </div>
+        </div>
+    </div>
+</div>

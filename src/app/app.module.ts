@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +18,13 @@ import { FormsModule } from '@angular/forms';
 import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
-import { MisComprasComponent } from './components/private/mis-compras/mis-compras.component';
+import { MisComprasComponent } from './components/private/compras/mis-compras/mis-compras.component';
 import { BuscarComponent } from './components/public/buscar/buscar.component';
+import { registerLocaleData } from '@angular/common';
+import localUY from '@angular/common/locales/es-UY';
+import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
+
+registerLocaleData(localUY);
 
 @NgModule({
   declarations: [
@@ -39,6 +44,7 @@ import { BuscarComponent } from './components/public/buscar/buscar.component';
     CompraComponent,
     MisComprasComponent,
     BuscarComponent,
+    DetalleCompraComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ import { BuscarComponent } from './components/public/buscar/buscar.component';
     FormsModule
   ],
   providers: [
-    HttpClient
+    HttpClient,
+    { provide: LOCALE_ID, useValue: 'es-UY'}
   ],
   bootstrap: [AppComponent]
 })

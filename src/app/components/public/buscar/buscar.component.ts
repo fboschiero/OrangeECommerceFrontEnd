@@ -5,6 +5,8 @@ import { ArticuloService } from '../../../services/articulo.service';
 
 // Modelos
 import { ArticuloModel } from '../../../models/articulo.model';
+import { Categoria } from 'src/app/modelsBD/Categoria';
+import { TalleModel } from '../../../../../../../../Downloads/respaldo/src/app/models/talle.model';
 
 @Component({
   selector: 'app-buscar',
@@ -18,6 +20,8 @@ export class BuscarComponent implements OnInit {
   @Input() filtroTalle: string;
 
   articulos: ArticuloModel[] = [];
+  categorias: Categoria[];
+  talles: TalleModel[];
 
   constructor(private articuloService: ArticuloService) {
     this.filtroPrecioHasta = 5000;

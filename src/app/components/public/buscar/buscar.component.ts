@@ -6,7 +6,7 @@ import { ArticuloService } from '../../../services/articulo.service';
 // Modelos
 import { ArticuloModel } from '../../../models/articulo.model';
 import { Categoria } from 'src/app/modelsBD/Categoria';
-import { TalleModel } from '../../../../../../../../Downloads/respaldo/src/app/models/talle.model';
+import { TalleModel } from '../../../models/talle.model';
 
 @Component({
   selector: 'app-buscar',

@@ -1,21 +1,20 @@
-<li>
-    <div class="product-grid2 p-2" [ngStyle]="{'width': chiquito ? '200px' : '100%' }">
+<div class="product-grid2 p-2" [ngStyle]="{'width': chiquito ? '200px' : '100%' }">
 
-        <div class="product-image2">
-            <img class="pic-1" width="40px;" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
-            <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" src="../../../assets/articulos{{ articulo.imagenes[1].url }}" />
-            <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
+    <div class="product-image2 details">
+        <img class="pic-1" width="40px;" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
+        <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" src="../../../assets/articulos{{ articulo.imagenes[1].url }}" />
+        <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
 
-            <ul class="social">
-                <li><a href="#" data-tip="Ver" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>
-                <li><a href="#" data-tip="Ver despues"><i class="fa fa-shopping-bag"></i></a></li>
-                <li><a href="#" data-tip="Agregar al carrito" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-            <a class="add-to-cart" [routerLink]="['/articulo', articulo.id]" >Agregar al carrito</a>
-        </div>
-        <div class="product-content">
-            <h3 class="title">{{ articulo.nombre }}</h3>
-            <span class="price">${{ articulo.precio }}</span>
-        </div>
+        <ul class="social">
+            <li><a href="#" data-tip="Ver" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>
+            <li><a href="#" data-tip="Ver despues"><i class="fa fa-shopping-bag"></i></a></li>
+            <li><a href="#" data-tip="Agregar al carrito" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-shopping-cart"></i></a></li>
+        </ul>
+        <a class="add-to-cart" [routerLink]="['/articulo', articulo.id]" >Agregar al carrito</a>
     </div>
-</li>
+    <div class="product-content">
+        <h3 class="title">{{ articulo.nombre }}</h3>
+        <span class="price">${{ articulo.precio }}</span>
+    </div>
+</div>
+

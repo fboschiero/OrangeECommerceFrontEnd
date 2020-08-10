@@ -23,6 +23,7 @@ import { BuscarComponent } from './components/public/buscar/buscar.component';
 import { registerLocaleData } from '@angular/common';
 import localUY from '@angular/common/locales/es-UY';
 import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 
 registerLocaleData(localUY);
 
@@ -50,7 +51,8 @@ registerLocaleData(localUY);
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule
   ],
   providers: [
     HttpClient,

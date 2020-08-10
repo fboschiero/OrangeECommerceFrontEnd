@@ -40,8 +40,8 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, cantidad: number, desde: number){
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + cantidad + `/` + desde)
+  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, ofertas: boolean, destacados: boolean, cantidad: number, desde: number){
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

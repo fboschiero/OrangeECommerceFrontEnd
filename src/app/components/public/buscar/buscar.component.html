@@ -15,6 +15,16 @@
             </div>
             <div id="collapse1" class="panel-collapse collapse-">
 
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheckOfertas" [(ngModel)]="ofertas">
+                    <label class="custom-control-label" for="customCheckOfertas">Ofertas</label>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheckDestacados" [(ngModel)]="destacados">
+                    <label class="custom-control-label" for="customCheckDestacados">Destacados</label>
+                </div>
+
                 <div class="row d-flex justify-content-left">
                     <div class="p-2">
                         <label>Categoría</label>
@@ -34,22 +44,7 @@
                             <option [value]="talle.descripcion" *ngFor="let talle of talles;">{{talle.descripcion}}</option>
                         </select>
                     </div>
-                </div>
-
-                <!-- div class="row pt-3">
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Hombre</label>
-                    </div>
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                        <label class="custom-control-label" for="customSwitch2">Mujer</label>
-                    </div>
-                    <div class="custom-control custom-switch col-12 col-md-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                        <label class="custom-control-label" for="customSwitch3">Niños</label>
-                    </div>
-                </div -->
+                </div>              
 
                 <div class="d-flex flex-row pt-3 pt-3">
                     <label class="pr-2">Precio hasta</label>
@@ -60,6 +55,20 @@
                     <output name="ageOutputName" id="ageOutputId">24</output -->
                         
                 </div>
+
+                <div class="row d-flex justify-content-left">
+                    <div class="p-2">
+                        <label>Odernar por:</label>
+                    </div>
+                    <div class="p-2">
+                        <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                            <option value="undefined" selected ></option>
+                            <option value="menorPrecio" selected >Menor precio</option>
+                            <option value="mayorPrecio" selected >Mayor precio</option>
+                        </select>
+                    </div>
+                </div>   
+                
 
                 <div class="mt-5 mb-5 d-flex justify-content-center col-6">
                     <button type="button" (click)="buscar()" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
@@ -73,19 +82,42 @@
 
     <h2 style="margin-bottom: 40px;">Resultados de la búsqueda</h2>
 
-    <div class="carousel">
-        <div class="slideControls3">
-                <a data-id="slider3Left" class="slidePrev">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                <a data-id="slider3right" class="slideNext">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-        </div> 
-        <ul id="light-slider-filtros" >
-            <app-card [articulo]="articulo" *ngFor="let articulo of articulos"></app-card>
-            
-        </ul>
+    <div class="container" >
+        <div class="product-grid2 p-2" *ngFor="let articulo of articulos">
+
+            <div class="product-image2 details">
+                <img class="pic-1" width="40px;" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" src="../../../assets/articulos{{ articulo.imagenes[1].url }}" />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" src="../../../assets/articulos{{ articulo.imagenes[0].url }}" />
+        
+                <ul class="social">
+                    <li><a href="#" data-tip="Ver" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>
+                    <li><a href="#" data-tip="Ver despues"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a href="#" data-tip="Agregar al carrito" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+                <a class="add-to-cart" [routerLink]="['/articulo', articulo.id]" >Agregar al carrito</a>
+            </div>
+            <div class="product-content">
+                <h3 class="title">{{ articulo.nombre }}</h3>
+                <span class="price">${{ articulo.precio }}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()" >
+
+    </div>
+
+    <div class="d-flex justify-content-center mb-2" *ngIf="! fin">
+        <div class="spinner-grow" role="status">      
+        </div>
+        <label class="ml-2">Loading...</label>
+    </div>    
+
+    <label > </label>
+    <div *ngIf="fin" class="d-flex justify-content-center">
+        <p  class="text-info">No hay más resultados para mostrar.</p>
     </div>
 </div>
 

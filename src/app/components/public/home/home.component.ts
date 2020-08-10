@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     this.talleService.getTalles().subscribe( resp => {
       this.talles = resp;
     });
-    
+
     this.loginService.estaAutenticado();
     
     // Borro datos temporales  

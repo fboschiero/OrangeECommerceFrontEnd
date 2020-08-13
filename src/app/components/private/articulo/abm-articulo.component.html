@@ -15,7 +15,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-xl-2 col-form-label">Nombre</label>
                     <div class="col-md-9 col-xl-9">
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" [(ngModel)]="nombreArt" required #nombre="ngModel">
                     </div>
                     <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
                         Dato requerido
@@ -25,7 +25,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">Descripción</label>
                     <div class="col-md-9">
-                        <textarea type="text" class="form-control" id="descripcion" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel"></textarea>
+                        <textarea type="text" class="form-control" id="descripcion" placeholder="Descripcion" name="descripcion" [(ngModel)]="descripcionArt" #descripcion="ngModel"></textarea>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                     <div class="controls col-md-9">
                         <div class="input-prepend input-group">
                             <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                            <input type="text" class="form-control" id="precio" placeholder="Precio" name="precio" ngModel required #precio="ngModel">
+                            <input type="text" class="form-control" id="precio" placeholder="Precio" name="precio" [(ngModel)]="precioArt" required #precio="ngModel">
                             <div class="input-group-append"><span class="input-group-text">.00</span></div>
                         </div>
                         <div *ngIf="precio.invalid && precio.touched" class="alert alert-danger">
@@ -46,7 +46,7 @@
                 <div class="form-group custom-checkbox row">
                     <label class="col-md-2 col-form-label">Activo</label>
                     <div class="col-md-9">
-                        <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
+                        <input name="activo" [(ngModel)]="activoArt" #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
                         <label class="custom-control-label" for="customCheck2">Activo</label>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="form-group custom-checkbox row">
                     <label class="col-md-4 col-form-label">Destacado</label>
                     <div class="col-md-7">
-                        <input name="destacado" ngModel #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
+                        <input name="destacado" [(ngModel)]="destacadoArt" #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
                         <label class="custom-control-label" for="customCheck3">Destacado</label>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="form-group custom-checkbox row">
                     <label class="col-md-2 col-form-label">En Oferta</label>
                     <div class="col-md-9">
-                        <input name="enOferta" ngModel #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+                        <input name="enOferta" [(ngModel)]="enOfertaArt" #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
                         <label class="custom-control-label" for="customCheck1">En Oferta</label>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="controls col-md-9">
                         <div class="input-prepend input-group">
                             <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                            <input type="text" class="form-control" id="descuento" placeholder="Descuento" name="descuento" required ngModel #descuento="ngModel">
+                            <input type="text" class="form-control" id="descuento" placeholder="Descuento" name="descuento" required [(ngModel)]="descuentoArt" #descuento="ngModel">
                             <div class="input-group-append"><span class="input-group-text">.00</span></div>
                         </div>
                         <div *ngIf="descuento.invalid && descuento.touched" class="alert alert-danger">
@@ -84,7 +84,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">Peso (Kg)</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" ngModel #peso="ngModel">
+                        <input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" [(ngModel)]="pesoArt" #peso="ngModel">
                     </div>
                 </div>
 
@@ -104,4 +104,12 @@
 
 <div class="float-right mx-3">
     <button *ngIf="!visible" type="button" class="btn btn-dark btn-sm" (click)="agregarArticuloNuevoBoolean()">Nueva Categoria</button>
+</div>
+
+<div *ngFor="let datos of archivo" class="card" style="width: 20rem;">
+    <img class="card-img-top" [src]="'/asset/img/' + datos.imageName" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{datos.titulo}}</h5>
+        <p class="card-text">{{datos.descripcion}}</p>
+    </div>
 </div>

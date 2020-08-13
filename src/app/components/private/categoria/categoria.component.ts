@@ -16,12 +16,15 @@ export class CategoriaComponent implements OnInit {
 
   @Input() filtroCategoria: number;
 
+  @Input() categoria: CategoriaModel;
+  @Input() catNombre: String;
+  @Input() catDescripcion: String;
+  @Input() catActivo: boolean;
+  @Input() catId: String;
+
   listaCategorias: CategoriaModel[] = [];
-  selectedFile: File = null;
-  fd = new FormData();
   visible: boolean = false;
 
-  formCategoria: FormGroup;
 
   constructor(public categoriaService: CategoriaService){
     // Cargo las categorias para el panel de filtros
@@ -42,16 +45,9 @@ export class CategoriaComponent implements OnInit {
     return this.visible = true;
   }
 
-  createFormData(event) {
-    this.selectedFile = <File>event.target.files[0];
-    this.fd.append('file', this.selectedFile, this.selectedFile.name);
-  }
-
   saveFormCategoria(form: NgForm) {
 
-    this.fd.append('body', JSON.stringify(form));
-
-    this.categoriaService.saveCategoria(this.fd).subscribe(() => {
+    this.categoriaService.saveCategoria(form).subscribe(() => {
 
        Swal.fire({
          allowOutsideClick: true,
@@ -62,20 +58,36 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
-  selectFiltro(id: number) {
-    this.filtroCategoria = id;
+  modificarCategoria(form){
+
+    this.categoriaService.modificarCategoria(form).subscribe(() => {
+
+       Swal.fire({
+         allowOutsideClick: true,
+         icon: 'info',
+         text: 'Se modifico correctamente',
+         title: 'Categoria'
+       });
+    });
   }
 
-  modificarCategoria(): void{
+  selectFiltro(id: number) {
+    this.filtroCategoria = id;
+    console.log(this.filtroCategoria);
+  }
 
-    let form = new FormGroup({
-      nombre: new FormControl('Gonza')
-    });
-    
-    console.log(form);
-    this.categoriaService.eliminarCategoria(this.filtroCategoria).subscribe( resp => {
-    
+  obtenerCategoria(cat): void{
+
+    console.log('filtro categoria ' + cat);
+
+    this.categoriaService.getCategoria(cat).subscribe( resp => {
       
+      this.catId = resp[0].id;
+      this.catNombre = resp[0].nombre;
+      this.catDescripcion = resp[0].descripcion;
+      this.catActivo = resp[0].activo;
+      
+      this.visible = true;
     });
 
   }

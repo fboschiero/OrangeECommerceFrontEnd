@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Carrito } from '../../../models/carrito';
+import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 export class CarritoComponent implements OnInit {
 
-  carrito: Carrito;
+  carrito: OrdenCompra;
 
   constructor(private carritoService: CarritoService) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));

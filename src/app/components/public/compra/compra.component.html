@@ -27,22 +27,21 @@
     <hr class="mt-5 mb-5" style="width: 80%;">
 
     <h3 class="mb-2">Detalles del pedido</h3>
-
+    
+    <b><label >Número  &nbsp;</label></b>
+    <label>{{orden.carrito_id}}</label><br/>
+    
     <div class="d-flex flex-row ">
-        <div class="col-3" style="border-right: 2px dotted lightgray;">
-            <b><label for="formGroupNombre">Número:  &nbsp;</label></b>
-            <label for="formGroupNombre">{{orden.carrito_id}}</label>
+        <div class="col-4 col-md-3" style="border-right: 2px dotted lightgray;">
+            <b><label for="formGroupNombre">Fecha  &nbsp;</label></b>
+            <label for="formGroupNombre">{{orden.fecha | date: 'dd/MM/yyyy'}} </label>
         </div>
-        <div class="col-3" style="border-right: 2px dotted lightgray;">
-            <b><label for="formGroupNombre">Fecha:  &nbsp;</label></b>
-            <label for="formGroupNombre">{{orden.fecha | date: 'dd/MM/yyyy HH:mm'}} </label>
-        </div>
-        <div class="col-3" style="border-right: 2px dotted lightgray;">
-            <b><label for="formGroupNombre">Importe total:  &nbsp;</label></b>
+        <div class="col-4 col-md-3" style="border-right: 2px dotted lightgray;">
+            <b><label for="formGroupNombre">Importe total  &nbsp;</label></b>
             <label for="formGroupNombre">${{getSubtotal()}}</label>
         </div>
-        <div class="col-3">
-            <b><label for="formGroupNombre">Forma de Pago:  &nbsp;</label></b>
+        <div class="col-4 col-md-3">
+            <b><label for="formGroupNombre">Forma de Pago  &nbsp;</label></b>
             <label for="formGroupNombre">{{getFormaDePagoSring()}}</label>
         </div>
     </div>
@@ -85,10 +84,10 @@
 
   
     <div class="d-flex flex-row justify-content-center mb-5 mt-5">
-        <div class="col-4">  
+        <div class="col-6 col-md-4">  
             <button type="button" [routerLink]="['/home']" class="cart_button"><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
         </div> 
-        <div class="col-4">  
+        <div class="col-6 col-md-4">  
             <button class="cart_button" onclick="window.print();"> <span class="fa fa-print mr-2"></span> Imprimir</button>
         </div> 
     </div>

@@ -3,6 +3,7 @@ import { Pago } from './Pago';
 
 export class OrdenCompra {
 
+    id: number;
     numero: string;
     impuestos: number;
     fecha: Date;

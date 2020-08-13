@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { ArticuloModel } from '../models/articulo.model';
+import { Producto } from '../modelsBD/Producto';
+
 import { ImagenModel } from '../models/imagen.model';
 import { ColorModel } from '../models/color.model';
 import { StockModel } from '../models/stock.model';
@@ -40,8 +41,8 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, ofertas: boolean, destacados: boolean, cantidad: number, desde: number){
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde)
+  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );
@@ -67,7 +68,7 @@ export class ArticuloService {
 
   private crearArreglo(articulosObj: object){
 
-    const articulos: ArticuloModel[] = [];
+    const articulos: Producto[] = [];
 
     if (articulosObj == null){
       return [];
@@ -81,10 +82,10 @@ export class ArticuloService {
 
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
-            const articulo: ArticuloModel = new ArticuloModel(); // articulosObj[key];
+            const articulo: Producto = new Producto(); // articulosObj[key];
             articulo.id = articulosObj[key][i].id;
             articulo.nombre = articulosObj[key][i].nombre;
-            articulo.precio = articulosObj[key][i].precio;
+            articulo.precioVenta = articulosObj[key][i].precio_venta;
             articulo.peso = articulosObj[key][i].peso;
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;
@@ -102,14 +103,13 @@ export class ArticuloService {
 
             // Stock
             articulo.stocks = []; 
+            console.log(articulosObj);
             for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
               
               const stock: StockModel = new StockModel();
               stock.id = articulosObj[key][i].stocks[k].id;
-              stock.codiguera_color_id = articulosObj[key][i].stocks[k].codiguera_color_id;
-              stock.codiguera_color_valor = articulosObj[key][i].stocks[k].codiguera_color_valor;
-              stock.codiguera_talle_id = articulosObj[key][i].stocks[k].codiguera_talle_id;
-              stock.codiguera_talle_valor = articulosObj[key][i].stocks[k].codiguera_talle_valor;
+              stock.color = articulosObj[key][i].stocks[k].color;
+              stock.talle = articulosObj[key][i].stocks[k].talle;
               stock.cantidad = articulosObj[key][i].stocks[k].cantidad;
 
               articulo.stocks[k] = stock;

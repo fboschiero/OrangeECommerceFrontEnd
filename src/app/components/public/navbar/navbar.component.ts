@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { UsuarioModel } from '../../../models/usuario.model';
-import { Carrito } from '../../../models/carrito';
+import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
 
@@ -19,12 +19,12 @@ export class NavbarComponent  {
 
   nombreUsuario: string;
 
-  carrito: Carrito;
+  carrito: OrdenCompra;
 
   constructor(private loginServices: LoginService, private carritoService: CarritoService) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));
     if(!this.carrito){
-      this.carrito = new Carrito();
+      this.carrito = new OrdenCompra();
       this.carrito.fecha = new Date();
       this.carrito.numero = this.carrito.fecha.getTime()+"";
       this.carrito.items = [];

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticuloService } from 'src/app/services/articulo.service';
 import { CarritoService } from 'src/app/services/carrito.service';
-import { ArticuloModel } from '../../../models/articulo.model';
+import { Producto } from '../../../modelsBD/Producto';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,18 +13,18 @@ import Swal from 'sweetalert2';
 
 export class ArticuloComponent implements OnInit {
 
-  articulo: ArticuloModel;
-  articulosRelacionados: ArticuloModel[];
+  articulo: Producto;
+  articulosRelacionados: Producto[];
 
-  @Input() colorSeleccionado: number;
-  @Input() talleSeleccionado: number;
+  @Input() colorSeleccionado: string;
+  @Input() talleSeleccionado: string;
   @Input() cantidadSeleccionada: number;
 
   constructor(private articulosService: ArticuloService, 
               private _Activatedroute:ActivatedRoute,
               private carritoService: CarritoService ) {
       
-      this.articulo = new ArticuloModel();
+      this.articulo = new Producto();
       const id = this._Activatedroute.snapshot.paramMap.get("id");
       this.articulosService.getArticuloById(id).subscribe( resp => {
         this.articulo = resp[0];
@@ -45,7 +45,7 @@ export class ArticuloComponent implements OnInit {
   }
 
   agregarAlCarrito(){
-    console.log(this.cantidadSeleccionada);
+    
     if(!this.colorSeleccionado){
       Swal.fire({
         allowOutsideClick: true,
@@ -74,12 +74,16 @@ export class ArticuloComponent implements OnInit {
       return;
     }    
     
-    this.carritoService.agregarAlCarrito(this.articulo.id, this.articulo.nombre, this.articulo.imagenes[0].url, 
+    this.carritoService.agregarAlCarrito(this.articulo, this.articulo.nombre, this.articulo.imagenes[0].url, 
                                          this.colorSeleccionado, this.talleSeleccionado, 
-                                         this.cantidadSeleccionada, this.articulo.precio)
+                                         this.cantidadSeleccionada, this.articulo.precioVenta)
                                          .subscribe( resp => {
       
       if(resp["ok"] == false){
+
+        // Seteo el id de la orden de compra
+
+
         Swal.fire({
           allowOutsideClick: true,
           icon: 'error',
@@ -96,18 +100,18 @@ export class ArticuloComponent implements OnInit {
           text: 'El articulo fue ingresado al carrito.',
           title: 'Carrito'
         });*/
-        window.location.reload();
+        //window.location.reload();
       } 
 
     });       
   }
 
-  selectColor(id: number) {
-    this.colorSeleccionado = id;
+  selectColor(color: string) {
+    this.colorSeleccionado = color;
   }
 
-  selectTalle(id: number) {
-    this.talleSeleccionado = id;
+  selectTalle(talle: string) {
+    this.talleSeleccionado = talle;
   }
 
   agregarUno() {

@@ -41,14 +41,14 @@
                 <div class="col-sm-6 col-xs-12">
                     <select class="form-control" name="select" (change)="selectColor($event.target.value)" required>
                         <option value="" selected="">Color</option>
-                        <option value="{{stock.codiguera_color_id}}"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_color_valor}}</option>
+                        <option value="{{stock.color}}"  *ngFor="let stock of articulo.stocks; ">{{stock.color}}</option>
                     </select>
                 </div>
                 <!-- end col -->
                 <div class="col-sm-6 col-xs-12">
                     <select class="form-control" name="select" (change)="selectTalle($event.target.value)">
                         <option value="" selected="">Talle</option>
-                        <option value="{{stock.codiguera_talle_id}}"  *ngFor="let stock of articulo.stocks; ">{{stock.codiguera_talle_valor}}</option>
+                        <option value="{{stock.talle}}"  *ngFor="let stock of articulo.stocks; ">{{stock.talle}}</option>
                     </select>
                 </div>
                 <!-- end col -->

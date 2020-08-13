@@ -4,6 +4,7 @@ import { Imagen } from './Imagen';
 
 export class Producto {
 
+    id: number;
     nombre: string;
     precioVenta: number;
     enOferta: boolean;

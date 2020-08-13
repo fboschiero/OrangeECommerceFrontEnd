@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticuloService } from '../../../services/articulo.service';
 
 // Modelos
-import { ArticuloModel } from '../../../models/articulo.model';
+import { Producto } from '../../../modelsBD/Producto';
 import { Categoria } from 'src/app/modelsBD/Categoria';
 import { TalleModel } from '../../../models/talle.model';
 
@@ -21,29 +21,45 @@ export class BuscarComponent implements OnInit {
   @Input() filtroTalle: string;
   @Input() ofertas: boolean;
   @Input() destacados: boolean;
+  @Input() ordenarPor: number;
 
-  articulos: ArticuloModel[] = [];
+  articulos: Producto[] = [];
   categorias: Categoria[];
   talles: TalleModel[];
 
   private DESDE = 0;
-  private HASTA = 1;
+  private HASTA = 10;
 
   fin: boolean; 
+  entroPor: string;
 
   constructor(private articuloService: ArticuloService,
               private _Activatedroute:ActivatedRoute) {
     this.filtroPrecioHasta = 5000;
 
+    this.entroPor = undefined;            
+
     const of = this._Activatedroute.snapshot.queryParamMap.get("ofertas");
     if(of != undefined && of == 'true'){
       this.ofertas = true;
+      this.entroPor = 'Ofertas';
     }
     const des = this._Activatedroute.snapshot.queryParamMap.get("destacados");
     if(des != undefined && des == 'true'){
       this.destacados = true;
+      this.entroPor = 'Destacados';
     }
 
+    if(this.entroPor != undefined){
+      this.buscar(false);
+    } else {
+      // Entre por el buscar, abro los filtros
+      //console.log(document.querySelector('#collapse1'));
+      //(<HTMLElement>document.querySelector('#collapse1')).collapse('show')
+
+     
+    }   
+    //console.log(document.querySelector('#collapse1'));
     this.fin = false;
   }
 
@@ -62,9 +78,13 @@ export class BuscarComponent implements OnInit {
     this.filtroTalle = talle;
   }
 
-  buscar(): void{
+  buscar(reset: boolean ): void{
 
-    (<HTMLElement>document.querySelector('#my-overlay')).style.display = '';
+    if(reset){
+      this.articulos = [];
+      this.DESDE = 0;
+      this.HASTA = 10;
+    }
 
     if(this.filtroCategoria  == undefined){
       this.filtroCategoria = -1;
@@ -74,7 +94,7 @@ export class BuscarComponent implements OnInit {
       this.filtroTalle = '-';
     }
 
-    this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, this.ofertas, this.destacados, this.DESDE, this.HASTA).subscribe( resp => {
+    this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor).subscribe( resp => {
       
       if(resp.length == 0){
         this.fin = true;
@@ -94,8 +114,6 @@ export class BuscarComponent implements OnInit {
       
     });
 
-    (<HTMLElement>document.querySelector('#my-overlay')).style.display = 'none';
-
   }
 
   onScroll(): void{
@@ -104,7 +122,7 @@ export class BuscarComponent implements OnInit {
     console.log("Nuevo desde" + this.DESDE);
     this.HASTA = this.HASTA + 1;
 
-    this.buscar();
+    this.buscar(false);
   }
 
 }

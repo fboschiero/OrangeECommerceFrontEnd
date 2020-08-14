@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { ArticuloService } from '../../../services/articulo.service';
 import Swal from 'sweetalert2';
@@ -9,6 +9,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./abm-articulo.component.css']
 })
 export class AbmArticuloComponent implements OnInit {
+
+  @Input() nombreArt;
+  @Input() descripcionArt;
+  @Input() precioArt;
+  @Input() activoArt;
+  @Input() destacadoArt;
+  @Input() enOfertaArt;
+  @Input() descuentoArt;
+  @Input() pesoArt;
 
   form: FormGroup;
   visible: boolean = false;
@@ -39,7 +48,10 @@ export class AbmArticuloComponent implements OnInit {
     });
   }
 
-  modificarArticulo(){}
+  modificarArticulo(){
+
+    
+  }
 
   createFormData(event) {
     //Cantidad de img subidas

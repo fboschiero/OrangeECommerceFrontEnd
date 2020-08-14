@@ -18,6 +18,11 @@ export class CategoriaService {
     return this.http.post(this.API_URL + '/insertCategoria', body);
   }
 
+  modificarCategoria(body){
+
+    return this.http.post(this.API_URL + '/modificarCategoria', body);
+  }
+
   getCategorias(){
 
     return this.http.get(this.API_URL + '/getCategorias')
@@ -27,10 +32,10 @@ export class CategoriaService {
 
   }
 
-  eliminarCategoria(filtroCategoria: number){
-    return this.http.get(`${this.API_URL}/eliminarCategoria/` + filtroCategoria)
+  getCategoria(param){
+    return this.http.get(`${this.API_URL}/getCategoria/` + param)
       .pipe(
-        map(resp => this.crearArreglo(resp))
+        map(resp => this.crearArregloById(resp))
       );
   }
 
@@ -51,13 +56,42 @@ export class CategoriaService {
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
             const categoria: Categoria = new Categoria(); // articulosObj[key];
+
+            console.log('ID en arreglo ' + categoriasObj[key][i].id);
+
             categoria.id = categoriasObj[key][i].id;
             categoria.nombre = categoriasObj[key][i].nombre;
             categorias.push(categoria);
           }
       }
     });
-    console.log(categorias);
+    console.log('CATEGORIAS en arreglo' + categorias);
+    return categorias;
+  }
+
+  private crearArregloById(categoriasObj: object){
+
+    const categorias: Categoria[] = [];
+
+    if (categoriasObj == null){
+      return [];
+    }
+
+    Object.keys(categoriasObj).forEach( key => {
+
+      if (key === 'categoria'){
+        const categoria: Categoria = new Categoria(); // articulosObj[key];
+
+        categoria.id = categoriasObj[key][0].id;
+        categoria.nombre = categoriasObj[key][0].nombre;
+        categoria.descripcion = categoriasObj[key][0].descripcion;
+        categoria.activo = categoriasObj[key][0].activo;
+        categoria.imagen = categoriasObj[key][0].img;
+        categorias.push(categoria);
+        console.log(categoria.nombre);
+      }
+    });
+    
     return categorias;
   }
 

@@ -21,7 +21,7 @@
                     <td>{{ categoria.descripcion }}</td>
                     <td>{{ categoria.img }}</td>
                     <td>{{ categoria.activo }}</td>
-                    <td><button type="button" (click)="modificarCategoria()" class="btn btn-dark btn-sm ">Edit</button></td>
+                    <td><button type="button" (click)=obtenerCategoria(categoria.id) class="btn btn-dark btn-sm ">Edit</button></td>
                 </tr>
             </tbody>
         </table>
@@ -34,31 +34,32 @@
 
 <form *ngIf="visible" (ngSubmit)="saveFormCategoria(form.value); " #form="ngForm" novalidate="" class="row col-lg-12 center">
 
+
+    <div *ngIf="false" class="form-group col-lg-4">
+        <p class="bg-primary text-white font-weight-bold">Id</p>
+        <input type="text" class="form-control" id="id" placeholder="id" name="id" [(ngModel)]="catId" required #id="ngModel">
+    </div>
     <div class="form-group col-lg-4">
         <p class="bg-primary text-white font-weight-bold">Nombre</p>
-        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" ngModel required #nombre="ngModel">
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" [(ngModel)]="catNombre" required #nombre="ngModel">
         <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
             Dato requerido
         </div>
     </div>
     <div class="form-group col-lg-7">
         <p class="bg-primary text-white font-weight-bold">Descripción</p>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" name="descripcion" ngModel #descripcion="ngModel">
-    </div>
-    <div class="form-group col-lg-3">
-        <p class="bg-primary text-white font-weight-bold">Imagen</p>
-        <input (change)="createFormData($event)" name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" [(ngModel)]="catDescripcion" name="descripcion" ngModel #descripcion="ngModel">
     </div>
     <div class="form-group custom-checkbox col-lg-2">
         <p class="bg-primary text-white font-weight-bold">Activo</p>
         <div class="mx-4">
-            <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+            <input name="activo" ngModel #activo="ngModel" type="checkbox" class="custom-control-input" [(ngModel)]="catActivo" id="customCheck1">
             <label class="custom-control-label" for="customCheck1">Activo</label>
         </div>
     </div>
-
-    <button class="btn btn-lg btn-block btn-sm" type="submit" (click)="modificarCategoria()" [disabled]=" !form.form.valid ">Guardar</button>
-
+    <div class="col-lg-12 ">
+        <button class="btn btn-primary btn-dark" type="submit" [disabled]=" !form.form.valid ">Save changes</button>
+    </div>
 </form>
 
 <div class="float-right mx-2 ">

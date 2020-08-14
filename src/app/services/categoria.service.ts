@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { CategoriaModel } from '../models/categoria.model';
+import { Categoria } from '../modelsBD/Categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class CategoriaService {
 
   private crearArreglo(categoriasObj: object){
 
-    const categorias: CategoriaModel[] = [];
+    const categorias: Categoria[] = [];
 
     if (categoriasObj == null){
       return [];
@@ -50,7 +50,7 @@ export class CategoriaService {
 
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
-            const categoria: CategoriaModel = new CategoriaModel(); // articulosObj[key];
+            const categoria: Categoria = new Categoria(); // articulosObj[key];
             categoria.id = categoriasObj[key][i].id;
             categoria.nombre = categoriasObj[key][i].nombre;
             categorias.push(categoria);

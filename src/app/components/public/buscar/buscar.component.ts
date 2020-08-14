@@ -3,11 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 
 // Servicios
 import { ArticuloService } from '../../../services/articulo.service';
+import { CategoriaService } from '../../../services/categoria.service';
+import { TalleService } from '../../../services/talle.service';
+import { ColorService } from '../../../services/color.service';
+
 
 // Modelos
 import { Producto } from '../../../modelsBD/Producto';
 import { Categoria } from 'src/app/modelsBD/Categoria';
-import { TalleModel } from '../../../models/talle.model';
+import { CodigueraTalle } from '../../../modelsBD/CodigueraTalle';
+import { CodigueraColor } from '../../../modelsBD/CodigueraColor';
+
 
 @Component({
   selector: 'app-buscar',
@@ -19,13 +25,15 @@ export class BuscarComponent implements OnInit {
   @Input() filtroPrecioHasta: number;
   @Input() filtroCategoria: number;
   @Input() filtroTalle: string;
+  @Input() filtroColor: string;
   @Input() ofertas: boolean;
   @Input() destacados: boolean;
   @Input() ordenarPor: number;
 
   articulos: Producto[] = [];
   categorias: Categoria[];
-  talles: TalleModel[];
+  talles: CodigueraTalle[];
+  colores: CodigueraColor[];
 
   private DESDE = 0;
   private HASTA = 10;
@@ -34,10 +42,30 @@ export class BuscarComponent implements OnInit {
   entroPor: string;
 
   constructor(private articuloService: ArticuloService,
+              private categoriaService: CategoriaService,
+              private talleService: TalleService,
+              private colorService: ColorService,
               private _Activatedroute:ActivatedRoute) {
     this.filtroPrecioHasta = 5000;
 
-    this.entroPor = undefined;            
+    this.entroPor = undefined;      
+    
+    // Cargo las categorias para el panel de filtros
+    this.categoriaService.getCategorias().subscribe( resp => {
+      this.categorias = resp;
+    });
+
+    // Cargo los talles para el panel de filtros
+    this.talleService.getTalles().subscribe( resp => {
+      this.talles = resp;
+    });
+
+     // Cargo los colores para el panel de filtros
+     this.colorService.getColores().subscribe( resp => {
+      this.colores = resp;
+    });
+
+    console.log(this.colores);
 
     const of = this._Activatedroute.snapshot.queryParamMap.get("ofertas");
     if(of != undefined && of == 'true'){
@@ -76,6 +104,14 @@ export class BuscarComponent implements OnInit {
 
   selectTalle(talle: string) {
     this.filtroTalle = talle;
+  }
+
+  selectOrden(id: number) {
+    this.ordenarPor = id;
+  }
+
+  selectColor(color: string) {
+    this.filtroColor = color;
   }
 
   buscar(reset: boolean ): void{
@@ -119,9 +155,7 @@ export class BuscarComponent implements OnInit {
   onScroll(): void{
   
     this.DESDE = this.HASTA;
-    console.log("Nuevo desde" + this.DESDE);
     this.HASTA = this.HASTA + 1;
-
     this.buscar(false);
   }
 

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
-import { CategoriaModel } from 'src/app/models/categoria.model';
+import { Categoria } from 'src/app/modelsBD/Categoria';
 
 @Component({
   selector: 'app-categoria',
@@ -16,7 +16,7 @@ export class CategoriaComponent implements OnInit {
 
   @Input() filtroCategoria: number;
 
-  listaCategorias: CategoriaModel[] = [];
+  listaCategorias: Categoria[] = [];
   selectedFile: File = null;
   fd = new FormData();
   visible: boolean = false;

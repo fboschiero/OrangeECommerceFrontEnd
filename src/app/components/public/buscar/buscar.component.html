@@ -11,11 +11,12 @@
             </div>
             <div id="collapse1" class="panel-collapse collapse">
 
+                <!-- Checkbox de Ofertas -->
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheckOfertas" [(ngModel)]="ofertas">
                     <label class="custom-control-label" for="customCheckOfertas">Ofertas</label>
                 </div>
-
+                <!-- Checkbox de Destacados -->
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheckDestacados" [(ngModel)]="destacados">
                     <label class="custom-control-label" for="customCheckDestacados">Destacados</label>
@@ -28,7 +29,7 @@
                     <div class="p-2">
                         <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
                             <option value="undefined" selected >Elige una categoría</option>
-                            <option [value]="categoria.id" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
+                            <option [value]="categoria.nombre" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
                         </select>
                     </div>
                     <div class="p-2">
@@ -37,7 +38,14 @@
                     <div class="p-2">
                         <select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
                             <option value="undefined" selected >Elige un talle</option>
-                            <option [value]="talle.descripcion" *ngFor="let talle of talles;">{{talle.descripcion}}</option>
+                            <option [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
+                        </select>
+                    </div>
+
+                    <div class="p-2">
+                        <select class="custom-select" (change)="selectColor($event.target.value)" [(ngModel)]="filtroColor">
+                            <option value="undefined" selected >Elige un color</option>
+                            <option [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
                         </select>
                     </div>
                 </div>              
@@ -57,7 +65,7 @@
                         <label>Odernar por:</label>
                     </div>
                     <div class="p-2">
-                        <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                        <select class="custom-select" (change)="selectOrden($event.target.value)" [(ngModel)]="ordenarPor">
                             <option value="-1" selected ></option>
                             <option value="0" selected >Menor precio</option>
                             <option value="1" selected >Mayor precio</option>
@@ -74,12 +82,16 @@
     </div>
 </div>
 
+<hr>
+
+<div class="d-flex justify-content-center" *ngIf="articulos.length > 0">
+    <p class="text-info" *ngIf="entroPor == 'undefined'">Resultados de la búsqueda</p>
+    <p class="text-info" *ngIf="entroPor == 'Ofertas'">Estas son nuestras ofertas</p>
+    <p class="text-info" *ngIf="entroPor == 'Destacados'">Estos son nuestros articulos destacados</p>
+</div>
+
 <div class="row container" *ngIf="articulos.length > 0">
-
-    <h2 style="margin-bottom: 40px;" class="col-12" *ngIf="entroPor == 'undefined'">Resultados de la búsqueda</h2>
-    <h2 style="margin-bottom: 40px;" class="col-12" *ngIf="entroPor == 'Ofertas'">Estas son nuestras ofertas</h2>
-    <h2 style="margin-bottom: 40px;" class="col-12" *ngIf="entroPor == 'Destacados'">Estos son nuestros destacados</h2>
-
+ 
     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let articulo of articulos">
         
         <div class="product-grid2 p-2" >
@@ -116,7 +128,7 @@
 
 </div>
 <div *ngIf="fin" class="d-flex justify-content-center">
-    <p  class="text-info">No hay más resultados para mostrar.</p>
+    <p class="text-info">No hay más resultados para mostrar.</p>
 </div>
 
 

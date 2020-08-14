@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ArticuloModel } from '../../../models/articulo.model';
+import { Producto } from '../../../modelsBD/Producto';
 
 @Component({
   selector: 'app-card',
@@ -8,7 +8,7 @@ import { ArticuloModel } from '../../../models/articulo.model';
 })
 export class CardComponent implements OnInit {
 
-  @Input() articulo: ArticuloModel;
+  @Input() articulo: Producto;
   @Input() chiquito: boolean;
 
   constructor() {

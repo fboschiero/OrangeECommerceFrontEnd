@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { TalleModel } from '../models/talle.model';
+import { CodigueraTalle } from '../modelsBD/CodigueraTalle';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class TalleService {
 
   private crearArreglo(tallesObj: object){
 
-    const talles: TalleModel[] = [];
+    const talles: CodigueraTalle[] = [];
 
     if (tallesObj == null){
       return [];
@@ -33,8 +33,8 @@ export class TalleService {
       if (key === 'talles'){
 
           for (let i = 0; i < tallesObj[key].length; i++) {
-            const talle: TalleModel = new TalleModel();
-            talle.descripcion = tallesObj[key][i].valor;
+            const talle: CodigueraTalle = new CodigueraTalle();
+            talle.valor = tallesObj[key][i].valor;
             talles.push(talle);
           }
       }

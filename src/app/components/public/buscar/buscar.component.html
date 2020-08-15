@@ -6,78 +6,80 @@
         <div class="panel panel-default">
             <div class="panel-heading ml-3" id="buscar"  > 
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray;">Filtros de búsqueda (+)</a>
+                    <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray; font-size: x-large;">Filtros de búsqueda<img src="../../../../assets/img/filtro.png" width="24px" alt="filtros de búsqueda" class="ml-2"></a>
                 </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse">
-
-                <!-- Checkbox de Ofertas -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheckOfertas" [(ngModel)]="ofertas">
-                    <label class="custom-control-label" for="customCheckOfertas">Ofertas</label>
-                </div>
-                <!-- Checkbox de Destacados -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheckDestacados" [(ngModel)]="destacados">
-                    <label class="custom-control-label" for="customCheckDestacados">Destacados</label>
-                </div>
-
-                <div class="row d-flex justify-content-left">
-                    <div class="p-2">
-                        <label>Categoría</label>
+                <hr>
+                <div class="row">
+                    <!-- Checkbox de Ofertas -->
+                    <div class="col-6">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheckOfertas" [(ngModel)]="ofertas">
+                            <label class="custom-control-label" for="customCheckOfertas">Ofertas</label>
+                        </div>
                     </div>
-                    <div class="p-2">
+                    <!-- Checkbox de Destacados -->
+                    <div class="col-6">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheckDestacados" [(ngModel)]="destacados">
+                            <label class="custom-control-label" for="customCheckDestacados">Destacados</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <!-- Combo de las Categorias -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label>Categoría</label>
                         <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected >Elige una categoría</option>
+                            <option value="undefined" selected ></option>
                             <option [value]="categoria.nombre" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
                         </select>
                     </div>
-                    <div class="p-2">
-                        <label class="pr-2">Talle</label>
-                    </div>
-                    <div class="p-2">
+                    <!-- Combo de los Talles -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label>Talle</label>
                         <select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
-                            <option value="undefined" selected >Elige un talle</option>
+                            <option value="undefined" selected ></option>
                             <option [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
                         </select>
                     </div>
-
-                    <div class="p-2">
+                    <!-- Combo de los Colores -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label>Color</label>
                         <select class="custom-select" (change)="selectColor($event.target.value)" [(ngModel)]="filtroColor">
-                            <option value="undefined" selected >Elige un color</option>
+                            <option value="undefined" selected ></option>
                             <option [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
                         </select>
                     </div>
-                </div>              
-
-                <div class="d-flex flex-row pt-3 pt-3">
-                    <label class="pr-2">Precio hasta</label>
-                    <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
-                    <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
-                    
-                    <!--input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
-                    <output name="ageOutputName" id="ageOutputId">24</output -->
-                        
                 </div>
-
-                <div class="row d-flex justify-content-left">
-                    <div class="p-2">
-                        <label>Odernar por:</label>
+                <hr>
+                <div class="row">
+                     <!-- Selector de Precio Hasta -->
+                    <div class="col-6">
+                        <label class="pr-2">Precio hasta</label>
+                        <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
+                        <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
+                        
+                        <!--input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
+                        <output name="ageOutputName" id="ageOutputId">24</output -->
                     </div>
-                    <div class="p-2">
+                     <!-- Combo de Ordenar por: -->
+                    <div class="col-6">
+                        <label>Ordenar por:</label>
                         <select class="custom-select" (change)="selectOrden($event.target.value)" [(ngModel)]="ordenarPor">
-                            <option value="-1" selected ></option>
+                            <option value="undefined" selected ></option>
                             <option value="0" selected >Menor precio</option>
                             <option value="1" selected >Mayor precio</option>
                         </select>
                     </div>
-                </div>   
-                
-
-                <div class="mt-5 mb-5 d-flex justify-content-center col-6">
-                    <button type="button" (click)="buscar(true)" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
                 </div>
+                <hr>
             </div>
+        </div>
+        <div class="mt-5 mb-5 d-flex justify-content-center col-6">
+            <button type="button" (click)="buscar(true)" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
         </div>
     </div>
 </div>

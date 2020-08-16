@@ -5,6 +5,7 @@ export class Categoria {
     descripcion: string;
     activo: boolean;
     imagen: Imagen;
+    seleccionada: boolean;
 
     constructor(){
     }

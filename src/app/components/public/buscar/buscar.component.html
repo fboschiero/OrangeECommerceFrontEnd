@@ -31,27 +31,45 @@
                 <div class="row">
                     <!-- Combo de las Categorias -->
                     <div class="col-12 col-md-6 col-lg-4">
-                        <label>Categoría</label>
-                        <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                        <label>Categorías</label>
+                        <!-- select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
                             <option value="undefined" selected ></option>
                             <option [value]="categoria.nombre" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
-                        </select>
+                        </select -->
+                        <ul>
+                            <span *ngFor="let categoria of categorias;"> 
+                                <input type="checkbox" [(ngModel)]="categoria.seleccionada" class="ml-2" >
+                                {{categoria.nombre}}
+                            </span>
+                        </ul>
                     </div>
                     <!-- Combo de los Talles -->
                     <div class="col-12 col-md-6 col-lg-4">
                         <label>Talle</label>
-                        <select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
+                        <!-- select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
                             <option value="undefined" selected ></option>
                             <option [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
-                        </select>
+                        </select -->
+                        <ul>
+                            <span *ngFor="let talle of talles;"> 
+                                <input type="checkbox" [(ngModel)]="talle.seleccionado" class="ml-2">
+                                {{talle.valor}}
+                            </span>
+                        </ul>
                     </div>
                     <!-- Combo de los Colores -->
                     <div class="col-12 col-md-6 col-lg-4">
                         <label>Color</label>
-                        <select class="custom-select" (change)="selectColor($event.target.value)" [(ngModel)]="filtroColor">
+                        <!-- select class="custom-select" (change)="selectColor($event.target.value)" [(ngModel)]="filtroColor">
                             <option value="undefined" selected ></option>
                             <option [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
-                        </select>
+                        </select -->
+                        <ul>
+                            <span *ngFor="let color of colores;"> 
+                                <input type="checkbox" [(ngModel)]="color.seleccionado" class="ml-2" >
+                                {{color.valor}}
+                            </span>
+                        </ul>
                     </div>
                 </div>
                 <hr>
@@ -75,11 +93,13 @@
                         </select>
                     </div>
                 </div>
-                <hr>
+                <hr class="m-0 m-md-2">
             </div>
         </div>
-        <div class="mt-5 mb-5 d-flex justify-content-center col-6">
-            <button type="button" (click)="buscar(true)" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
+        <div class="row d-flex justify-content-center ">
+            <div class="mt-3 mb-3 col-6">
+                <button type="button" (click)="buscar(true)" class="cart_button"><span class="fa fa-search mr-2"></span> Buscar </button>
+            </div>
         </div>
     </div>
 </div>

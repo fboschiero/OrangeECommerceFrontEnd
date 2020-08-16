@@ -65,8 +65,6 @@ export class BuscarComponent implements OnInit {
       this.colores = resp;
     });
 
-    console.log(this.colores);
-
     const of = this._Activatedroute.snapshot.queryParamMap.get("ofertas");
     if(of != undefined && of == 'true'){
       this.ofertas = true;
@@ -116,6 +114,9 @@ export class BuscarComponent implements OnInit {
 
   buscar(reset: boolean ): void{
 
+    if(this.categorias != undefined) {
+    console.log(this.categorias[0].seleccionada);
+    }
     if(reset){
       this.articulos = [];
       this.DESDE = 0;

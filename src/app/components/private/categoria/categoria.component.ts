@@ -20,7 +20,7 @@ export class CategoriaComponent implements OnInit {
   @Input() catNombre: String;
   @Input() catDescripcion: String;
   @Input() catActivo: boolean;
-  @Input() catId: String;
+  @Input() catId: number;
 
   listaCategorias: Categoria[] = [];
   visible: boolean = false;

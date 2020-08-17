@@ -41,8 +41,8 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(filtroCategoria: number, filtroPrecio: number, filtroTalle: string, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + filtroCategoria + `/` + filtroPrecio + `/` + filtroTalle + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor)
+  getArticulosPorFiltros(categoriasSeleccionadas: number[], tallesSeleccionados: String[], coloresSeleccionados: String[],filtroPrecio: number, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + categoriasSeleccionadas + `/` + tallesSeleccionados + `/` + coloresSeleccionados + `/` + filtroPrecio + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

@@ -23,9 +23,6 @@ import { CodigueraColor } from '../../../modelsBD/CodigueraColor';
 export class BuscarComponent implements OnInit {
 
   @Input() filtroPrecioHasta: number;
-  @Input() filtroCategoria: number;
-  @Input() filtroTalle: string;
-  @Input() filtroColor: string;
   @Input() ofertas: boolean;
   @Input() destacados: boolean;
   @Input() ordenarPor: number;
@@ -96,42 +93,52 @@ export class BuscarComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  selectFiltro(id: number) {
-    this.filtroCategoria = id;
-  }
+  buscar(reset: boolean ): void {
 
-  selectTalle(talle: string) {
-    this.filtroTalle = talle;
-  }
-
-  selectOrden(id: number) {
-    this.ordenarPor = id;
-  }
-
-  selectColor(color: string) {
-    this.filtroColor = color;
-  }
-
-  buscar(reset: boolean ): void{
-
-    if(this.categorias != undefined) {
-    console.log(this.categorias[0].seleccionada);
-    }
     if(reset){
       this.articulos = [];
       this.DESDE = 0;
       this.HASTA = 10;
     }
 
-    if(this.filtroCategoria  == undefined){
-      this.filtroCategoria = -1;
-    }
+    let categoriasSeleccionadas: number[] = [];
+    if(categoriasSeleccionadas.length == 0){
+      categoriasSeleccionadas = undefined;
+    
+    } else {
+      for (let i = 0; i < this.categorias.length; i++) {
+        var cat = this.categorias[i];
+        if(cat.seleccionada == true){
+          categoriasSeleccionadas.push(cat.id);
+        }
+      }
+    }    
 
-    if(this.filtroTalle  == undefined){
-      this.filtroTalle = '-';
-    }
+    let tallesSeleccionados: String[] = [];
+    if(tallesSeleccionados.length == 0){
+      tallesSeleccionados = undefined;
+    } else {
+      for (let i = 0; i < this.talles.length; i++) {
+        var talle = this.talles[i];
+        if(talle.seleccionado == true){
+          tallesSeleccionados.push("'"+talle.valor+"'");
+        }
+      }
+    }    
 
-    this.articuloService.getArticulosPorFiltros(this.filtroCategoria, this.filtroPrecioHasta, this.filtroTalle, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor).subscribe( resp => {
+    let coloresSeleccionados: String[] = [];
+    if(coloresSeleccionados.length == 0){
+      coloresSeleccionados = undefined;
+    } else {
+      for (let i = 0; i < this.colores.length; i++) {
+        var color = this.colores[i];
+        if(color.seleccionado == true){
+          coloresSeleccionados.push("'"+color.valor+"'");
+        }
+      }
+    }
+    
+    this.articuloService.getArticulosPorFiltros(categoriasSeleccionadas, tallesSeleccionados, coloresSeleccionados, this.filtroPrecioHasta, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor).subscribe( resp => {
       
       if(resp.length == 0){
         this.fin = true;
@@ -158,6 +165,10 @@ export class BuscarComponent implements OnInit {
     this.DESDE = this.HASTA;
     this.HASTA = this.HASTA + 1;
     this.buscar(false);
+  }
+
+  selectOrden(id: number) {
+    this.ordenarPor = id;
   }
 
 }

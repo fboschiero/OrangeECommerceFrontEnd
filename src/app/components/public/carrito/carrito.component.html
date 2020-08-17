@@ -1,28 +1,29 @@
 <app-navbar [verHeader]="false"></app-navbar>
+
 <div class="container">
-    <div class="row">
+    <div >
         
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <div class="col-2">
-                <strong>Artículo</strong>
+                <strong class="responsive-text">Artículo</strong>
             </div>
             <div class="col-2">                
             </div>
             <div class="col-2 text-right">
-                <strong>Cantidad</strong>
+                <strong class="responsive-text">Cantidad</strong>
             </div>
             <div class="col-2 text-right">
-                <strong>Precio</strong>
+                <strong class="responsive-text">Precio</strong>
             </div>
             <div class="col-2 text-right">
-                <strong>Total</strong>
+                <strong class="responsive-text">Total</strong>
             </div>
             <div class="col-2">
                 <strong></strong>
             </div>
         </div>
 
-        <div class="row w-100 mt-2" *ngFor="let item of carrito.items; let i = index;">
+        <div class="row m-2 justify-content-center" *ngFor="let item of carrito.items; let i = index;">
             <div class="col-2">
                 <img class="thumbnail" src="../../../assets/articulos{{item.producto.imagenes[0].url}}" style="width: 72px;">
             </div>
@@ -44,7 +45,7 @@
             <hr style="border: 1px solid lightgray; margin: 3px; width: 100%;">
         </div>
         
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <div class="col-7"> </div>
             <div class="col-3 text-right">     
                 Subtotal           
@@ -53,10 +54,10 @@
                 <strong>${{getSubtotal()}}</strong>
             </div>
         </div>
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <hr style="border: 1px solid lightgray; margin: 3px; width: 100%;">
         </div>
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <div class="col-7"></div>
             <div class="col-3 text-right">     
                 Descuentos           
@@ -65,10 +66,10 @@
                 <strong>$0</strong>
             </div>
         </div>
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <hr style="border: 1px solid lightgray; margin: 3px; width: 100%;">
         </div>
-        <div class="row w-100">
+        <div class="row m-2 justify-content-center">
             <div class="col-7"></div>
             <div class="col-3 text-right">     
                 Total           
@@ -79,7 +80,7 @@
         </div>
     </div>
 
-    <div class="row m-5">
+    <div class="row m-2">
         <div class="col-6">  
             <button type="button" [routerLink]="['/home']" class="cart_button"><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
         </div>   

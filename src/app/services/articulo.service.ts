@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Producto } from '../modelsBD/Producto';
@@ -7,6 +7,7 @@ import { Producto } from '../modelsBD/Producto';
 import { ImagenModel } from '../models/imagen.model';
 import { ColorModel } from '../models/color.model';
 import { StockModel } from '../models/stock.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,20 @@ export class ArticuloService {
 
   guardarArticulo(body){
     return this.http.post(this.API_URL + '/insertArticulo', body);
+  }
+
+  getImagen(param: string){
+    return this.http.get(this.API_URL + '/getImagenProducto/' + param);
+  }
+
+  modificarArticulo(body){
+    return this.http.post(this.API_URL + '/updateArticulo', body);
+  }
+
+  borrarImagen(id: number, url: string){
+    let data = {'id': id, 'url': url};
+    const headers = new HttpHeaders ({'Content-Type': 'application/json'});
+    return this.http.post(this.API_URL + '/borrarImagen/', JSON.stringify({data: data}), {headers});
   }
 
   private crearArreglo(articulosObj: object){

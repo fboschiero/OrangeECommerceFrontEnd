@@ -34,20 +34,19 @@
             <li class="nav-item" style="text-align: ent" *ngIf="verHeader == false">
                 <a class="nav-link" [routerLink]="['/home']" >Volver</a>
             </li>
-            <li class="nav-item" style="text-align: end">
+            <li class="nav-item" *ngIf="true" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/buscar']" [queryParams]="{ ofertas: true }">Ofertas</a>
             </li>
-            <li class="nav-item" style="text-align: end">
+            <li class="nav-item" *ngIf="true" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/buscar']" [queryParams]="{ destacados: true }">Destacados</a>
             </li>
-            <li class="nav-item" style="text-align: end">
+            <li class="nav-item" *ngIf="true" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/buscar']">Buscar</a>
             </li>
             <li class="nav-item" *ngIf="!estaLogueado();" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/login']">Login</a>
             </li>
-            <li class="nav-item" style="text-align: end">
-            <!-- <li class="nav-item" *ngIf="estaLogueado();" style="text-align: end"> -->
+            <li class="nav-item" *ngIf="estaLogueado();" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/mis-compras']">Mis compras</a>
             </li>
             <li class="nav-item" *ngIf="estaLogueado();" style="text-align: end">

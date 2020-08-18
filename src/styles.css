@@ -209,6 +209,7 @@
     background-color:lightgrey;
 }
 
+
 /** Fin de boton del carrito*/
 
 .verticalline {
@@ -222,7 +223,7 @@
 
 /* Small devices (landscape phones, 576px and up)*/
 @media(max-width:576px) {
-    h1 {
-        font-size: 1.5rem;
+    .responsive-text {
+        font-size: 0.7rem;
     }
 }

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
-import { CategoriaModel } from 'src/app/models/categoria.model';
+import { Categoria } from 'src/app/modelsBD/Categoria';
 
 @Component({
   selector: 'app-categoria',
@@ -16,13 +16,13 @@ export class CategoriaComponent implements OnInit {
 
   @Input() filtroCategoria: number;
 
-  @Input() categoria: CategoriaModel;
+  @Input() categoria: Categoria;
   @Input() catNombre: String;
   @Input() catDescripcion: String;
   @Input() catActivo: boolean;
-  @Input() catId: String;
+  @Input() catId: number;
 
-  listaCategorias: CategoriaModel[] = [];
+  listaCategorias: Categoria[] = [];
   visible: boolean = false;
 
 

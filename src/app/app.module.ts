@@ -24,6 +24,7 @@ import { registerLocaleData } from '@angular/common';
 import localUY from '@angular/common/locales/es-UY';
 import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'
+import { NgxPaginationModule } from 'ngx-pagination';
 
 registerLocaleData(localUY);
 
@@ -52,7 +53,8 @@ registerLocaleData(localUY);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxPaginationModule
   ],
   providers: [
     HttpClient,

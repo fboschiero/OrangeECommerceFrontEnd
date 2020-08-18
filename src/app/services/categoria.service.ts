@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { CategoriaModel } from '../models/categoria.model';
+import { Categoria } from '../modelsBD/Categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class CategoriaService {
 
   private crearArreglo(categoriasObj: object){
 
-    const categorias: CategoriaModel[] = [];
+    const categorias: Categoria[] = [];
 
     if (categoriasObj == null){
       return [];
@@ -55,7 +55,7 @@ export class CategoriaService {
 
           for (let i = 0; i < largo; i++) {
             // console.log(articulosObj[key][i]._id);
-            const categoria: CategoriaModel = new CategoriaModel(); // articulosObj[key];
+            const categoria: Categoria = new Categoria(); // articulosObj[key];
 
             console.log('ID en arreglo ' + categoriasObj[key][i].id);
 
@@ -71,7 +71,7 @@ export class CategoriaService {
 
   private crearArregloById(categoriasObj: object){
 
-    const categorias: CategoriaModel[] = [];
+    const categorias: Categoria[] = [];
 
     if (categoriasObj == null){
       return [];
@@ -80,13 +80,13 @@ export class CategoriaService {
     Object.keys(categoriasObj).forEach( key => {
 
       if (key === 'categoria'){
-        const categoria: CategoriaModel = new CategoriaModel(); // articulosObj[key];
+        const categoria: Categoria = new Categoria(); // articulosObj[key];
 
         categoria.id = categoriasObj[key][0].id;
         categoria.nombre = categoriasObj[key][0].nombre;
         categoria.descripcion = categoriasObj[key][0].descripcion;
         categoria.activo = categoriasObj[key][0].activo;
-        categoria.img = categoriasObj[key][0].img;
+        categoria.imagen = categoriasObj[key][0].img;
         categorias.push(categoria);
         console.log(categoria.nombre);
       }

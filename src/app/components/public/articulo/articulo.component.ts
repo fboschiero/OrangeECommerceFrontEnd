@@ -100,7 +100,7 @@ export class ArticuloComponent implements OnInit {
           text: 'El articulo fue ingresado al carrito.',
           title: 'Carrito'
         });*/
-        //window.location.reload();
+        window.location.reload();
       } 
 
     });       

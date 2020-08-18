@@ -9,9 +9,10 @@
             <div class="card-body">
                 <form (ngSubmit)="agregarArticuloNuevo(form.value); form.reset()" #form="ngForm" novalidate="" class="form-horizontal">
 
-                    <div *ngIf="false" class="form-group row">
-                        <div class="col-md-9 col-xl-9">
-                            <input type="text" class="form-control" id="id" placeholder="Id" name="id" [(ngModel)]="articuloId" required #id="ngModel">
+                    <div *ngIf="visible" class="form-group row">
+                        <label class="col-md-2 col-xl-2 col-form-label">ID</label>
+                        <div class="col-md-9">
+                            <input readonly="readonly" type="text" class="form-control" id="id" placeholder="Id" name="id" [(ngModel)]="articuloId" #id="ngModel">
                         </div>
                     </div>
 
@@ -113,16 +114,16 @@
                             <button class="btn btn-primary btn-dark" type="submit" [disabled]=" !form.form.valid ">Guardar</button>
                         </div>
                     </div>
-                    <!--button type="button" (click)=modificarArticulo(form.value) class="btn btn-dark btn-sm ">Modificar</button-->
+                    <button type="button" (click)=modificarArticulo(form.value) class="btn btn-dark btn-sm ">Modificar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!--button type="button" (click)=getArticuloAModificar(8) class="btn btn-dark btn-sm ">Edit</button-->
+<button type="button" (click)=getArticuloAModificar(7) class="btn btn-dark btn-sm ">Edit</button>
 
-<!--div *ngFor="let dato of imagenes" class="card" style="width: 20rem;">
+<div *ngFor="let dato of imagenes" class="card" style="width: 20rem;">
     <img [src]="'http://localhost:3006/getImagenProducto/' + dato.url" width="100%">
     <button type="button" class="btn btn-dark btn-sm" (click)="borrarImagen(dato.id, dato.url)">Borrar img</button>
-</div-->
+</div>

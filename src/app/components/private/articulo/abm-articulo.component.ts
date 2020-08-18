@@ -6,6 +6,7 @@ import { CategoriaModel } from 'src/app/models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
 import { ImagenModel } from '../../../models/imagen.model';
 import { Observable } from 'rxjs';
+import { Categoria } from 'src/app/modelsBD/Categoria';
 
 @Component({
   selector: 'app-abm-articulo',
@@ -28,7 +29,7 @@ export class AbmArticuloComponent {
 
   @Input() filtroCategoria: number;
  
-  listaCategorias: CategoriaModel[] = [];
+  listaCategorias: Categoria[] = [];
   imagenes = [];
 
   fd = new FormData();

@@ -97,9 +97,9 @@
                     </div>
                     <div class="p-2">
                         <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                        <option value="undefined" selected >Elige una categoría</option>
-                        <option [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
-                    </select>
+                            <option value="undefined" selected >Elige una categoría *</option>
+                            <option [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
+                        </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Imagenes (Maximo 5)</label>

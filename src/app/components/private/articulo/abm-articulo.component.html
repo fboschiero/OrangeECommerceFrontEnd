@@ -2,18 +2,18 @@
 
 <h2>Agregar-Modificar-Eliminar articulo</h2>
 <hr>
-<div style="margin: 0 auto;">
-    <div class="col-lg-7 align-content-center center">
+<div style="margin-left: auto; margin-right: auto;">
+    <div class="col-lg-8 align-content-center" style="width: 100%; margin: 0 auto;">
         <div class="card">
             <div class="card-header"><strong>Complete el formulario</strong> </div>
             <div class="card-body">
                 <form (ngSubmit)="agregarArticuloNuevo(form.value); form.reset()" #form="ngForm" novalidate="" class="form-horizontal">
 
-                    <!--div class="form-group row">
+                    <div *ngIf="false" class="form-group row">
                         <div class="col-md-9 col-xl-9">
                             <input type="text" class="form-control" id="id" placeholder="Id" name="id" [(ngModel)]="articuloId" required #id="ngModel">
                         </div>
-                    </div-->
+                    </div>
 
                     <div class="form-group row">
                         <label class="col-md-2 col-xl-2 col-form-label">Nombre</label>
@@ -48,15 +48,15 @@
 
                     <div class="form-group custom-checkbox row">
                         <label class="col-md-2 col-form-label">Activo</label>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
                             <input name="activo" [(ngModel)]="activoArt" #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
                             <label class="custom-control-label" for="customCheck2">Activo</label>
                         </div>
                     </div>
 
                     <div class="form-group custom-checkbox row">
-                        <label class="col-md-4 col-form-label">Destacado</label>
-                        <div class="col-md-7">
+                        <label class="col-md-2 col-form-label">Destacado</label>
+                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
                             <input name="destacado" [(ngModel)]="destacadoArt" #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
                             <label class="custom-control-label" for="customCheck3">Destacado</label>
                         </div>
@@ -64,7 +64,7 @@
 
                     <div class="form-group custom-checkbox row">
                         <label class="col-md-2 col-form-label">En Oferta</label>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
                             <input name="enOferta" [(ngModel)]="enOfertaArt" #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">En Oferta</label>
                         </div>
@@ -95,20 +95,23 @@
                             <input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" [(ngModel)]="pesoArt" #peso="ngModel">
                         </div>
                     </div>
-                    <div class="p-2">
-                        <select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected >Elige una categoría *</option>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Categoria *</label>
+                        <select style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                            <option value="undefined" selected >Elige una categoría</option>
                             <option [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Imagenes (Maximo 5)</label>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="margin-top: 15px;">
                             <input (change)="createFormData($event)" multiple name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                     </div>
-                    <div class="col-lg-12 ">
-                        <button class="btn btn-primary btn-dark" type="submit" [disabled]=" !form.form.valid ">Save changes</button>
+                    <div class="col-lg-12" style="display: flex;justify-content: center;align-items: center;">
+                        <div style="width: 120px;">
+                            <button class="btn btn-primary btn-dark" type="submit" [disabled]=" !form.form.valid ">Guardar</button>
+                        </div>
                     </div>
                     <!--button type="button" (click)=modificarArticulo(form.value) class="btn btn-dark btn-sm ">Modificar</button-->
                 </form>

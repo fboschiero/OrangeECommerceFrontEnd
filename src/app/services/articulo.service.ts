@@ -8,6 +8,7 @@ import { ImagenModel } from '../models/imagen.model';
 import { ColorModel } from '../models/color.model';
 import { StockModel } from '../models/stock.model';
 import { Observable } from 'rxjs';
+import { Categoria } from '../modelsBD/Categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,7 @@ export class ArticuloService {
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;
             articulo.destacado = articulosObj[key][i].destacado;
+            articulo.categoria = articulosObj[key][i].categoria;
 
             // Imagenes
             articulo.imagenes = []; 

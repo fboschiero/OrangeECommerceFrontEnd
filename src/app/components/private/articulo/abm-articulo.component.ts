@@ -25,6 +25,7 @@ export class AbmArticuloComponent {
   @Input() descuentoArt;
   @Input() pesoArt;
   @Input() marcaArt;
+  @Input() categoriaArt;
   @Input() img;
 
   @Input() filtroCategoria: number;
@@ -83,6 +84,7 @@ export class AbmArticuloComponent {
       this.enOfertaArt = resp[0].enOferta;
       this.descuentoArt = resp[0].descuento;
       this.pesoArt = resp[0].peso;
+      this.categoriaArt = resp[0].categoria;
       this.imagenes = resp[0].imagenes;
 
       this.visible = true;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { ArticuloService } from '../../../services/articulo.service';
 import Swal from 'sweetalert2';
@@ -7,6 +7,7 @@ import { CategoriaService } from '../../../services/categoria.service';
 import { ImagenModel } from '../../../models/imagen.model';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/modelsBD/Categoria';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-abm-articulo',
@@ -36,6 +37,8 @@ export class AbmArticuloComponent {
   fd = new FormData();
   selectedFile: File = null;
   visible: boolean = false;
+
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor(public articuloServices: ArticuloService, public categoriaService: CategoriaService) {
      // Cargo las categorias para el panel de filtros

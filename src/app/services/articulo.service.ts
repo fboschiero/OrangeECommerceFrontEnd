@@ -3,12 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Producto } from '../modelsBD/Producto';
-
-import { ImagenModel } from '../models/imagen.model';
-import { ColorModel } from '../models/color.model';
-import { StockModel } from '../models/stock.model';
-import { Observable } from 'rxjs';
-import { Categoria } from '../modelsBD/Categoria';
+import { Imagen } from '../modelsBD/Imagen';
+import { Stock } from '../modelsBD/Stock';
 
 @Injectable({
   providedIn: 'root'
@@ -111,7 +107,7 @@ export class ArticuloService {
             // Imagenes
             articulo.imagenes = []; 
             for (let j = 0; j < articulosObj[key][i].imagenes.length; j++) {
-              const imagen: ImagenModel = new ImagenModel();
+              const imagen: Imagen = new Imagen();
               imagen.id = articulosObj[key][i].imagenes[j].id;
               imagen.url = articulosObj[key][i].imagenes[j].url;
 
@@ -123,7 +119,7 @@ export class ArticuloService {
             console.log(articulosObj);
             for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
               
-              const stock: StockModel = new StockModel();
+              const stock: Stock = new Stock();
               stock.id = articulosObj[key][i].stocks[k].id;
               stock.color = articulosObj[key][i].stocks[k].color;
               stock.talle = articulosObj[key][i].stocks[k].talle;

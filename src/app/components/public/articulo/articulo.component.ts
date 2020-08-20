@@ -4,6 +4,7 @@ import { ArticuloService } from 'src/app/services/articulo.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Producto } from '../../../modelsBD/Producto';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-articulos',
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 
 export class ArticuloComponent implements OnInit {
+
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   articulo: Producto;
   articulosRelacionados: Producto[];

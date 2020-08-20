@@ -106,7 +106,7 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Imagenes (Maximo 5)</label>
                         <div class="col-md-9" style="margin-top: 15px;">
-                            <input accept="image/jpg, image/jpeg, image/png" (change)="createFormData($event)" multiple name="file" type="file" class="form-control-file" id="file">
+                            <input accept="image/jpg, image/jpeg, image/png" (change)="createFormData($event)" multiple #file name="file" type="file" class="form-control-file" id="file">
                         </div>
                     </div>
                     <div class="col-lg-12 " style="display: flex;justify-content: center;align-items: center; ">

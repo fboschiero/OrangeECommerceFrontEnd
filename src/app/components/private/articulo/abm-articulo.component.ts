@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ArticuloService } from '../../../services/articulo.service';
 import Swal from 'sweetalert2';
@@ -28,8 +28,9 @@ export class AbmArticuloComponent {
 
   @Input() filtroCategoria: number;
  
-  file;
-
+  @ViewChild('file')
+  myInputVariable: ElementRef;
+  
   listaCategorias: Categoria[] = [];
   imagenes = [];
 
@@ -65,6 +66,7 @@ export class AbmArticuloComponent {
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
+       this.myInputVariable.nativeElement.value = "";
     });
   }
 

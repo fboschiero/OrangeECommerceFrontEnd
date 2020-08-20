@@ -1,7 +1,7 @@
 <app-navbar [verHeader]="false"></app-navbar>
 
-<div class="container"  >
-    <div class="row m-3" >
+<div class="container">
+    <div class="row m-3">
         <div class="col-md-6 product_img">
             <div class="row">
                 <div id="demo" class="carousel slide" data-interval="false" data-ride="carousel">
@@ -16,7 +16,7 @@
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let imagen of articulo.imagenes; let i = index;">
-                            <img src="../../../assets/articulos{{imagen.url}}" width="100%" >
+                            <img [src]="API_URL_IMAGE + imagen.url " width="100%">
                         </div>
                     </div>
 
@@ -27,11 +27,11 @@
                     <a class="carousel-control-next" href="#demo" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
-        
+
                 </div>
             </div>
         </div>
-   
+
         <div class="col-md-6 product_content">
             <h1>{{articulo.nombre}}</h1>
             <hr style="border-top: 3px solid lightgray">
@@ -68,10 +68,10 @@
                 </div>
                 <!-- end col -->
             </div>
-            
+
             <div class="row mt-5">
-                <div class="col-6">  
-                    <button type="button" (click)="agregarAlCarrito();" class="cart_button" ><span class="fa fa-shopping-cart mr-2"></span> Agregar al carrito</button>
+                <div class="col-6">
+                    <button type="button" (click)="agregarAlCarrito();" class="cart_button"><span class="fa fa-shopping-cart mr-2"></span> Agregar al carrito</button>
                 </div>
                 <div class="col-6">
                     <button type="button" class="cart_button"><span class="fa fa-eye mr-2"></span>Ver más tarde</button>
@@ -79,19 +79,19 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-12">  
-                    <button type="button" [routerLink]="['/home']" class="cart_button" ><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
-                </div>                
+                <div class="col-12">
+                    <button type="button" [routerLink]="['/home']" class="cart_button"><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <hr class="mt-5"style="border-top: 3px solid lightgray">
-    <h2 >Artículos relacionados</h2>
+    <hr class="mt-5" style="border-top: 3px solid lightgray">
+    <h2>Artículos relacionados</h2>
     <hr style="border-top: 3px solid lightgray">
     <div class="d-flex flex-row">
         <app-card [articulo]="articulo" [chiquito]="true" *ngFor="let articulo of articulosRelacionados"></app-card>
     </div>
-</div>         
+</div>
 
 <app-footer></app-footer>

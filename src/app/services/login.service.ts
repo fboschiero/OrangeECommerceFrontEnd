@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { UsuarioModel } from '../models/usuario.model';
 
 import { map } from 'rxjs/operators';
+import { Usuario } from '../modelsBD/Usuario';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
 
-    const user: UsuarioModel = JSON.parse(localStorage.getItem('usuario'));
+    const user: Usuario = JSON.parse(localStorage.getItem('usuario'));
 
     if (user && user.nombre){
       this.usuarioLogueado  = true;
@@ -58,7 +58,7 @@ export class LoginService {
     return this.usuarioLogueado;
   }
 
-  login(usuario: UsuarioModel) {
+  login(usuario: Usuario) {
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -74,7 +74,7 @@ export class LoginService {
 
   }
 
-  private procesarUsuario(user: object, usuario: UsuarioModel) {
+  private procesarUsuario(user: object, usuario: Usuario) {
 
     console.log(user);
     
@@ -93,7 +93,7 @@ export class LoginService {
 
   }
 
-  signUp(usuario: UsuarioModel) {
+  signUp(usuario: Usuario) {
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
@@ -102,7 +102,7 @@ export class LoginService {
     const nombre = usuario.nombre;
     const email = usuario.email;
     const password = usuario.password;
-    const role = usuario.role;
+    const role = usuario.rol;
 
     const body = JSON.stringify({ nombre, email, password, role });
 

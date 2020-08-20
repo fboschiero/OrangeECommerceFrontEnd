@@ -1,11 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ArticuloService } from '../../../services/articulo.service';
 import Swal from 'sweetalert2';
-import { CategoriaModel } from 'src/app/models/categoria.model';
 import { CategoriaService } from '../../../services/categoria.service';
-import { ImagenModel } from '../../../models/imagen.model';
-import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/modelsBD/Categoria';
 import { environment } from '../../../../environments/environment';
 
@@ -31,6 +28,8 @@ export class AbmArticuloComponent {
 
   @Input() filtroCategoria: number;
  
+  file;
+
   listaCategorias: Categoria[] = [];
   imagenes = [];
 
@@ -66,9 +65,6 @@ export class AbmArticuloComponent {
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
-
-       this.fd.delete('file');
-       this.fd.delete('body');
     });
   }
 
@@ -77,7 +73,7 @@ export class AbmArticuloComponent {
     console.log('Modificar articulo id ' + articuloId);
 
     this.articuloServices.getArticuloById(articuloId).subscribe( resp => {
-      
+
       this.articuloId = resp[0].id;
       this.nombreArt = resp[0].nombre;
       this.descripcionArt = resp[0].descripcion;
@@ -95,7 +91,7 @@ export class AbmArticuloComponent {
   }
 
   modificarArticulo(form: NgForm){
-   
+
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
 
@@ -125,8 +121,10 @@ export class AbmArticuloComponent {
          text: 'Se borro correctamente la imagen',
          title: 'Imagen articulo'
        });
+      
     });
 
+    window.location.reload();
   }
 
   createFormData(event) {

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import Swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
-import { NgForm, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { CategoriaService } from '../../../services/categoria.service';
 import Swal from 'sweetalert2';
 import { Categoria } from 'src/app/modelsBD/Categoria';

@@ -1,8 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { Router } from '@angular/router';
-import { UsuarioModel } from '../../../models/usuario.model';
 import Swal from 'sweetalert2';
+import { Usuario } from '../../../modelsBD/Usuario';
 
 
 @Component({
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  usuario: UsuarioModel = new UsuarioModel();
+  usuario: Usuario = new Usuario();
 
   constructor(private loginServices: LoginService, private router: Router) { }
 

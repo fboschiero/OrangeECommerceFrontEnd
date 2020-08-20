@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Orden } from 'src/app/models/orden';
+import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 
 @Component({
   selector: 'app-compra',
@@ -8,7 +8,7 @@ import { Orden } from 'src/app/models/orden';
 })
 export class CompraComponent implements OnInit {
 
-  orden: Orden;
+  orden: OrdenCompra;
 
   constructor() { 
 
@@ -21,21 +21,21 @@ export class CompraComponent implements OnInit {
 
   getSubtotal(){
     let suma = 0;
-    for(let i=0; i<this.orden.carrito.items.length; i++){
-      suma = suma + this.orden.carrito.items[i].precio * this.orden.carrito.items[i].cantidad;
+    for(let i=0; i<this.orden.items.length; i++){
+      suma = suma + this.orden.items[i].precio * this.orden.items[i].cantidad;
     }
     return suma;
   }
 
   getFormaDePagoSring(){
-    if(this.orden.formaDePago == 1){
-      return 'Transferencia Bancaria'
+    if(this.orden.pago.tipoPago === 1){
+      return 'Transferencia Bancaria';
     }
-    if(this.orden.formaDePago == 2){
-      return 'Giro Abitab o RedPagos'
+    if(this.orden.pago.tipoPago === 2){
+      return 'Giro Abitab o RedPagos';
     }
-    if(this.orden.formaDePago == 3){
-      return 'MercadoPago'
+    if(this.orden.pago.tipoPago === 3){
+      return 'MercadoPago';
     }
   }
 

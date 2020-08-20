@@ -1,7 +1,7 @@
 export class Pago {
 
     fecha: Date;
-    tipoPago: string;
+    tipoPago: number;
 
     constructor(){
     }

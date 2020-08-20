@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
-import { UsuarioModel } from '../../../models/usuario.model';
 import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
+import { Usuario } from '../../../modelsBD/Usuario';
 
 @Component({
   selector: 'app-navbar',
@@ -38,7 +38,7 @@ export class NavbarComponent  {
   estaLogueado(){
     if (this.loginServices.estaAutenticado()) {
 
-      const datosUsuario: UsuarioModel = JSON.parse(localStorage.getItem('usuario'));
+      const datosUsuario: Usuario = JSON.parse(localStorage.getItem('usuario'));
       this.nombreUsuario = datosUsuario.nombre;
       return true;
     }

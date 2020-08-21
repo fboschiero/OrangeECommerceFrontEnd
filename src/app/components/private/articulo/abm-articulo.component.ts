@@ -33,9 +33,7 @@ export class AbmArticuloComponent {
   
   listaCategorias: Categoria[] = [];
   imagenes = [];
-
-  fd = new FormData();
-  selectedFile: File = null;
+  fd;
   visible: boolean = false;
 
   API_URL_IMAGE = environment.API_URL_IMAGE;
@@ -56,17 +54,19 @@ export class AbmArticuloComponent {
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
 
-    console.log(this.fd.getAll('file'));
-
     this.articuloServices.guardarArticulo(this.fd).subscribe(() => {
+      
+      this.myInputVariable.nativeElement.value = "";
 
       Swal.fire({
          allowOutsideClick: true,
          icon: 'info',
          text: 'Se guardo correctamente',
          title: 'Articulo'
-       });
-       this.myInputVariable.nativeElement.value = "";
+      });
+      window.setTimeout(function(){ 
+        location.reload();
+    } ,1800);
     });
   }
 
@@ -132,6 +132,8 @@ export class AbmArticuloComponent {
   createFormData(event) {
     //Cantidad de img subidas
     let ins = event.target.files.length;
+    this.fd = new FormData();
+    
     if(ins>5){
       Swal.fire({
         allowOutsideClick: true,

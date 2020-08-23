@@ -29,27 +29,9 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <!-- Combo de las Categorias -->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <label>Categorías</label>
-                        <!-- select class="custom-select" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected ></option>
-                            <option [value]="categoria.nombre" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
-                        </select -->
-                        <ul>
-                            <span *ngFor="let categoria of categorias;"> 
-                                <input type="checkbox" [(ngModel)]="categoria.seleccionada" class="ml-2" >
-                                {{categoria.nombre}}
-                            </span>
-                        </ul>
-                    </div>
                     <!-- Combo de los Talles -->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <label>Talle</label>
-                        <!-- select class="custom-select" (change)="selectTalle($event.target.value)" [(ngModel)]="filtroTalle">
-                            <option value="undefined" selected ></option>
-                            <option [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
-                        </select -->
+                    <div class="col-12 col-md-6">
+                        <label style="font-size: x-large;">Talle</label>
                         <ul>
                             <span *ngFor="let talle of talles;"> 
                                 <input type="checkbox" [(ngModel)]="talle.seleccionado" class="ml-2">
@@ -58,12 +40,8 @@
                         </ul>
                     </div>
                     <!-- Combo de los Colores -->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <label>Color</label>
-                        <!-- select class="custom-select" (change)="selectColor($event.target.value)" [(ngModel)]="filtroColor">
-                            <option value="undefined" selected ></option>
-                            <option [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
-                        </select -->
+                    <div class="col-12 col-md-6">
+                        <label style="font-size: x-large;">Color</label>
                         <ul>
                             <span *ngFor="let color of colores;"> 
                                 <input type="checkbox" [(ngModel)]="color.seleccionado" class="ml-2" >
@@ -74,9 +52,22 @@
                 </div>
                 <hr>
                 <div class="row">
+                    <!-- Combo de las Categorias -->
+                    <div class="col-12">
+                        <label style="font-size: x-large;">Categorías</label>
+                        <ul>
+                            <span *ngFor="let categoria of categorias;"> 
+                                <input type="checkbox" [(ngModel)]="categoria.seleccionada" class="ml-2" >
+                                {{categoria.nombre}}
+                            </span>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                      <!-- Selector de Precio Hasta -->
                     <div class="col-6">
-                        <label class="pr-2">Precio hasta</label>
+                        <label class="pr-2" style="font-size: x-large;">Precio hasta</label>
                         <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
                         <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
                         
@@ -85,7 +76,7 @@
                     </div>
                      <!-- Combo de Ordenar por: -->
                     <div class="col-6">
-                        <label>Ordenar por:</label>
+                        <label style="font-size: x-large;">Ordenar por:</label>
                         <select class="custom-select" (change)="selectOrden($event.target.value)" [(ngModel)]="ordenarPor">
                             <option value="undefined" selected ></option>
                             <option value="0" selected >Menor precio</option>
@@ -112,16 +103,16 @@
     <p class="text-info" *ngIf="entroPor == 'Destacados'">Estos son nuestros articulos destacados</p>
 </div>
 
-<div class="row container" *ngIf="articulos.length > 0">
+<div class="row  d-flex justify-content-center" *ngIf="articulos.length > 0">
  
     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let articulo of articulos">
         
         <div class="product-grid2 p-2" >
 
             <div class="product-image2 details">
-                <img class="pic-1" width="40px;" src="../../../assets/articulos/{{ articulo.imagenes[0].url }}" />
-                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" src="../../../assets/articulos/{{ articulo.imagenes[1].url }}" />
-                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" src="../../../assets/articulos/{{ articulo.imagenes[0].url }}" />
+                <img class="pic-1" width="40px;" [src]="PATH_IMAGENES + articulo.imagenes[0].url " />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" [src]="PATH_IMAGENES + articulo.imagenes[1].url " />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" [src]="PATH_IMAGENES + articulo.imagenes[0].url " />
         
                 <ul class="social">
                     <li><a href="#" data-tip="Ver" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>

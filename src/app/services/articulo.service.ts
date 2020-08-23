@@ -39,7 +39,8 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(categoriasSeleccionadas: number[], tallesSeleccionados: String[], coloresSeleccionados: String[],filtroPrecio: number, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
+  getArticulosPorFiltros(categoriasSeleccionadas: Number[], tallesSeleccionados: String[], coloresSeleccionados: String[],filtroPrecio: number, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
+    console.log(categoriasSeleccionadas);
     return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + categoriasSeleccionadas + `/` + tallesSeleccionados + `/` + coloresSeleccionados + `/` + filtroPrecio + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor)
       .pipe(
         map(resp => this.crearArreglo(resp))
@@ -87,7 +88,7 @@ export class ArticuloService {
     }
 
     Object.keys(articulosObj).forEach( key => {
-
+      
       if (key === 'articulos'){
 
           const largo =  articulosObj[key].length;
@@ -116,7 +117,7 @@ export class ArticuloService {
 
             // Stock
             articulo.stocks = []; 
-            console.log(articulosObj);
+           // console.log(articulosObj);
             for (let k = 0; k < articulosObj[key][i].stocks.length; k++) {
               
               const stock: Stock = new Stock();
@@ -130,10 +131,7 @@ export class ArticuloService {
 
             articulos.push(articulo);
           }
-
-
       }
-
     });
     console.log(articulos);
     return articulos;

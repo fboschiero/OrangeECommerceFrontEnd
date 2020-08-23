@@ -16,7 +16,7 @@
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let imagen of articulo.imagenes; let i = index;">
-                            <img [src]="API_URL_IMAGE + imagen.url " width="100%">
+                            <img [src]="PATH_IMAGENES + imagen.url " width="100%">
                         </div>
                     </div>
 

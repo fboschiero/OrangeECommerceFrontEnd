@@ -3,6 +3,8 @@ import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
 
+import { environment } from '../../../../environments/environment.prod';
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -12,6 +14,8 @@ import Swal from 'sweetalert2';
 export class CarritoComponent implements OnInit {
 
   carrito: OrdenCompra;
+
+  PATH_IMAGENES = environment.PATH_IMAGENES;
 
   constructor(private carritoService: CarritoService) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));

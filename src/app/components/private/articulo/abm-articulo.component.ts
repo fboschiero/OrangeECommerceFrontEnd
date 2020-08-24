@@ -26,6 +26,11 @@ export class AbmArticuloComponent {
   @Input() categoriaArt;
   @Input() img;
 
+  //Talle - color - cantidad
+  @Input() colorArt;
+  @Input() talleArt;
+  @Input() cantidadArt;
+  
   @Input() filtroCategoria: number;
  
   @ViewChild('file')

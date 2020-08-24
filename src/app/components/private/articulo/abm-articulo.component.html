@@ -103,6 +103,20 @@
                             <option [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
                         </select>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Stock</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="color" placeholder="Color" name="color" [(ngModel)]="colorArt" #color="ngModel">
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="talle" placeholder="Talle" name="talle" [(ngModel)]="talleArt" #talle="ngModel">
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="cantidad" placeholder="Cantidad" name="cantidad" [(ngModel)]="cantidadArt" #cantidad="ngModel">
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Imagenes (Maximo 5)</label>
                         <div class="col-md-9" style="margin-top: 15px;">

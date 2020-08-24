@@ -4,6 +4,7 @@ export class Stock {
     color: string;
     talle: string;
     cantidad: number;
+    producto_id: number;
 
     constructor(){
     }

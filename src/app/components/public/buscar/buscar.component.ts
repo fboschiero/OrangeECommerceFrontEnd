@@ -7,13 +7,13 @@ import { CategoriaService } from '../../../services/categoria.service';
 import { TalleService } from '../../../services/talle.service';
 import { ColorService } from '../../../services/color.service';
 
-
 // Modelos
 import { Producto } from '../../../modelsBD/Producto';
 import { Categoria } from 'src/app/modelsBD/Categoria';
 import { CodigueraTalle } from '../../../modelsBD/CodigueraTalle';
 import { CodigueraColor } from '../../../modelsBD/CodigueraColor';
 
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-buscar',
@@ -28,15 +28,17 @@ export class BuscarComponent implements OnInit {
   @Input() ordenarPor: number;
 
   articulos: Producto[] = [];
-  categorias: Categoria[];
-  talles: CodigueraTalle[];
-  colores: CodigueraColor[];
+  categorias: Categoria[] = [];
+  talles: CodigueraTalle[] = [];
+  colores: CodigueraColor[] = [];
 
   private DESDE = 0;
   private HASTA = 10;
 
   fin: boolean; 
   entroPor: string;
+
+  PATH_IMAGENES = environment.PATH_IMAGENES;
 
   constructor(private articuloService: ArticuloService,
               private categoriaService: CategoriaService,
@@ -49,9 +51,9 @@ export class BuscarComponent implements OnInit {
     
     // Cargo las categorias para el panel de filtros
     this.categoriaService.getCategorias().subscribe( resp => {
-      this.categorias = resp;
+      this.categorias = resp;   
     });
-
+    
     // Cargo los talles para el panel de filtros
     this.talleService.getTalles().subscribe( resp => {
       this.talles = resp;
@@ -84,6 +86,7 @@ export class BuscarComponent implements OnInit {
     }   
     //console.log(document.querySelector('#collapse1'));
     this.fin = false;
+    
   }
 
   ngOnInit(): void {
@@ -94,28 +97,33 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar(reset: boolean ): void {
-
+    
     if(reset){
       this.articulos = [];
       this.DESDE = 0;
       this.HASTA = 10;
     }
 
-    let categoriasSeleccionadas: number[] = [];
-    if(categoriasSeleccionadas.length == 0){
+    let categoriasSeleccionadas: Number[] = [];
+    if(this.categorias.length == 0){
       categoriasSeleccionadas = undefined;
-    
+      
     } else {
+      categoriasSeleccionadas = [];
       for (let i = 0; i < this.categorias.length; i++) {
         var cat = this.categorias[i];
         if(cat.seleccionada == true){
           categoriasSeleccionadas.push(cat.id);
         }
       }
+      if(categoriasSeleccionadas.length == 0){
+        categoriasSeleccionadas = undefined;
+      }
     }    
+    //console.log(categoriasSeleccionadas);
 
     let tallesSeleccionados: String[] = [];
-    if(tallesSeleccionados.length == 0){
+    if(this.talles.length == 0){
       tallesSeleccionados = undefined;
     } else {
       for (let i = 0; i < this.talles.length; i++) {
@@ -123,11 +131,14 @@ export class BuscarComponent implements OnInit {
         if(talle.seleccionado == true){
           tallesSeleccionados.push("'"+talle.valor+"'");
         }
+        if(tallesSeleccionados.length == 0){
+          tallesSeleccionados = undefined;
+        }
       }
     }    
 
     let coloresSeleccionados: String[] = [];
-    if(coloresSeleccionados.length == 0){
+    if(this.colores.length == 0){
       coloresSeleccionados = undefined;
     } else {
       for (let i = 0; i < this.colores.length; i++) {
@@ -135,6 +146,9 @@ export class BuscarComponent implements OnInit {
         if(color.seleccionado == true){
           coloresSeleccionados.push("'"+color.valor+"'");
         }
+      }
+      if(coloresSeleccionados.length == 0){
+        coloresSeleccionados = undefined;
       }
     }
     
@@ -154,14 +168,14 @@ export class BuscarComponent implements OnInit {
         this.articulos = resp;
       }
 
-      console.log(this.articulos.length);
+      
       
     });
 
   }
 
   onScroll(): void{
-  
+    
     this.DESDE = this.HASTA;
     this.HASTA = this.HASTA + 1;
     this.buscar(false);

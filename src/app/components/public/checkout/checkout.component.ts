@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Carrito } from '../../../models/carrito';
+import { OrdenCompra } from '../../../modelsBD/OrdenCompra';
 import { Orden } from '../../../models/orden';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { NgForm } from '@angular/forms';
@@ -13,7 +13,7 @@ import {Router} from '@angular/router'
 })
 export class CheckoutComponent implements OnInit {
 
-  carrito: Carrito;
+  carrito: OrdenCompra;
 
   formaDePago: number;
 
@@ -23,6 +23,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    window.scrollTo(0, 0);
   }
 
   confirmarCompra(form: NgForm) {

@@ -1,8 +1,8 @@
-//import { Carrito } from './carrito';
+import { OrdenCompra } from '../modelsBD/OrdenCompra';
 
 export class Orden {
     carrito_id: string;
-    //carrito: Carrito;
+    carrito: OrdenCompra;
     formaDePago: number;
     fecha: Date;
     form: any;

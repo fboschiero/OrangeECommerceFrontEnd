@@ -57,7 +57,7 @@ export class CategoriaService {
             // console.log(articulosObj[key][i]._id);
             const categoria: Categoria = new Categoria(); // articulosObj[key];
 
-            console.log('ID en arreglo ' + categoriasObj[key][i].id);
+            //console.log('ID en arreglo ' + categoriasObj[key][i].id);
 
             categoria.id = categoriasObj[key][i].id;
             categoria.nombre = categoriasObj[key][i].nombre;

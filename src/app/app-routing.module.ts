@@ -15,7 +15,7 @@ import { UserComponent } from './components/private/user/user.component';
 
 import { LoginGuard } from './guards/login.guard';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
-import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
+import { AbmArticuloComponent } from './components/private/articulo/nuevoArticulo/abm-articulo.component';
 import { MisComprasComponent } from './components/private/compras/mis-compras/mis-compras.component';
 import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
 

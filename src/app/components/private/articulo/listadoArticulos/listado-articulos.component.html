@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+
+    <h3 class="m-3">Todos los Articulos</h3>
+
+    <table class="table table-sm-responsive">
+        <thead>
+            <tr>
+                <th scope="col" class="">ID</th>
+                <th scope="col" class="align-right">Nombre</th>
+                <th scope="col" class="align-right">Precio</th>
+                <th scope="col" class="align-right">En oferta</th>
+                <th scope="col" class="align-right">Peso</th>
+                <th scope="col" class="align-right">Activo</th>
+                <th scope="col" class="align-right">Destacado</th>
+                <th scope="col" class="align-right">Marca</th>
+                <th scope="col" class="align-right">Descripcion</th>
+                <th scope="col" class="align-right">Categoria</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--tr *ngFor="let orden of listaCompras | paginate: { itemsPerPage: 5, currentPage: p }; let index = index;">
+                <td>{{orden.fecha | date: 'dd/MM/yyyy HH:mm'}}</td>
+                <td class="align-right">${{orden.getMontoVenta() | number:'1.0':'es-UY'}}</td>
+                <td class="align-center"><button class="cart_button btn-sm" [routerLink]="['/detalle-compra', index]"><span class="fa fa-shopping-bag mr-2"></span>Ver detalle</button></td>
+            </tr-->
+        </tbody>
+        <!--pagination-controls *ngIf="listaCompras.length > 5" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls-->
+    </table>
+
+</div>

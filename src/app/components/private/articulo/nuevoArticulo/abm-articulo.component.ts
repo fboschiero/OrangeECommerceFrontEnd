@@ -1,10 +1,14 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ArticuloService } from '../../../services/articulo.service';
+import { ArticuloService } from '../../../../services/articulo.service';
 import Swal from 'sweetalert2';
-import { CategoriaService } from '../../../services/categoria.service';
+import { CategoriaService } from '../../../../services/categoria.service';
 import { Categoria } from 'src/app/modelsBD/Categoria';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
+import { CodigueraTalle } from '../../../../modelsBD/CodigueraTalle';
+import { CodigueraColor } from '../../../../modelsBD/CodigueraColor';
+import { TalleService } from '../../../../services/talle.service';
+import { ColorService } from '../../../../services/color.service';
 
 @Component({
   selector: 'app-abm-articulo',
@@ -32,21 +36,41 @@ export class AbmArticuloComponent {
   @Input() cantidadArt;
   
   @Input() filtroCategoria: number;
- 
+  @Input() filtroTalle: string;
+  @Input() filtroColor: string;
+
   @ViewChild('file')
   myInputVariable: ElementRef;
   
   listaCategorias: Categoria[] = [];
+  talles: CodigueraTalle[] = [];
+  colores: CodigueraColor[] = [];
   imagenes = [];
+  agregoImg:boolean = false;
+
   fd;
   visible: boolean = false;
 
   API_URL_IMAGE = environment.API_URL_IMAGE;
 
-  constructor(public articuloServices: ArticuloService, public categoriaService: CategoriaService) {
+  constructor(public articuloServices: ArticuloService, 
+              public categoriaService: CategoriaService, 
+              private talleService: TalleService,
+              private colorService: ColorService) {
+     
      // Cargo las categorias para el panel de filtros
      this.categoriaService.getCategorias().subscribe( resp => {
       this.listaCategorias = resp;
+    });
+
+    // Cargo los talles para el panel de filtros
+    this.talleService.getTalles().subscribe( resp => {
+      this.talles = resp;
+    });
+
+     // Cargo los colores para el panel de filtros
+     this.colorService.getColores().subscribe( resp => {
+      this.colores = resp;
     });
   }
 
@@ -55,24 +79,48 @@ export class AbmArticuloComponent {
     console.log(this.filtroCategoria);
   }
 
+  selectFiltroTalle(id: string) {
+    this.filtroTalle = id;
+    console.log(this.filtroCategoria);
+  }
+
+  selectFiltroColor(id: string) {
+    this.filtroColor = id;
+    console.log(this.filtroCategoria);
+  }
+
   agregarArticuloNuevo(form: NgForm){
-    this.fd.append('body', JSON.stringify(form));
-    this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
 
-    this.articuloServices.guardarArticulo(this.fd).subscribe(() => {
-      
-      this.myInputVariable.nativeElement.value = "";
-
+    if (this.filtroCategoria === undefined ||  this.filtroTalle === undefined || this.filtroColor === undefined || this.agregoImg === false){
       Swal.fire({
-         allowOutsideClick: true,
-         icon: 'info',
-         text: 'Se guardo correctamente',
-         title: 'Articulo'
+        allowOutsideClick: true,
+        icon: 'info',
+        text: 'Categoria, Talle, Color y Imagen son datos requeridos',
+        title: 'Articulo'
       });
-      window.setTimeout(function(){ 
-        location.reload();
-    } ,1800);
-    });
+
+    }else{
+
+      this.fd.append('body', JSON.stringify(form));
+      this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
+      this.fd.append('talle', JSON.stringify(this.filtroTalle));
+      this.fd.append('color', JSON.stringify(this.filtroColor));
+
+      this.articuloServices.guardarArticulo(this.fd).subscribe(() => {
+        
+        this.myInputVariable.nativeElement.value = "";
+  
+        Swal.fire({
+           allowOutsideClick: true,
+           icon: 'info',
+           text: 'Se guardo correctamente',
+           title: 'Articulo'
+        });
+        window.setTimeout(function(){
+          location.reload();
+      } ,1800);
+      });
+    }
   }
 
   getArticuloAModificar(articuloId){
@@ -128,7 +176,7 @@ export class AbmArticuloComponent {
          text: 'Se borro correctamente la imagen',
          title: 'Imagen articulo'
        });
-      
+
     });
 
     window.location.reload();
@@ -138,7 +186,8 @@ export class AbmArticuloComponent {
     //Cantidad de img subidas
     let ins = event.target.files.length;
     this.fd = new FormData();
-    
+    this.agregoImg = true;
+
     if(ins>5){
       Swal.fire({
         allowOutsideClick: true,

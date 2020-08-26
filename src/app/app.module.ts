@@ -15,7 +15,7 @@ import { CardComponent } from './components/public/card/card.component';
 import { ArticuloComponent } from './components/public/articulo/articulo.component';
 import { CategoriaComponent } from './components/private/categoria/categoria.component';
 import { FormsModule } from '@angular/forms';
-import { AbmArticuloComponent } from './components/private/articulo/abm-articulo.component';
+import { AbmArticuloComponent } from './components/private/articulo/nuevoArticulo/abm-articulo.component';
 import { CheckoutComponent } from './components/public/checkout/checkout.component';
 import { CompraComponent } from './components/public/compra/compra.component';
 import { MisComprasComponent } from './components/private/compras/mis-compras/mis-compras.component';
@@ -25,6 +25,7 @@ import localUY from '@angular/common/locales/es-UY';
 import { DetalleCompraComponent } from './components/private/compras/detalle-compra/detalle-compra.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ListadoArticulosComponent } from './components/private/articulo/listadoArticulos/listado-articulos.component';
 
 registerLocaleData(localUY);
 
@@ -46,7 +47,8 @@ registerLocaleData(localUY);
     CompraComponent,
     MisComprasComponent,
     BuscarComponent,
-    DetalleCompraComponent
+    DetalleCompraComponent,
+    ListadoArticulosComponent
   ],
   imports: [
     BrowserModule,

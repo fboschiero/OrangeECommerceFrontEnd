@@ -69,7 +69,7 @@ export class LoginService {
 
     const body = JSON.stringify({ email, password });
 
-    return this.http.post(`${ environment.API_URL }/signIn`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/signIn/`, body, httpOptions)
     .pipe(map(user => this.procesarUsuario(user, usuario)));
 
   }
@@ -107,7 +107,7 @@ export class LoginService {
 
     const body = JSON.stringify({ nombre, email, password, rol });
 
-    return this.http.post(`${ environment.API_URL }/signUp`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/signUp/`, body, httpOptions)
     .pipe(map(user => {
 
       console.log('Nuevo usuario response: ' + JSON.stringify(user));

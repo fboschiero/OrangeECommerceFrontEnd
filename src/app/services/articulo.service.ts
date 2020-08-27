@@ -62,7 +62,7 @@ export class ArticuloService {
   }
 
   guardarArticulo(body){
-    return this.http.post(this.API_URL + '/insertArticulo', body);
+    return this.http.post(this.API_URL + '/insertArticulo/', body);
   }
 
   getImagen(param: string){

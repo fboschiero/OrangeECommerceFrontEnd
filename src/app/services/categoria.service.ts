@@ -15,17 +15,17 @@ export class CategoriaService {
 
   saveCategoria(body){
 
-    return this.http.post(this.API_URL + '/insertCategoria', body);
+    return this.http.post(this.API_URL + '/insertCategoria/', body);
   }
 
   modificarCategoria(body){
 
-    return this.http.post(this.API_URL + '/modificarCategoria', body);
+    return this.http.post(this.API_URL + '/modificarCategoria/', body);
   }
 
   getCategorias(){
 
-    return this.http.get(this.API_URL + '/getCategorias')
+    return this.http.get(this.API_URL + '/getCategorias/')
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

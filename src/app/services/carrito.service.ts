@@ -55,7 +55,7 @@ export class CarritoService {
     
     let body = JSON.stringify(carrito);
     
-    return this.http.post(`${ environment.API_URL }/agregarAlCarrito`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/agregarAlCarrito/`, body, httpOptions)
       .pipe(map(orden => {
 
         console.log(orden);
@@ -82,7 +82,7 @@ export class CarritoService {
 
     let body = JSON.stringify(item);
 
-    return this.http.post(`${ environment.API_URL }/eliminarArticulo`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/eliminarArticulo/`, body, httpOptions)
       .pipe(map(borrado => {
 
       if (borrado) {
@@ -103,7 +103,7 @@ export class CarritoService {
 
     let body = JSON.stringify(orden);
     
-    return this.http.post(`${ environment.API_URL }/confirmarCompra`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/confirmarCompra/`, body, httpOptions)
       .pipe(map(resp => {
 
       if (resp) {

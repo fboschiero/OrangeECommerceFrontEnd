@@ -110,9 +110,9 @@
         <div class="product-grid2 p-2" >
 
             <div class="product-image2 details">
-                <img class="pic-1" width="40px;" [src]="PATH_IMAGENES + articulo.imagenes[0].url " />
-                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" [src]="PATH_IMAGENES + articulo.imagenes[1].url " />
-                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" [src]="PATH_IMAGENES + articulo.imagenes[0].url " />
+                <img class="pic-1" width="40px;" [src]="API_URL_IMAGE + articulo.imagenes[0].url " />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length > 1" [src]="API_URL_IMAGE + articulo.imagenes[1].url " />
+                <img class="pic-2" width="40px;" *ngIf="articulo.imagenes.length == 1" [src]="API_URL_IMAGE + articulo.imagenes[0].url " />
         
                 <ul class="social">
                     <li><a href="#" data-tip="Ver" [routerLink]="['/articulo', articulo.id]"><i class="fa fa-eye"></i></a></li>

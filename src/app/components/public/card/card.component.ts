@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   @Input() articulo: Producto;
   @Input() chiquito: boolean;
 
-  PATH_IMAGENES = environment.PATH_IMAGENES;
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor() {
     this.chiquito = false;

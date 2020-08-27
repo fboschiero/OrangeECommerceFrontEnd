@@ -15,7 +15,7 @@ export class CarritoComponent implements OnInit {
 
   carrito: OrdenCompra;
 
-  PATH_IMAGENES = environment.PATH_IMAGENES;
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor(private carritoService: CarritoService) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));

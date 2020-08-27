@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Orden } from '../../../models/Orden';
+import { Orden } from '../../../models/orden';
 
 @Component({
   selector: 'app-compra',

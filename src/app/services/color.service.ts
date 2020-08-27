@@ -14,7 +14,7 @@ export class ColorService {
   constructor(private http: HttpClient) { }
 
   getColores(){
-    return this.http.get(`${this.API_URL}/getColores`)
+    return this.http.get(`${this.API_URL}/getColores/`)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

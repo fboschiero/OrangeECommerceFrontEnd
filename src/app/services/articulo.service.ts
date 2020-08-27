@@ -17,7 +17,7 @@ export class ArticuloService {
 
   getArticulos(desde: number, cantidad: number){
     // return this.http.get(`${this.API_URL}/getArticulos?cantidad=` + cantidad + `;desde=` + desde)
-    return this.http.get(`${this.API_URL}/getArticles`)
+    return this.http.get(`${this.API_URL}/getArticles/`)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

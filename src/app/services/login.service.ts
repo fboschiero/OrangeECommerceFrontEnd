@@ -79,9 +79,10 @@ export class LoginService {
     console.log(user);
     
     if (user) {
-
+      console.log(user);
       usuario.nombre = user['usuario'][0]['nombre'];
       localStorage.setItem('usuario', JSON.stringify(usuario));
+      localStorage.setItem('tipo', user['usuario'][0]['rol']);
 
       this.usuarioLogueado = true;
 
@@ -102,9 +103,9 @@ export class LoginService {
     const nombre = usuario.nombre;
     const email = usuario.email;
     const password = usuario.password;
-    const role = usuario.rol;
+    const rol = usuario.rol;
 
-    const body = JSON.stringify({ nombre, email, password, role });
+    const body = JSON.stringify({ nombre, email, password, rol });
 
     return this.http.post(`${ environment.API_URL }/signUp`, body, httpOptions)
     .pipe(map(user => {
@@ -132,6 +133,7 @@ export class LoginService {
   logout(){
     localStorage.removeItem('usuario');
     localStorage.removeItem('expira');
+    localStorage.removeItem('tipo');
     this.usuarioLogueado = false;
   }
 }

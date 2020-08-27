@@ -49,6 +49,12 @@
             <li class="nav-item" *ngIf="estaLogueado();" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/mis-compras']">Mis compras</a>
             </li>
+            <li class="nav-item" *ngIf="estaLogueadoAdmin();" style="text-align: end">
+                <a class="nav-link" [routerLink]="['/nuevo-articulo']">Nuevo articulo</a>
+            </li>
+            <li class="nav-item" *ngIf="estaLogueadoAdmin();" style="text-align: end">
+                <a class="nav-link" [routerLink]="['/listado-articulos']">Listado articulos</a>
+            </li>
             <li class="nav-item" *ngIf="estaLogueado();" style="text-align: end">
                 <a class="nav-link" [routerLink]="['/miCuenta']">Mi cuenta</a>
             </li>

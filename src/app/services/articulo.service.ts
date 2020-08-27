@@ -39,9 +39,9 @@ export class ArticuloService {
       );
   }
 
-  getArticulosPorFiltros(categoriasSeleccionadas: Number[], tallesSeleccionados: String[], coloresSeleccionados: String[],filtroPrecio: number, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number){
+  getArticulosPorFiltros(categoriasSeleccionadas: Number[], tallesSeleccionados: String[], coloresSeleccionados: String[],filtroPrecio: number, ofertas: boolean, destacados: boolean, cantidad: number, desde: number, ordenarPor: number, activo: boolean){
     console.log(categoriasSeleccionadas);
-    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + categoriasSeleccionadas + `/` + tallesSeleccionados + `/` + coloresSeleccionados + `/` + filtroPrecio + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor)
+    return this.http.get(`${this.API_URL}/getArticulosPorFiltros/` + categoriasSeleccionadas + `/` + tallesSeleccionados + `/` + coloresSeleccionados + `/` + filtroPrecio + `/` + ofertas + `/` + destacados + `/` + cantidad + `/` + desde + `/` + ordenarPor + `/` + activo)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

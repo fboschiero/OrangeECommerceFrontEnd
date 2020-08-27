@@ -39,8 +39,26 @@ export class NavbarComponent  {
     if (this.loginServices.estaAutenticado()) {
 
       const datosUsuario: Usuario = JSON.parse(localStorage.getItem('usuario'));
-      this.nombreUsuario = datosUsuario.nombre;
-      return true;
+      const rol = localStorage.getItem('tipo');
+      
+      if(rol === 'USUARIO'){
+        this.nombreUsuario = datosUsuario.nombre;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  estaLogueadoAdmin(){
+    if (this.loginServices.estaAutenticado()) {
+
+      const datosUsuario: Usuario = JSON.parse(localStorage.getItem('usuario'));
+      const rol = localStorage.getItem('tipo');
+      
+      if(rol === 'ADMIN'){
+        this.nombreUsuario = datosUsuario.nombre;
+        return true;
+      }
     }
     return false;
   }
@@ -73,8 +91,8 @@ export class NavbarComponent  {
         });*/
         
         window.location.reload();
-      } 
-    });    
+      }
+    });
    
   }
 

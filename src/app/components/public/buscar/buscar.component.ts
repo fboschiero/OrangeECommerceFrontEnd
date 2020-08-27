@@ -26,6 +26,7 @@ export class BuscarComponent implements OnInit {
   @Input() ofertas: boolean;
   @Input() destacados: boolean;
   @Input() ordenarPor: number;
+  @Input() activo: boolean;
 
   articulos: Producto[] = [];
   categorias: Categoria[] = [];
@@ -152,7 +153,7 @@ export class BuscarComponent implements OnInit {
       }
     }
     
-    this.articuloService.getArticulosPorFiltros(categoriasSeleccionadas, tallesSeleccionados, coloresSeleccionados, this.filtroPrecioHasta, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor).subscribe( resp => {
+    this.articuloService.getArticulosPorFiltros(categoriasSeleccionadas, tallesSeleccionados, coloresSeleccionados, this.filtroPrecioHasta, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor, this.activo).subscribe( resp => {
       
       if(resp.length == 0){
         this.fin = true;

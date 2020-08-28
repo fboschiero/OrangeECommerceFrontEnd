@@ -26,6 +26,7 @@ import { DetalleCompraComponent } from './components/private/compras/detalle-com
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ListadoArticulosComponent } from './components/private/articulo/listadoArticulos/listado-articulos.component';
+import { YesNoPipe } from './pipe/yes-no.pipe';
 
 registerLocaleData(localUY);
 
@@ -48,7 +49,8 @@ registerLocaleData(localUY);
     MisComprasComponent,
     BuscarComponent,
     DetalleCompraComponent,
-    ListadoArticulosComponent
+    ListadoArticulosComponent,
+    YesNoPipe
   ],
   imports: [
     BrowserModule,

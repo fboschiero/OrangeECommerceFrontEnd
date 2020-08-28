@@ -153,7 +153,7 @@ export class BuscarComponent implements OnInit {
       }
     }
     
-    this.articuloService.getArticulosPorFiltros(categoriasSeleccionadas, tallesSeleccionados, coloresSeleccionados, this.filtroPrecioHasta, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor, this.activo).subscribe( resp => {
+    this.articuloService.getArticulosPorFiltros(categoriasSeleccionadas, tallesSeleccionados, coloresSeleccionados, this.filtroPrecioHasta, this.ofertas, this.destacados, this.DESDE, this.HASTA, this.ordenarPor, true).subscribe( resp => {
       
       if(resp.length == 0){
         this.fin = true;

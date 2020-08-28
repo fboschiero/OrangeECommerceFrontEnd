@@ -39,7 +39,7 @@ export class BuscarComponent implements OnInit {
   fin: boolean; 
   entroPor: string;
 
-  PATH_IMAGENES = environment.PATH_IMAGENES;
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor(private articuloService: ArticuloService,
               private categoriaService: CategoriaService,

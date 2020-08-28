@@ -14,7 +14,7 @@ export class TalleService {
   constructor(private http: HttpClient) { }
 
   getTalles(){
-    return this.http.get(`${this.API_URL}/getTalles`)
+    return this.http.get(`${this.API_URL}/getTalles/`)
       .pipe(
         map(resp => this.crearArreglo(resp))
       );

@@ -11,6 +11,7 @@ import { CodigueraTalle } from '../../../../modelsBD/CodigueraTalle';
 import { CodigueraColor } from '../../../../modelsBD/CodigueraColor';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-listado-articulos',
@@ -69,8 +70,6 @@ export class ListadoArticulosComponent implements OnInit {
 
   fin: boolean; 
   entroPor: string;
-
-  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor(private articuloService: ArticuloService,
               private categoriaService: CategoriaService,

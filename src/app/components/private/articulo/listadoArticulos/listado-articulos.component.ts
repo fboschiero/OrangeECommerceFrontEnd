@@ -227,11 +227,15 @@ export class ListadoArticulosComponent implements OnInit {
 
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
+    this.fd.append('talle', JSON.stringify(this.filtroTalle));
+    this.fd.append('color', JSON.stringify(this.filtroColor));
 
     console.log(this.fd.getAll('file'));
 
     this.articuloService.modificarArticulo(this.fd).subscribe(() => {
 
+      this.myInputVariable.nativeElement.value = "";
+      
       Swal.fire({
          allowOutsideClick: true,
          icon: 'info',

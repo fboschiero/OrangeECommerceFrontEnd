@@ -70,7 +70,7 @@ export class ArticuloService {
   }
 
   modificarArticulo(body){
-    return this.http.post(this.API_URL + '/updateArticulo', body);
+    return this.http.post(this.API_URL + '/updateArticulo/', body);
   }
 
   borrarImagen(id: number, url: string){
@@ -99,6 +99,7 @@ export class ArticuloService {
             articulo.id = articulosObj[key][i].id;
             articulo.nombre = articulosObj[key][i].nombre;
             articulo.precioVenta = articulosObj[key][i].precio_venta;
+            articulo.enOferta = articulosObj[key][i].en_oferta;
             articulo.peso = articulosObj[key][i].peso;
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;

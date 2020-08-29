@@ -15,8 +15,7 @@ import { environment } from '../../../../environments/environment.prod';
 export class ArticuloComponent implements OnInit {
 
   API_URL_IMAGE = environment.API_URL_IMAGE;
-  PATH_IMAGENES = environment.PATH_IMAGENES;
-
+  
   articulo: Producto;
   articulosRelacionados: Producto[];
 

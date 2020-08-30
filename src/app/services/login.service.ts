@@ -81,7 +81,7 @@ export class LoginService {
     if (user) {
       console.log(user);
       usuario.nombre = user['usuario'][0]['nombre'];
-      localStorage.setItem('usuario', JSON.stringify(usuario));
+      localStorage.setItem('usuario', JSON.stringify('Email: ' + usuario.email + ' - Nombre: ' + usuario.nombre + ' - Apellido: ' + usuario.apellido));
       localStorage.setItem('tipo', user['usuario'][0]['rol']);
 
       this.usuarioLogueado = true;

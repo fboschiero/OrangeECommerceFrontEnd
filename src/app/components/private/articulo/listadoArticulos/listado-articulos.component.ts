@@ -203,8 +203,6 @@ export class ListadoArticulosComponent implements OnInit {
 
   getArticuloAModificar(articuloId){
 
-    //console.log('Modificar articulo id ' + articuloId);
-
     this.articuloService.getArticuloById(articuloId).subscribe( resp => {
 
       this.articuloId = resp[0].id;
@@ -217,8 +215,8 @@ export class ListadoArticulosComponent implements OnInit {
       this.descuentoArt = resp[0].descuento;
       this.pesoArt = resp[0].peso;
       this.categoriaArt = resp[0].categoria;
-      this.filtroTalle = resp[0].stocks[0].talle;
-      this.filtroColor = resp[0].stocks[0].color;
+      this.talleArt = resp[0].stocks[0].talle;
+      this.colorArt = resp[0].stocks[0].color;
       this.cantidadArt = resp[0].stocks[0].cantidad;
       this.imagenes = resp[0].imagenes;
 

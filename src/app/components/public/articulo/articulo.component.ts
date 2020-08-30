@@ -4,7 +4,7 @@ import { ArticuloService } from 'src/app/services/articulo.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Producto } from '../../../modelsBD/Producto';
 import Swal from 'sweetalert2';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-articulos',

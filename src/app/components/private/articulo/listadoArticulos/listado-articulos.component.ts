@@ -319,4 +319,7 @@ export class ListadoArticulosComponent implements OnInit {
     this.ordenarPor = id;
   }
 
+  next() {
+    console.log('siguienteeee');
+  }
 }

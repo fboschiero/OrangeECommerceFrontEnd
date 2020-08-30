@@ -12,6 +12,7 @@ import { CodigueraColor } from '../../../../modelsBD/CodigueraColor';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-listado-articulos',
@@ -50,6 +51,7 @@ export class ListadoArticulosComponent implements OnInit {
   agregoImg:boolean = false;
 
   fd;
+  p: number = 1;
   visible: boolean = false;
 
   @Input() filtroPrecioHasta: number;
@@ -224,6 +226,14 @@ export class ListadoArticulosComponent implements OnInit {
     });
   }
 
+  getImagenArticulo(articuloId){
+
+    this.articuloService.getArticuloById(articuloId).subscribe( resp => {
+
+      this.imagenes = resp[0].imagenes;
+    });
+  }
+
   modificarArticulo(form: NgForm){
 
     this.fd.append('body', JSON.stringify(form));
@@ -243,9 +253,6 @@ export class ListadoArticulosComponent implements OnInit {
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
-
-       this.fd.delete('file');
-       this.fd.delete('body');
     });
   }
 

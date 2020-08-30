@@ -138,11 +138,11 @@
                 <td class="align-items-center">{{articulo.descripcion}}</td>
                 <td class="align-items-center">{{articulo.marca}}</td>
                 <!--td class="align-items-center">{{articulo.categoria.nombre}}</td-->
-                <!--td><button type="button" (click)=verImagenArticulo(articulo.imagenes[0].url) class="btn btn-dark btn-sm ">Edit</button></td-->
-                <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm ">Edit</button></td>
+                <td><button type="button" (click)="getImagenArticulo(articulo.id)" class="btn btn-dark btn-sm ">Ver imagen</button></td>
+                <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm ">Editar</button></td>
             </tr>
         </tbody>
-        <!--pagination-controls *ngIf="listaCompras.length > 5" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls-->
+        <pagination-controls *ngIf="articulos.length > 5" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>
     </table>
 
 
@@ -291,7 +291,7 @@
                         </div>
                         <div class="col-lg-12 " style="display: flex;justify-content: center;align-items: center; ">
                             <div style="width: 120px; ">
-                                <button type="button " (click)=modificarArticulo(form.value) class="btn btn-dark btn-sm ">Modificar</button>
+                                <button type="button " (click)=modificarArticulo(form.value) class="btn btn-dark btn-sm ">Guardar</button>
                             </div>
                         </div>
                     </form>

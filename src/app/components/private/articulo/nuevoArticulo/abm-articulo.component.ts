@@ -95,7 +95,7 @@ export class AbmArticuloComponent {
       Swal.fire({
         allowOutsideClick: true,
         icon: 'info',
-        text: 'Categoria, Talle, Color y Imagen son datos requeridos',
+        text: 'Debe ingresar una imagen',
         title: 'Articulo'
       });
 
@@ -121,65 +121,6 @@ export class AbmArticuloComponent {
       } ,1800);
       });
     }
-  }
-
-  getArticuloAModificar(articuloId){
-
-    console.log('Modificar articulo id ' + articuloId);
-
-    this.articuloServices.getArticuloById(articuloId).subscribe( resp => {
-
-      this.articuloId = resp[0].id;
-      this.nombreArt = resp[0].nombre;
-      this.descripcionArt = resp[0].descripcion;
-      this.precioArt = resp[0].precioVenta;
-      this.activoArt = resp[0].activo;
-      this.destacadoArt = resp[0].destacado;
-      this.enOfertaArt = resp[0].enOferta;
-      this.descuentoArt = resp[0].descuento;
-      this.pesoArt = resp[0].peso;
-      this.categoriaArt = resp[0].categoria;
-      this.imagenes = resp[0].imagenes;
-
-      this.visible = true;
-    });
-  }
-
-  modificarArticulo(form: NgForm){
-
-    this.fd.append('body', JSON.stringify(form));
-    this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
-
-    console.log(this.fd.getAll('file'));
-
-    this.articuloServices.modificarArticulo(this.fd).subscribe(() => {
-
-      Swal.fire({
-         allowOutsideClick: true,
-         icon: 'info',
-         text: 'Se guardo correctamente',
-         title: 'Articulo'
-       });
-
-       this.fd.delete('file');
-       this.fd.delete('body');
-    });
-  }
-
-  borrarImagen(id, url){
-
-    this.articuloServices.borrarImagen(id, url).subscribe(() => {
-
-      Swal.fire({
-         allowOutsideClick: true,
-         icon: 'info',
-         text: 'Se borro correctamente la imagen',
-         title: 'Imagen articulo'
-       });
-
-    });
-
-    window.location.reload();
   }
 
   createFormData(event) {

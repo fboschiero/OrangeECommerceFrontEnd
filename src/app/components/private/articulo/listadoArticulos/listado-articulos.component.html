@@ -253,9 +253,6 @@
 
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Talle *</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" id="talle" placeholder="Talle" name="talle" [(ngModel)]="talleArt" #talle="ngModel">
-                            </div>
                             <select id="talle" placeholder="talle" name="talle" #talle="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroTalle($event.target.value)" [(ngModel)]="filtroTalle">
                                 <option value="undefined" selected >Elige el talle</option>
                                 <option required [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>

@@ -41,10 +41,9 @@ export class NavbarComponent  {
       const datosUsuario: Usuario = JSON.parse(localStorage.getItem('usuario'));
       const rol = localStorage.getItem('tipo');
       
-      if(rol === 'USUARIO'){
-        this.nombreUsuario = datosUsuario.nombre;
-        return true;
-      }
+      this.nombreUsuario = datosUsuario.nombre;
+      return true;
+      
     }
     return false;
   }

@@ -79,9 +79,13 @@ export class LoginService {
     console.log(user);
     
     if (user) {
-      console.log(user);
-      usuario.nombre = user['usuario'][0]['nombre'];
-      localStorage.setItem('usuario', JSON.stringify('Email: ' + usuario.email + ' - Nombre: ' + usuario.nombre + ' - Apellido: ' + usuario.apellido));
+
+      const userLocalStorage: Usuario = new Usuario();
+      userLocalStorage.email = user['usuario'][0]['email'];
+      userLocalStorage.nombre = user['usuario'][0]['nombre'];
+      userLocalStorage.rol = user['usuario'][0]['rol'];
+
+      localStorage.setItem('usuario', JSON.stringify(userLocalStorage));
       localStorage.setItem('tipo', user['usuario'][0]['rol']);
 
       this.usuarioLogueado = true;
@@ -103,7 +107,8 @@ export class LoginService {
     const nombre = usuario.nombre;
     const email = usuario.email;
     const password = usuario.password;
-    const rol = usuario.rol;
+    const rol = 'USUARIO';
+    usuario.rol = rol;
 
     const body = JSON.stringify({ nombre, email, password, rol });
 
@@ -115,7 +120,13 @@ export class LoginService {
       if (user) {
 
         this.usuarioLogueado = true;
-        localStorage.setItem('usuario', JSON.stringify(usuario));
+        
+        const userLocalStorage: Usuario = new Usuario();
+        userLocalStorage.email = email;
+        userLocalStorage.nombre = nombre;
+        userLocalStorage.rol = rol;
+  
+        localStorage.setItem('usuario', JSON.stringify(userLocalStorage));
 
         const hoy = new Date();
         hoy.setSeconds( this.TIEMPO_EXPIRA );

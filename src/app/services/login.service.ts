@@ -107,7 +107,8 @@ export class LoginService {
     const nombre = usuario.nombre;
     const email = usuario.email;
     const password = usuario.password;
-    const rol = usuario.rol;
+    const rol = 'USUARIO';
+    usuario.rol = rol;
 
     const body = JSON.stringify({ nombre, email, password, rol });
 
@@ -119,7 +120,13 @@ export class LoginService {
       if (user) {
 
         this.usuarioLogueado = true;
-        localStorage.setItem('usuario', JSON.stringify(usuario));
+        
+        const userLocalStorage: Usuario = new Usuario();
+        userLocalStorage.email = email;
+        userLocalStorage.nombre = nombre;
+        userLocalStorage.rol = rol;
+  
+        localStorage.setItem('usuario', JSON.stringify(userLocalStorage));
 
         const hoy = new Date();
         hoy.setSeconds( this.TIEMPO_EXPIRA );

@@ -218,7 +218,7 @@ export class ListadoArticulosComponent implements OnInit {
       this.pesoArt = resp[0].peso;
 
       // No me carga el combo categoria... 
-      this.filtroCategoria = resp[0].categoria[0].nombre;
+      this.filtroCategoria = resp[0].categoria[0].id;
 
       this.filtroTalle = resp[0].stocks[0].talle;
       this.filtroColor = resp[0].stocks[0].color;
@@ -239,6 +239,8 @@ export class ListadoArticulosComponent implements OnInit {
 
   modificarArticulo(form: NgForm){
 
+console.log('body' + JSON.stringify(form));
+
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
     this.fd.append('talle', JSON.stringify(this.filtroTalle));
@@ -256,6 +258,10 @@ export class ListadoArticulosComponent implements OnInit {
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
+
+       window.setTimeout(function(){
+        location.reload();
+    } ,1800);
     });
   }
 
@@ -281,7 +287,7 @@ export class ListadoArticulosComponent implements OnInit {
     this.fd = new FormData();
     this.agregoImg = true;
 
-    if(ins>5){
+    if(ins>5 || ins === null || ins === undefined){
       Swal.fire({
         allowOutsideClick: true,
         icon: 'info',
@@ -289,9 +295,15 @@ export class ListadoArticulosComponent implements OnInit {
         title: 'Imagen articulo'
       });
     }else{
-      for (var x = 0; x < ins; x++) {
-        //Voy agregandolo al FormData para enviarlo al backend
-        this.fd.append("file", <File>event.target.files[x]);
+      console.log('IMG ' + <File>event.target.files[x]);
+
+      if(<File>event.target.files[x]===null || <File>event.target.files[x] === undefined){
+        this.fd.append("file", '');
+      }else{
+        for (var x = 0; x < ins; x++) {
+          //Voy agregandolo al FormData para enviarlo al backend
+          this.fd.append("file", <File>event.target.files[x]);
+        }
       }
     }
   }

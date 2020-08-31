@@ -132,7 +132,7 @@ export class BuscarComponent implements OnInit {
         if(talle.seleccionado == true){
           tallesSeleccionados.push("'"+talle.valor+"'");
         }
-        if(tallesSeleccionados != undefined && tallesSeleccionados.length == 0){
+        if(tallesSeleccionados.length == 0){
           tallesSeleccionados = undefined;
         }
       }

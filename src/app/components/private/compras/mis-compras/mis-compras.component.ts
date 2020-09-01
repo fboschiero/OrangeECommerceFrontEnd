@@ -19,7 +19,7 @@ export class MisComprasComponent implements OnInit {
   constructor(private comprasService: ComprasService,
               private loginService: LoginService) {
 
-    let usr = localStorage.getItem('usuario');
+    const usr = localStorage.getItem('usuario');
     this.usuario = JSON.parse(usr);
     
     // agrego fecha desde y hasta para luego filtrar en un futuro

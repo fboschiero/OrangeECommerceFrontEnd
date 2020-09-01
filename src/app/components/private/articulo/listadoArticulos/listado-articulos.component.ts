@@ -149,7 +149,7 @@ export class ListadoArticulosComponent implements OnInit {
           categoriasSeleccionadas.push(cat.id);
         }
       }
-      if(categoriasSeleccionadas.length == 0){
+      if(categoriasSeleccionadas != undefined && categoriasSeleccionadas.length == 0){
         categoriasSeleccionadas = undefined;
       }
     }    
@@ -164,7 +164,7 @@ export class ListadoArticulosComponent implements OnInit {
         if(talle.seleccionado == true){
           tallesSeleccionados.push("'"+talle.valor+"'");
         }
-        if(tallesSeleccionados.length == 0){
+        if(tallesSeleccionados != undefined && tallesSeleccionados.length == 0){
           tallesSeleccionados = undefined;
         }
       }
@@ -180,7 +180,7 @@ export class ListadoArticulosComponent implements OnInit {
           coloresSeleccionados.push("'"+color.valor+"'");
         }
       }
-      if(coloresSeleccionados.length == 0){
+      if(coloresSeleccionados != undefined && coloresSeleccionados.length == 0){
         coloresSeleccionados = undefined;
       }
     }

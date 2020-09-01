@@ -117,7 +117,7 @@ export class BuscarComponent implements OnInit {
           categoriasSeleccionadas.push(cat.id);
         }
       }
-      if(categoriasSeleccionadas.length == 0){
+      if(categoriasSeleccionadas != undefined && categoriasSeleccionadas.length == 0){
         categoriasSeleccionadas = undefined;
       }
     }    
@@ -148,7 +148,7 @@ export class BuscarComponent implements OnInit {
           coloresSeleccionados.push("'"+color.valor+"'");
         }
       }
-      if(coloresSeleccionados.length == 0){
+      if(coloresSeleccionados != undefined && coloresSeleccionados.length == 0){
         coloresSeleccionados = undefined;
       }
     }

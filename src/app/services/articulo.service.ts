@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Producto } from '../modelsBD/Producto';
 import { Imagen } from '../modelsBD/Imagen';
 import { Stock } from '../modelsBD/Stock';
+import { Categoria } from '../modelsBD/Categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -104,8 +105,8 @@ export class ArticuloService {
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;
             articulo.destacado = articulosObj[key][i].destacado;
-            articulo.categoria = articulosObj[key][i].categoria;
-
+            articulo.categoria = articulosObj[key][i].categoria[0];
+            
             // Imagenes
             articulo.imagenes = []; 
             for (let j = 0; j < articulosObj[key][i].imagenes.length; j++) {

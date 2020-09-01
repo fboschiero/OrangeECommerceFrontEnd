@@ -2,15 +2,15 @@
 
 <div class="container">
 
-    <h3 class="m-3">Todos los Articulos</h3>
+    <!-- h3 class="m-3 responsive-text">Todos los Articulos</h3 -->
 
-    <div class="container pt-5">
+    <div class="container pt-md-5">
 
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading ml-3" id="buscar">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray; font-size: x-large;">Filtros de búsqueda<img src="../../../../assets/img/filtro.png" width="24px" alt="filtros de búsqueda" class="ml-2"></a>
+                        <a data-toggle="collapse" href="#collapse1" style="text-decoration: none; color: lightslategray; font-size-adjust: inherit;">Filtros de búsqueda<img src="../../../../assets/img/filtro.png" alt="filtros de búsqueda" class="ml-2"></a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
@@ -20,14 +20,14 @@
                         <div class="col-6">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheckOfertas" [(ngModel)]="ofertas">
-                                <label class="custom-control-label" for="customCheckOfertas">Ofertas</label>
+                                <label class="custom-control-label responsive-text" for="customCheckOfertas">Ofertas</label>
                             </div>
                         </div>
                         <!-- Checkbox de Destacados -->
                         <div class="col-6">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheckDestacados" [(ngModel)]="destacados">
-                                <label class="custom-control-label" for="customCheckDestacados">Destacados</label>
+                                <label class="custom-control-label responsive-text" for="customCheckDestacados">Destacados</label>
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@
                         <div class="col-6">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheckActivo" [(ngModel)]="activoCheck">
-                                <label class="custom-control-label" for="customCheckActivo">Activo</label>
+                                <label class="custom-control-label responsive-text" for="customCheckActivo">Activo</label>
                             </div>
                         </div>
                     </div>
@@ -43,9 +43,9 @@
                     <div class="row">
                         <!-- Combo de los Talles -->
                         <div class="col-12 col-md-6">
-                            <label style="font-size: x-large;">Talle</label>
+                            <label class="responsive-text">Talle</label>
                             <ul>
-                                <span *ngFor="let talle of talles;"> 
+                                <span *ngFor="let talle of talles;" class="responsive-text"> 
                                     <input type="checkbox" [(ngModel)]="talle.seleccionado" class="ml-2">
                                     {{talle.valor}}
                                 </span>
@@ -53,9 +53,9 @@
                         </div>
                         <!-- Combo de los Colores -->
                         <div class="col-12 col-md-6">
-                            <label style="font-size: x-large;">Color</label>
+                            <label class="responsive-text">Color</label>
                             <ul>
-                                <span *ngFor="let color of colores;"> 
+                                <span *ngFor="let color of colores;" class="responsive-text"> 
                                     <input type="checkbox" [(ngModel)]="color.seleccionado" class="ml-2" >
                                     {{color.valor}}
                                 </span>
@@ -66,10 +66,10 @@
                     <div class="row">
                         <!-- Combo de las Categorias -->
                         <div class="col-12">
-                            <label style="font-size: x-large;">Categorías</label>
+                            <label class=" responsive-text">Categorías</label>
                             <ul>
-                                <span *ngFor="let categoria of categorias;"> 
-                                    <input type="checkbox" [(ngModel)]="categoria.seleccionada" class="ml-2" >
+                                <span *ngFor="let categoria of categorias;" class="responsive-text"> 
+                                    <input  type="checkbox" [(ngModel)]="categoria.seleccionada" class="ml-2" >
                                     {{categoria.nombre}}
                                 </span>
                             </ul>
@@ -79,7 +79,7 @@
                     <div class="row">
                         <!-- Selector de Precio Hasta -->
                         <div class="col-6">
-                            <label class="pr-2" style="font-size: x-large;">Precio hasta</label>
+                            <label class="pr-2 responsive-text" >Precio hasta</label>
                             <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
                             <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
 
@@ -88,7 +88,7 @@
                         </div>
                         <!-- Combo de Ordenar por: -->
                         <div class="col-6">
-                            <label style="font-size: x-large;">Ordenar por:</label>
+                            <label class="responsive-text">Ordenar por:</label>
                             <select class="custom-select" (change)="selectOrden($event.target.value)" [(ngModel)]="ordenarPor">
                                 <option value="undefined" selected ></option>
                                 <option value="0" selected >Menor precio</option>
@@ -110,36 +110,39 @@
     <table class="table table-sm-responsive">
         <thead>
             <tr>
-                <th scope="col" class="">ID</th>
-                <th scope="col" class="align-right">Nombre</th>
-                <th scope="col" class="align-right">Precio</th>
-                <th scope="col" class="align-right">En oferta</th>
-                <th scope="col" class="align-right">Peso</th>
-                <th scope="col" class="align-right">Activo</th>
-                <th scope="col" class="align-right">Destacado</th>
-                <th scope="col" class="align-right">Descuento</th>
-                <th scope="col" class="align-right">Descripcion</th>
-                <th scope="col" class="align-right">Marca</th>
-                <th scope="col" class="align-right">Categoria</th>
-                <th scope="col"></th>
+                <th scope="col" class="d-md-table-cell responsive-text"></th>
+                <th scope="col" class="align-right d-none responsive-text">Nombre</th>
+                <th scope="col" class="align-right responsive-text">Precio</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Oferta</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Peso</th>
+                <th scope="col" class="align-right responsive-text">Activo</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Destacado</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Descuento</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Descripcion</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Marca</th>
+                <th scope="col" class="align-right d-none d-md-table-cell responsive-text">Categoria</th>
+                <!-- th scope="col"></th -->
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let articulo of articulos">
-                <td class="align-items-center">{{articulo.id}}</td>
-                <td class="align-items-center">{{articulo.nombre}}</td>
-                <td class="align-right">{{articulo.precioVenta | currency:'UYU'}}</td>
-                <td class="align-items-center">{{articulo.enOferta | yesNo}}</td>
-                <td class="align-items-center">{{articulo.peso}}</td>
-                <td class="align-items-center">{{articulo.activo | yesNo}}</td>
-                <td class="align-items-center">{{articulo.destacado | yesNo}}</td>
-                <td class="align-items-center">{{articulo.descuento}}</td>
-                <td class="align-items-center">{{articulo.descripcion}}</td>
-                <td class="align-items-center">{{articulo.marca}}</td>
+                <td class="align-items-centerd-md-table-cell responsive-text">
+                    <img class="pic-1" width="30px;" [src]="API_URL_IMAGE + articulo.imagenes[0].url " />
+                </td>
+                <td class="align-items-center d-none responsive-text">{{articulo.nombre}}</td>
+                <td class="align-right responsive-text">{{articulo.precioVenta | currency:'UYU'}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.enOferta | yesNo}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.peso}}</td>
+                <td class="align-items-center responsive-text">{{articulo.activo | yesNo}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.destacado | yesNo}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.descuento}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.descripcion}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.marca}}</td>
+                <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.categoria.nombre}}</td>
                 <!--td class="align-items-center">{{articulo.categoria.nombre}}</td-->
-                <td><button type="button" (click)="getImagenArticulo(articulo.id)" class="btn btn-dark btn-sm ">Ver imagen</button></td>
-                <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm ">Editar</button></td>
+                <!-- td><button type="button" (click)="getImagenArticulo(articulo.id)" class="btn btn-dark btn-sm responsive-text">Ver imagen</button></td -->
+                <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm responsive-text"><i class="fa fa-eye"></i></button></td>
             </tr>
         </tbody>
         <pagination-controls *ngIf="articulos.length > 5" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>

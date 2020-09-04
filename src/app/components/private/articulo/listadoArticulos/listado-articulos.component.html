@@ -297,9 +297,21 @@
         </div>
     </div>
 
-    <div *ngFor="let dato of imagenes " class="card col-md-6" style="width: 20rem; ">
-        <img [src]="API_URL_IMAGE + dato.url " width="100% ">
-        <button type="button " class="btn btn-dark btn-sm " (click)="borrarImagen(dato.id, dato.url) ">Borrar img</button>
+    <div class="row  d-flex justify-content-center">
+
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let dato of imagenes">
+
+            <div class="product-grid2 p-2">
+                <div class="product-image2 details">
+                    <img [src]="API_URL_IMAGE + dato.url " width="100% ">
+                </div>
+            </div>
+            <button type="button" class="btn btn-dark btn-sm col-md-12" (click)="borrarImagen(dato.id, dato.url) ">Borrar img</button>
+        </div>
+
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+
+        </div>
     </div>
 
 </div>

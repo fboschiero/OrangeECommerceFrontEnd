@@ -39,7 +39,7 @@ export class ListadoArticulosComponent implements OnInit {
   @Input() talleArt;
   @Input() cantidadArt;
   
-  @Input() filtroCategoria: number;
+  @Input() filtroCategoria;
   @Input() filtroTalle: string;
   @Input() filtroColor: string;
 
@@ -217,8 +217,8 @@ export class ListadoArticulosComponent implements OnInit {
       this.descuentoArt = resp[0].descuento;
       this.pesoArt = resp[0].peso;
 
-      // No me carga el combo categoria... 
-      this.filtroCategoria = resp[0].categoria[0].id;
+      this.listaCategorias.push(resp[0].categoria);
+      this.filtroCategoria = resp[0].categoria.id;
 
       this.filtroTalle = resp[0].stocks[0].talle;
       this.filtroColor = resp[0].stocks[0].color;
@@ -238,8 +238,6 @@ export class ListadoArticulosComponent implements OnInit {
   }
 
   modificarArticulo(form: NgForm){
-
-console.log('body' + JSON.stringify(form));
 
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
@@ -261,7 +259,7 @@ console.log('body' + JSON.stringify(form));
 
        window.setTimeout(function(){
         location.reload();
-    } ,1800);
+        } ,1800);
     });
   }
 

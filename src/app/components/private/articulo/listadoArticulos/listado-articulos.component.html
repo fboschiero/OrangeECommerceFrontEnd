@@ -79,7 +79,7 @@
                     <div class="row">
                         <!-- Selector de Precio Hasta -->
                         <div class="col-6">
-                            <label class="pr-2 responsive-text" >Precio hasta</label>
+                            <label class="pr-2 responsive-text">Precio hasta</label>
                             <input type="range" name="rangeInput" min="0" max="10000" step="100" [(ngModel)]="filtroPrecioHasta" onchange="updateTextInput(this.value);">
                             <input type="text" id="filtroPrecio" value="5000" style="width: 50px; border: none;">
 
@@ -140,8 +140,6 @@
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.descripcion}}</td>
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.marca}}</td>
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.categoria.nombre}}</td>
-                <!--td class="align-items-center">{{articulo.categoria.nombre}}</td-->
-                <!-- td><button type="button" (click)="getImagenArticulo(articulo.id)" class="btn btn-dark btn-sm responsive-text">Ver imagen</button></td -->
                 <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm responsive-text"><i class="fa fa-eye"></i></button></td>
             </tr>
         </tbody>
@@ -246,10 +244,9 @@
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Categoria *</label>
                             <select id="categoria" placeholder="categoria" name="categoria" #categoria="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                                <option value="undefined" selected >Elige una categoría</option>
                                 <option required [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
                             </select>
-                            <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger">
+                            <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger col-md-8">
                                 Dato requerido
                             </div>
                         </div>
@@ -260,7 +257,7 @@
                                 <option value="undefined" selected >Elige el talle</option>
                                 <option required [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
                             </select>
-                            <div *ngIf="talle.invalid && talle.touched" class="alert alert-danger">
+                            <div *ngIf="talle.invalid && talle.touched" class="alert alert-danger col-md-8">
                                 Dato requerido
                             </div>
                         </div>
@@ -271,7 +268,7 @@
                                 <option value="undefined" selected >Elige el color</option>
                                 <option required [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
                             </select>
-                            <div *ngIf="color.invalid && color.touched" class="alert alert-danger">
+                            <div *ngIf="color.invalid && color.touched" class="alert alert-danger col-md-8">
                                 Dato requerido
                             </div>
                         </div>
@@ -300,7 +297,7 @@
         </div>
     </div>
 
-    <div *ngFor="let dato of imagenes " class="card " style="width: 20rem; ">
+    <div *ngFor="let dato of imagenes " class="card col-md-6" style="width: 20rem; ">
         <img [src]="API_URL_IMAGE + dato.url " width="100% ">
         <button type="button " class="btn btn-dark btn-sm " (click)="borrarImagen(dato.id, dato.url) ">Borrar img</button>
     </div>

@@ -20,9 +20,9 @@
                         <label class="col-md-2 col-xl-2 col-form-label">Nombre</label>
                         <div class="col-md-9 col-xl-9">
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" [(ngModel)]="nombreArt" required #nombre="ngModel">
-                        </div>
-                        <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
-                            Dato requerido
+                            <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+                                Dato requerido
+                            </div>
                         </div>
                     </div>
 
@@ -47,30 +47,60 @@
                         </div>
                     </div>
 
-                    <div class="form-group custom-checkbox row">
-                        <label class="col-md-2 col-form-label">Activo</label>
-                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
-                            <input name="activo" [(ngModel)]="activoArt" #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
-                            <label class="custom-control-label" for="customCheck2">Activo</label>
+                    <div class="card-header">
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Categoria *</label>
+                            <select id="categoria" placeholder="categoria" name="categoria" #categoria="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                                <option value="undefined" selected >Elige una categoría</option>
+                                <option required [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
+                            </select>
+                            <label class="col-md-2 col-form-label"></label>
+                            <div class="col-md-8">
+                                <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger">
+                                    Dato requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Talle *</label>
+                            <select id="talle" placeholder="talle" name="talle" #talle="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroTalle($event.target.value)" [(ngModel)]="filtroTalle">
+                            <option value="undefined" selected >Elige el talle</option>
+                            <option required [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
+                        </select>
+                            <label class="col-md-2 col-form-label"></label>
+                            <div class="col-md-8">
+                                <div *ngIf="talle.invalid && talle.touched" class="alert alert-danger">
+                                    Dato requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Color *</label>
+                            <select id="color" placeholder="color" name="color" #color="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroColor($event.target.value)" [(ngModel)]="filtroColor">
+                            <option value="undefined" selected >Elige el color</option>
+                            <option required [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
+                        </select>
+                            <label class="col-md-2 col-form-label"></label>
+                            <div class="col-md-8">
+                                <div *ngIf="color.invalid && color.touched" class="alert alert-danger">
+                                    Dato requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Cantidad *</label>
+                            <div class="col-md-8">
+                                <input type="text" required class="form-control" id="cantidad" placeholder="Cantidad" name="cantidad" [(ngModel)]="cantidadArt" #cantidad="ngModel">
+                                <div *ngIf="cantidad.invalid && cantidad.touched" class="alert alert-danger">
+                                    Dato requerido
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="form-group custom-checkbox row">
-                        <label class="col-md-2 col-form-label">Destacado</label>
-                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
-                            <input name="destacado" [(ngModel)]="destacadoArt" #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
-                            <label class="custom-control-label" for="customCheck3">Destacado</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group custom-checkbox row">
-                        <label class="col-md-2 col-form-label">En Oferta</label>
-                        <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
-                            <input name="enOferta" [(ngModel)]="enOfertaArt" #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">En Oferta</label>
-                        </div>
-                    </div>
-
+                    <br>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Descuento</label>
                         <div class="controls col-md-9">
@@ -96,53 +126,36 @@
                             <input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" [(ngModel)]="pesoArt" #peso="ngModel">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Categoria *</label>
-                        <select id="categoria" placeholder="categoria" name="categoria" #categoria="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                            <option value="undefined" selected >Elige una categoría</option>
-                            <option required [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
-                        </select>
-                        <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger">
-                            Dato requerido
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Talle *</label>
-                        <select id="talle" placeholder="talle" name="talle" #talle="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroTalle($event.target.value)" [(ngModel)]="filtroTalle">
-                            <option value="undefined" selected >Elige el talle</option>
-                            <option required [value]="talle.valor" *ngFor="let talle of talles;">{{talle.valor}}</option>
-                        </select>
-                        <div *ngIf="talle.invalid && talle.touched" class="alert alert-danger">
-                            Dato requerido
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Color *</label>
-                        <select id="color" placeholder="color" name="color" #color="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroColor($event.target.value)" [(ngModel)]="filtroColor">
-                            <option value="undefined" selected >Elige el color</option>
-                            <option required [value]="color.valor" *ngFor="let color of colores;">{{color.valor}}</option>
-                        </select>
-                        <div *ngIf="color.invalid && color.touched" class="alert alert-danger">
-                            Dato requerido
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Cantidad *</label>
-                        <div class="col-md-9">
-                            <input type="text" required class="form-control" id="cantidad" placeholder="Cantidad" name="cantidad" [(ngModel)]="cantidadArt" #cantidad="ngModel">
-                            <div *ngIf="cantidad.invalid && cantidad.touched" class="alert alert-danger">
-                                Dato requerido
+                    <div class="card-header">
+                        <div class="form-group custom-checkbox row">
+                            <label class="col-md-2 col-form-label">Activo</label>
+                            <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
+                                <input name="activo" [(ngModel)]="activoArt" #activo="ngModel" type="checkbox" class="custom-control-input" id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">Activo</label>
                             </div>
                         </div>
 
+                        <div class="form-group custom-checkbox row">
+                            <label class="col-md-2 col-form-label">Destacado</label>
+                            <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
+                                <input name="destacado" [(ngModel)]="destacadoArt" #destacado="ngModel" type="checkbox" class="custom-control-input" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">Destacado</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group custom-checkbox row">
+                            <label class="col-md-2 col-form-label">En Oferta</label>
+                            <div class="col-md-9" style="margin-left: 25px; margin-top: 7px;">
+                                <input name="enOferta" [(ngModel)]="enOfertaArt" #enOferta="ngModel" type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">En Oferta</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Imagenes (Maximo 5) *</label>
-                        <div class="col-md-9" style="margin-top: 15px;">
+                        <label style="margin-top: 13px;" class="col-md-3 col-form-label">Imagenes (Maximo 5) *</label>
+                        <div class="col-md-8" style="margin-top: 15px;">
                             <input required accept="image/jpg, image/jpeg, image/png" (change)="createFormData($event)" multiple #file name="file" type="file" class="form-control-file" id="file">
                         </div>
                     </div>

@@ -109,17 +109,16 @@ export class ListadoArticulosComponent implements OnInit {
     }
 
     if(this.entroPor != undefined){
+      
       this.buscar(false);
+
     } else {
       // Entre por el buscar, abro los filtros
       //console.log(document.querySelector('#collapse1'));
       //(<HTMLElement>document.querySelector('#collapse1')).collapse('show')
-
-     
-    }   
+    }
     //console.log(document.querySelector('#collapse1'));
     this.fin = false;
-    
   }
 
   ngOnInit(): void {
@@ -198,9 +197,11 @@ export class ListadoArticulosComponent implements OnInit {
         }
       
       } else {
+        this.visible = false;
         this.articulos = resp;
       }
     });
+   
   }
 
   getArticuloAModificar(articuloId){
@@ -216,12 +217,14 @@ export class ListadoArticulosComponent implements OnInit {
       this.enOfertaArt = resp[0].enOferta;
       this.descuentoArt = resp[0].descuento;
       this.pesoArt = resp[0].peso;
+      this.marcaArt = resp[0].marca;
+      this.categoriaArt = resp[0].categoria.nombre;
 
-      this.listaCategorias.push(resp[0].categoria);
-      this.filtroCategoria = resp[0].categoria.id;
+      //this.listaCategorias.push(resp[0].categoria);
+      //this.filtroCategoria = resp[0].categoria.id;
 
-      this.filtroTalle = resp[0].stocks[0].talle;
-      this.filtroColor = resp[0].stocks[0].color;
+      this.talleArt = resp[0].stocks[0].talle;
+      this.colorArt = resp[0].stocks[0].color;
       this.cantidadArt = resp[0].stocks[0].cantidad;
       this.imagenes = resp[0].imagenes;
 
@@ -232,19 +235,45 @@ export class ListadoArticulosComponent implements OnInit {
   getImagenArticulo(articuloId){
 
     this.articuloService.getArticuloById(articuloId).subscribe( resp => {
-
       this.imagenes = resp[0].imagenes;
     });
   }
 
   modificarArticulo(form: NgForm){
 
+    var obj = {
+      file: this.fd
+    };
+    
+    if(JSON.stringify(obj.file) === undefined){
+      this.fd = new FormData();
+      this.fd.append('file', '');
+    }
+    if(this.filtroCategoria === undefined){
+      for(let i = 0; i<this.categorias.length; i++){
+        if(this.categorias[i].nombre===this.categoriaArt){
+          this.filtroCategoria = this.categorias[i].id;
+        }
+      }
+    }
+    if(this.filtroTalle === undefined){
+      for(let i = 0; i<this.talles.length; i++){
+        if(this.talles[i].valor===this.talleArt){
+          this.filtroTalle = this.talles[i].valor;
+        }
+      }
+    }
+    if(this.filtroColor === undefined){
+      for(let i = 0; i<this.colores.length; i++){
+        if(this.colores[i].valor===this.colorArt){
+          this.filtroColor = this.colores[i].valor;
+        }
+      }
+    }
     this.fd.append('body', JSON.stringify(form));
     this.fd.append('categoriaId', JSON.stringify(this.filtroCategoria));
     this.fd.append('talle', JSON.stringify(this.filtroTalle));
     this.fd.append('color', JSON.stringify(this.filtroColor));
-
-    console.log(this.fd.getAll('file'));
 
     this.articuloService.modificarArticulo(this.fd).subscribe(() => {
 
@@ -256,6 +285,8 @@ export class ListadoArticulosComponent implements OnInit {
          text: 'Se guardo correctamente',
          title: 'Articulo'
        });
+      
+      this.visible = false;
 
        window.setTimeout(function(){
         location.reload();
@@ -280,35 +311,35 @@ export class ListadoArticulosComponent implements OnInit {
   }
 
   createFormData(event) {
+    
     //Cantidad de img subidas
     let ins = event.target.files.length;
     this.fd = new FormData();
     this.agregoImg = true;
 
-    if(ins>5 || ins === null || ins === undefined){
+    if(ins>5){
+
       Swal.fire({
         allowOutsideClick: true,
         icon: 'info',
         text: 'Solo se pueden ingresar 5 imagenes maximo por producto',
         title: 'Imagen articulo'
       });
+
     }else{
       console.log('IMG ' + <File>event.target.files[x]);
 
-      if(<File>event.target.files[x]===null || <File>event.target.files[x] === undefined){
-        this.fd.append("file", '');
-      }else{
         for (var x = 0; x < ins; x++) {
           //Voy agregandolo al FormData para enviarlo al backend
           this.fd.append("file", <File>event.target.files[x]);
-        }
+        
       }
     }
   }
 
   selectFiltro(id: number) {
     this.filtroCategoria = id;
-    console.log(this.filtroCategoria);
+    console.log('filtro categoria ' + this.filtroCategoria);
   }
 
   selectFiltroTalle(id: string) {

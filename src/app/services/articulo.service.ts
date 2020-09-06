@@ -105,8 +105,9 @@ export class ArticuloService {
             articulo.activo = articulosObj[key][i].activo;
             articulo.descuento = articulosObj[key][i].descuento;
             articulo.destacado = articulosObj[key][i].destacado;
+            articulo.marca = articulosObj[key][i].marca;
             articulo.categoria = articulosObj[key][i].categoria[0];
-            
+
             // Imagenes
             articulo.imagenes = []; 
             for (let j = 0; j < articulosObj[key][i].imagenes.length; j++) {

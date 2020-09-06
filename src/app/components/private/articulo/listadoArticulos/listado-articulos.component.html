@@ -242,9 +242,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 col-form-label">Categoria *</label>
-                            <select id="categoria" placeholder="categoria" name="categoria" #categoria="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
-                                <option required [value]="categoria.id" *ngFor="let categoria of listaCategorias;">{{categoria.nombre}}</option>
+                            <label class="col-md-4 col-form-label">Categoria Actual</label>
+                            <div class="col-md-8 col-xl-8">
+                                <input readonly="readonly" type="text" class="form-control col-md-10" id="categoria1" name="categoria1" [(ngModel)]="categoriaArt">
+                            </div>
+                            <label class="col-md-4 col-form-label">Nueva categoria</label>
+                            <select id="categoria" placeholder="categoria" name="categoria" #categoria="ngModel" style="margin-left: 15px;" class="custom-select col-md-7" (change)="selectFiltro($event.target.value)" [(ngModel)]="filtroCategoria">
+                                <option value="undefined" selected >Elige la categoria</option>
+                                <option [value]="categoria.id" *ngFor="let categoria of categorias;">{{categoria.nombre}}</option>
                             </select>
                             <div *ngIf="categoria.invalid && categoria.touched" class="alert alert-danger col-md-8">
                                 Dato requerido
@@ -252,6 +257,10 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Talle Actual</label>
+                            <div class="col-md-8 col-xl-8">
+                                <input readonly="readonly" type="text" class="form-control col-md-10" id="talle1" name="talle1" [(ngModel)]="talleArt">
+                            </div>
                             <label class="col-md-2 col-form-label">Talle *</label>
                             <select id="talle" placeholder="talle" name="talle" #talle="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroTalle($event.target.value)" [(ngModel)]="filtroTalle">
                                 <option value="undefined" selected >Elige el talle</option>
@@ -263,6 +272,10 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label">Color Actual</label>
+                            <div class="col-md-8 col-xl-8">
+                                <input readonly="readonly" type="text" class="form-control col-md-10" id="color1" name="color1" [(ngModel)]="colorArt">
+                            </div>
                             <label class="col-md-2 col-form-label">Color *</label>
                             <select id="color" placeholder="color" name="color" #color="ngModel" required style="margin-left: 15px;" class="custom-select col-md-8" (change)="selectFiltroColor($event.target.value)" [(ngModel)]="filtroColor">
                                 <option value="undefined" selected >Elige el color</option>
@@ -297,7 +310,7 @@
         </div>
     </div>
 
-    <div class="row  d-flex justify-content-center">
+    <div *ngIf="visible" class="row  d-flex justify-content-center">
 
         <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let dato of imagenes">
 

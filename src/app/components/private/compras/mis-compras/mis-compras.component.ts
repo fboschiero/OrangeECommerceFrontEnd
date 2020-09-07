@@ -23,15 +23,20 @@ export class MisComprasComponent implements OnInit {
     this.usuario = JSON.parse(usr);
     
     // agrego fecha desde y hasta para luego filtrar en un futuro
-    this.listaCompras = this.comprasService.obtenerCompras(this.usuario.email, new Date(), new Date());
-      
+    // this.listaCompras = this.comprasService.obtenerCompras(this.usuario.email, new Date(), new Date());
+
+    this.comprasService.obtenerCompras(this.usuario.email).subscribe( resp => {
+      this.listaCompras = resp;
+    });
+  }
+
+  sizeListaCompras(): number {
+    if(this.listaCompras != undefined) {
+      return this.listaCompras.length;
+    }
   }
 
   ngOnInit(): void {
-  }
-
-  next() {
-    console.log('siguienteeee');
     
   }
 

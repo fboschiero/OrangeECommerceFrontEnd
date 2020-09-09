@@ -307,7 +307,9 @@ export class ListadoArticulosComponent implements OnInit {
 
     });
 
-    window.location.reload();
+    window.setTimeout(function(){
+      location.reload();
+      } ,1800);
   }
 
   createFormData(event) {

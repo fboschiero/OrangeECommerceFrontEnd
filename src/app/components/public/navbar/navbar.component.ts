@@ -5,6 +5,8 @@ import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
 import { Usuario } from '../../../modelsBD/Usuario';
 
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,6 +22,8 @@ export class NavbarComponent  {
   nombreUsuario: string;
 
   carrito: OrdenCompra;
+
+  API_URL_IMAGE = environment.API_URL_IMAGE;
 
   constructor(private loginServices: LoginService, private carritoService: CarritoService) {
     this.carrito = JSON.parse(localStorage.getItem('carrito'));
@@ -67,7 +71,7 @@ export class NavbarComponent  {
   }
 
   eliminar(indice: number){
-
+    console.log('eliminando: ' + indice)
     // Lo elimino de la base
     this.carritoService.eliminarArticulo(indice, this.carrito.items[indice]).subscribe( resp => {
       

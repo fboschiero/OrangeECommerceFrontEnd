@@ -140,14 +140,14 @@
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.descripcion}}</td>
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.marca}}</td>
                 <td class="align-items-center d-none d-md-table-cell responsive-text">{{articulo.categoria.nombre}}</td>
-                <td><button type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm responsive-text"><i class="fa fa-eye"></i></button></td>
+                <td><button onclick="window.location.href = 'listado-articulos#edit';" data-toggle="modal" data-target=".bd-example-modal-sm" type="button" (click)=getArticuloAModificar(articulo.id) class="btn btn-dark btn-sm responsive-text"><i class="fa fa-edit"></i></button></td>
             </tr>
         </tbody>
         <pagination-controls *ngIf="articulos.length > 5" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>
     </table>
 
 
-    <div *ngIf="visible" style="margin-left: auto; margin-right: auto;">
+    <div id="edit" *ngIf="visible" style="margin-left: auto; margin-right: auto;">
         <div class="col-lg-8 align-content-center" style="width: 100%; margin: 0 auto;">
             <div class="card">
                 <div class="card-header"><strong>Complete el formulario</strong> </div>
@@ -259,7 +259,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label style="margin-top: 13px;" class="col-md-4 col-form-label">Imagenes (Maximo 5) *</label>
+                            <label style="margin-top: 13px;" class="col-md-5 col-form-label">Imagenes (Maximo 5) *</label>
                             <div class="col-md-7" style="margin-top: 15px;">
                                 <input accept="image/jpg, image/jpeg, image/png" (change)="createFormData($event)" multiple #file name="file" type="file" class="form-control-file" id="file">
                             </div>
@@ -315,7 +315,7 @@
             </div>
         </div>
     </div>
-
+    <br>
     <div *ngIf="visible" class="row  d-flex justify-content-center">
 
         <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let dato of imagenes">
@@ -332,5 +332,9 @@
 
         </div>
     </div>
+
+    <br>
+    <br>
+    <br>
 
 </div>

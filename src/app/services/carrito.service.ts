@@ -79,15 +79,29 @@ export class CarritoService {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
     };
+    var body = {
+      table: [],
+      id: []
+    };
+    
+    body.table.push(item);
+    body.id.push(index);
+    let body2 = JSON.stringify(body);
 
-    let body = JSON.stringify(item);
-
-    return this.http.post(`${ environment.API_URL }/eliminarArticulo/`, body, httpOptions)
+    return this.http.post(`${ environment.API_URL }/eliminarArticulo/`, body2, httpOptions)
       .pipe(map(borrado => {
 
       if (borrado) {
         var carrito: OrdenCompra = JSON.parse(localStorage.getItem('carrito'));
-        carrito.items.splice(index);
+        
+        //Aca es el merengue que no me deja borrar del localstorage
+        console.log('Carrito item ' + JSON.stringify(carrito.items));
+        
+        for(let i=0; i<carrito.items.length; i++){
+          if(index===i){
+            carrito.items.splice(index, 1);
+          }
+        }
         localStorage.setItem('carrito', JSON.stringify(carrito));
       }
 

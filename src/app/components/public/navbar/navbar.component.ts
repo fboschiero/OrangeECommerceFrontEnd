@@ -76,7 +76,7 @@ export class NavbarComponent  {
     console.log('carrito item indice ' + JSON.stringify(this.carrito.items[indice]));
 
     // Lo elimino de la base
-    this.carritoService.eliminarArticulo(id, this.carrito.items[indice]).subscribe( resp => {
+    this.carritoService.eliminarArticulo(id, this.carrito.items[indice], indice).subscribe( resp => {
       
       if(resp["ok"] == false){
         Swal.fire({

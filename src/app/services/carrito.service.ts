@@ -75,7 +75,7 @@ export class CarritoService {
     
   }
 
-  eliminarArticulo(index: number, item: Item){
+  eliminarArticulo(index: number, item: Item, indice:number){
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
     };
@@ -95,13 +95,8 @@ export class CarritoService {
         var carrito: OrdenCompra = JSON.parse(localStorage.getItem('carrito'));
         
         //Aca es el merengue que no me deja borrar del localstorage
-        console.log('Carrito item ' + JSON.stringify(carrito.items));
-        
-        for(let i=0; i<carrito.items.length; i++){
-          if(index===i){
-            carrito.items.splice(index, 1);
-          }
-        }
+        console.log('Carrito item ' + JSON.stringify(carrito.items) + 'INDEXX ' + index);
+        carrito.items.splice(indice, 1);
         localStorage.setItem('carrito', JSON.stringify(carrito));
       }
 

@@ -69,7 +69,7 @@
                     <li *ngFor="let item of carrito.items; let i = index;">
                         <span class="item">
                           <span class="item-left">
-                              <img class="mt-1" src="../../../assets/articulos{{item.producto.imagenes[0].url}}" width="30px" alt="" />
+                              <img class="mt-1"  [src]="API_URL_IMAGE + item.producto.imagenes[0].url " width="30px" alt="" />
                               <span class="item-info">
                                   <span>{{item.nombre}}</span>
                         <span>$ {{item.precio}}</span>

@@ -1,13 +1,13 @@
 <app-navbar [verHeader]="false"></app-navbar>
 
 <div class="container">
-    <div >
-        
+    <div>
+
         <div class="row m-2 justify-content-center">
             <div class="col-2">
                 <strong class="responsive-text">Artículo</strong>
             </div>
-            <div class="col-2">                
+            <div class="col-2">
             </div>
             <div class="col-2 text-right">
                 <strong class="responsive-text">Cantidad</strong>
@@ -40,15 +40,17 @@
                 <label>{{item.precio * item.cantidad}}</label>
             </div>
             <div class="col-2">
-                <button type="button" (click)="eliminar(i);" class="btn btn-danger"><span class="fa fa-trash"></span> </button>
+                <button type="button" (click)="eliminar(carrito.id, i);" class="btn btn-danger">
+                    <span class="fa fa-trash"></span>
+                </button>
             </div>
             <hr style="border: 1px solid lightgray; margin: 3px; width: 100%;">
         </div>
-        
+
         <div class="row m-2 justify-content-center">
             <div class="col-7"> </div>
-            <div class="col-3 text-right">     
-                Subtotal           
+            <div class="col-3 text-right">
+                Subtotal
             </div>
             <div class="col-2 text-right">
                 <strong>${{getSubtotal()}}</strong>
@@ -59,8 +61,8 @@
         </div>
         <div class="row m-2 justify-content-center">
             <div class="col-7"></div>
-            <div class="col-3 text-right">     
-                Descuentos           
+            <div class="col-3 text-right">
+                Descuentos
             </div>
             <div class="col-2 text-right">
                 <strong>$0</strong>
@@ -71,8 +73,8 @@
         </div>
         <div class="row m-2 justify-content-center">
             <div class="col-7"></div>
-            <div class="col-3 text-right">     
-                Total           
+            <div class="col-3 text-right">
+                Total
             </div>
             <div class="col-2 text-right">
                 <strong>${{getSubtotal()}}</strong>
@@ -81,12 +83,12 @@
     </div>
 
     <div class="row m-2">
-        <div class="col-6">  
+        <div class="col-6">
             <button type="button" [routerLink]="['/home']" class="cart_button"><span class="fa fa-shopping-bag mr-2"></span> Continuar de compras </button>
-        </div>   
-        <div class="col-6">  
-            <button type="button"  [routerLink]="['/checkout']" class="cart_button"> Finalizar compra <span class="fa fa-thumbs-up"></span></button>
-        </div>                
+        </div>
+        <div class="col-6">
+            <button type="button" [routerLink]="['/checkout']" class="cart_button"> Finalizar compra <span class="fa fa-thumbs-up"></span></button>
+        </div>
     </div>
 </div>
 

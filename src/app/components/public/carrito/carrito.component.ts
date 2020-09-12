@@ -24,10 +24,10 @@ export class CarritoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  eliminar(indice: number){
+  eliminar(id: number, indice: number){
 
     // Lo elimino de la base
-    this.carritoService.eliminarArticulo(indice, this.carrito.items[indice]).subscribe( resp => {
+    this.carritoService.eliminarArticulo(id, this.carrito.items[indice], indice).subscribe( resp => {
       
       if(resp["ok"] == false){
         Swal.fire({
